@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVmatch - Connect Talent to Opportunity</title>
+    <style>
+        /* Modern CSS Custom Property Framework for Multi-Theme Architecture */
+        body[data-theme="light"] {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-green: #10b981;
+            --dark-blue: #1e293b;
+            --light-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --progress-empty: #334155;
+            --error-color: #ef4444;
+            --danger-hover: #dc2626;
+        }
+        body[data-theme="dark"] {
+            --primary-blue: #38bdf8;
+            --primary-hover: #0284c7;
+            --primary-green: #34d399;
+            --dark-blue: #f8fafc;
+            --light-bg: #030712;
+            --card-bg: #111827;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+            --progress-empty: #374151;
+            --error-color: #f87171;
+            --danger-hover: #dc2626;
+        }
+        body[data-theme="slate"] {
+            --primary-blue: #6366f1;
+            --primary-hover: #4f46e5;
+            --primary-green: #10b981;
+            --dark-blue: #0f172a;
+            --light-bg: #1e1e24;
+            --card-bg: #2a2a35;
+            --text-main: #f8fafc;
+            --text-muted: #a1a1aa;
+            --border-color: #3f3f46;
+            --progress-empty: #3f3f46;
+            --error-color: #ef4444;
+            --danger-hover: #dc2626;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: var(--card-bg);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo-container {
+            max-width: 160px;
+        }
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+        .controls-panel {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .controls-panel select {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            cursor: pointer;
+            margin-top: 0;
+            width: auto;
+        }
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        h2 {
+            color: var(--text-main);
+            margin-top: 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        h3 {
+            color: var(--text-main);
+            margin-top: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+        input.touched:valid, textarea.touched:valid {
+            border-color: var(--primary-green);
+        }
+        input.touched:invalid, textarea.touched:invalid {
+            border-color: var(--error-color);
+        }
+        .counter-container {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .counter-container.limit-reached {
+            color: var(--error-color);
+            font-weight: bold;
+        }
+
+        /* Modernized Wizard Buttons Styling Matrix */
+        .wizard-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            background: transparent;
+        }
+        .wizard-buttons button {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            margin-top: 0;
+        }
+
+        /* Button Roles Rules */
+        .wizard-buttons button[data-i18n="btn_generate"],
+        .wizard-buttons button:not([style*="background-color"]):not(.clear-btn) {
+            background-color: var(--primary-blue) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            flex: 2;
+        }
+        .wizard-buttons button[data-i18n="btn_generate"]:hover,
+        .wizard-buttons button:not([style*="background-color"]):not(.clear-btn):hover {
+            background-color: var(--primary-hover) !important;
+            transform: translateY(-1px);
+        }
+        .wizard-buttons button[onclick*="goToFormStep"][style*="background-color"] {
+            background-color: transparent !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-main) !important;
+            flex: 1;
+        }
+        .wizard-buttons button[onclick*="goToFormStep"][style*="background-color"]:hover {
+            background-color: var(--border-color) !important;
+        }
+        .wizard-buttons .clear-btn {
+            background-color: transparent !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-muted) !important;
+            flex: 1;
+        }
+        .wizard-buttons .clear-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1) !important;
+            border-color: var(--error-color) !important;
+            color: var(--error-color) !important;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        .auth-toggle-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .auth-toggle-link:hover {
+            text-decoration: underline;
+        }
+        .match-item {
+            border-left: 4px solid var(--primary-green);
+            background: rgba(16, 185, 129, 0.08);
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .match-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .progress-bar-bg {
+            background-color: var(--progress-empty);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .progress-bar-fill {
+            background-color: var(--primary-green);
+            height: 100%;
+            width: 33.33%;
+            transition: width 0.3s ease-in-out;
+        }
+        .form-step-panel {
+            display: none;
+        }
+        .form-step-panel.active {
+            display: block;
+        }
+        
+        /* Premium CV Template styling rules */
+        .cv-document {
+            background: #ffffff;
+            border: 1px solid #cbd5e0;
+            padding: 40px;
+            border-radius: 6px;
+            color: #1e293b;
+            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .cv-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0f172a;
+            text-align: center;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cv-contact {
+            font-size: 0.85rem;
+            color: #475569;
+            text-align: center;
+            margin: 5px 0 15px 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+        .cv-section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cv-split-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #0f172a;
+            margin-top: 8px;
+        }
+        .cv-split-sub {
+            display: flex;
+            justify-content: space-between;
+            color: #475569;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .cv-bullet-list {
+            margin: 4px 0 12px 0;
+            padding-left: 20px;
+        }
+        .cv-bullet-list li {
+            margin-bottom: 6px;
+        }
+        
+        /* Real-time Dynamic Password Gauge Styling Layout */
+        .password-strength-row {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .strength-bar-bg {
+            background-color: var(--progress-empty);
+            height: 5px;
+            border-radius: 3px;
+            margin-top: 6px;
+            width: 100%;
+            overflow: hidden;
+        }
+        #strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        #step-2 button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        #auth-card button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo-container">
+            <img src="image_adb067.png" alt="CVmatch Logo">
+        </div>
+        <div class="controls-panel">
+            <select id="lang-selector" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="cy">Cymraeg (Welsh)</option>
+            </select>
+            <select id="theme-selector" onchange="changeTheme(this.value)">
+                <option value="dark">🌙 Dark Theme</option>
+                <option value="light">☀️ Light Theme</option>
+                <option value="slate">🔷 Slate Blue</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div id="auth-card" class="card">
+            
+            <div id="auth-signin-view">
+                <h2 data-i18n="signin_title">Welcome Back</h2>
+                <p data-i18n="signin_sub">Sign in to access your CV dashboard.</p>
+                <form onsubmit="handleAuth(event, 'signin')">
+                    <label data-i18n="label_email" for="auth-email-signin">Email Address</label>
+                    <input type="email" id="auth-email-signin" placeholder="yourname@email.com" required>
+                    
+                    <label data-i18n="label_password" for="auth-password-signin">Password</label>
+                    <input type="password" id="auth-password-signin" placeholder="••••••••" required>
+                    
+                    <button type="submit" data-i18n="btn_signin">Sign In</button>
+                </form>
+                <div style="text-align: center; display: flex; justify-content: space-between; padding: 0 10px;">
+                    <a class="auth-toggle-link" onclick="switchAuthView('forgot')" data-i18n="link_forgot">Forgot Password?</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create Account</a>
+                </div>
+            </div>
+
+            <div id="auth-signup-view" class="hidden">
+                <h2 data-i18n="signup_title">Create an Account</h2>
+                <p data-i18n="signup_sub">Sign up to start tailoring your CV and tracking experience placements.</p>
+                <form onsubmit="handleAuth(event, 'signup')">
+                    <label data-i18n="label_email" for="auth-email-signup">Email Address</label>
+                    <input type="email" id="auth-email-signup" placeholder="yourname@email.com" required>
+                    
+                    <label data-i18n="label_password" for="auth-password-signup">Password</label>
+                    <input type="password" id="auth-password-signup" placeholder="••••••••" required>
+                    
+                    <div class="password-strength-row">
+                        <span id="strength-text">Strength: Empty</span>
+                        <div class="strength-bar-bg"><div id="strength-bar-fill"></div></div>
+                    </div>
+                    
+                    <button type="submit" data-i18n="btn_signup">Sign Up</button>
+                </form>
+                <div style="text-align: center;">
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Already have an account? Sign In</a>
+                </div>
+            </div>
+
+            <div id="auth-forgot-view" class="hidden">
+                <h2 data-i18n="forgot_title">Reset Your Password</h2>
+                <p data-i18n="forgot_sub">Enter your registered email and a new password below to reset your credentials.</p>
+                <form onsubmit="handleAuth(event, 'forgot')">
+                    <label data-i18n="label_email" for="auth-email-forgot">Account Email Address</label>
+                    <input type="email" id="auth-email-forgot" placeholder="yourname@email.com" required>
+                    
+                    <label data-i18n="label_new_password" for="auth-password-forgot">Choose New Password</label>
+                    <input type="password" id="auth-password-forgot" placeholder="••••••••" required>
+                    
+                    <button type="submit" data-i18n="btn_reset">Update Password & Sign In</button>
+                </form>
+                <div style="text-align: center;">
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Back to Sign In</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-1" class="card hidden">
+            <div class="progress-container">
+                <div class="progress-labels">
+                    <span id="progress-text">Step 1 of 3: Personal Information</span>
+                    <span id="progress-percent">33%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="wizard-progress-fill" class="progress-bar-fill"></div>
+                </div>
+            </div>
+            
+            <h2 data-i18n="form_title">Create Your Scannable CV</h2>
+            <p data-i18n="form_sub">Fill out your details below to generate a modern, professionally structured CV tailored for work experience.</p>
+            
+            <div id="form-panel-1" class="form-step-panel active">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label data-i18n="label_firstname" for="firstname">First Name</label>
+                        <input type="text" id="firstname" placeholder="Alex" maxlength="35" required>
+                        <div class="counter-container"><span id="firstname-counter">0</span> / 35</div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_surname" for="surname">Surname</label>
+                        <input type="text" id="surname" placeholder="Morgan" maxlength="35" required>
+                        <div class="counter-container"><span id="surname-counter">0</span> / 35</div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_location" for="location">Location (City, Country)</label>
+                        <input type="text" id="location" placeholder="London, UK" maxlength="50" required>
+                        <div class="counter-container"><span id="location-counter">0</span> / 50</div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_phone" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+44 7123 456789" maxlength="20" required>
+                        <div class="counter-container"><span id="phone-counter">0</span> / 20</div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_email" for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="alex.morgan@email.com" maxlength="50" required>
+                        <div class="counter-container"><span id="email-counter">0</span> / 50</div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_linkedin" for="linkedin">LinkedIn Profile (Optional)</label>
+                        <input type="text" id="linkedin" placeholder="linkedin.com/in/yourprofile" maxlength="75">
+                        <div class="counter-container"><span id="linkedin-counter">0</span> / 75</div>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
+                    <button type="button" onclick="goToFormStep(2)">Next Step</button>
+                </div>
+            </div>
+
+            <div id="form-panel-2" class="form-step-panel">
+                <div class="form-grid">
+                    <div class="full-width input-group">
+                        <label data-i18n="label_school" for="school">Current School / College Name</label>
+                        <input type="text" id="school" placeholder="Oakridge High School" maxlength="75" required>
+                        <div class="counter-container"><span id="school-counter">0</span> / 75</div>
+                    </div>
+                    <div>
+                        <label data-i18n="label_focus" for="subject">Strongest Academic Focus Area</label>
+                        <select id="subject">
+                            <option value="IT & Computer Science">IT & Computer Science</option>
+                            <option value="Air Traffic Control & Logistics">Air Traffic Control & Logistics</option>
+                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics & Cyber Investigation</option>
+                            <option value="Aerospace & Aircraft Maintenance">Aerospace & Aircraft Maintenance</option>
+                            <option value="Mathematics & Sciences">Mathematics & Sciences</option>
+                            <option value="English Literature & Media">English Literature & Media</option>
+                            <option value="Art & Creative Design">Art & Creative Design</option>
+                            <option value="General Studies">General Studies & Alternative Streams</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_grades" for="grades">Current / Predicted Grades</label>
+                        <input type="text" id="grades" placeholder="e.g., Straight As / 3 A-Levels (A, A, B)" maxlength="60" required>
+                        <div class="counter-container"><span id="grades-counter">0</span> / 60</div>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button type="button" style="background-color: #718096;" onclick="goToFormStep(1)">Back</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
+                    <button type="button" onclick="goToFormStep(3)">Next Step</button>
+                </div>
+            </div>
+
+            <div id="form-panel-3" class="form-step-panel">
+                <div class="form-grid">
+                    <div class="full-width input-group">
+                        <label data-i18n="label_hobby" for="sports">Sports Team, Leadership, or Main Hobby</label>
+                        <input type="text" id="sports" placeholder="e.g., Captain of School Football Team / Coding Club Member" maxlength="100" required>
+                        <div class="counter-container"><span id="sports-counter">0</span> / 100</div>
+                    </div>
+                    
+                    <div class="full-width input-group">
+                        <label data-i18n="label_interests" for="interests">Interests & Volunteering</label>
+                        <textarea id="interests" placeholder="e.g., Aviation systems, Football tactics, Strategic PC gaming" maxlength="200" rows="3" required></textarea>
+                        <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
+                    </div>
+                </div>
+                <div class="wizard-buttons">
+                    <button type="button" style="background-color: #718096;" onclick="goToFormStep(2)">Back</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
+                    <button type="button" onclick="processCV()" data-i18n="btn_generate">Generate Template & View Matches</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-2" class="card hidden">
+            <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
+                <button onclick="window.print()" style="margin: 0; width: auto; padding: 8px 15px; font-size: 0.85rem;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
+            </div>
+            
+            <div class="cv-document" id="cv-document-target"></div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 35px 0;">
+
+            <h3 data-i18n="dash_section_matches">2. Tailored Placement Placements</h3>
+            <div id="match-results"></div>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <button onclick="resetApp()" style="background-color: #718096; margin-top: 0;" data-i18n="btn_edit">Edit Form Details</button>
+                <button onclick="logout()" style="background-color: var(--error-color); margin-top: 0; max-width: 150px;" data-i18n="btn_logout">Log Out</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+
+        const i18n = {
+            en: {
+                signin_title: "Welcome Back",
+                signin_sub: "Sign in to access your CV dashboard.",
+                signup_title: "Create an Account",
+                signup_sub: "Sign up to start tailoring your CV and tracking experience placements.",
+                forgot_title: "Reset Your Password",
+                forgot_sub: "Enter your registered email and a new password below to reset your credentials.",
+                label_email: "Email Address",
+                label_password: "Password",
+                label_new_password: "Choose New Password",
+                btn_signin: "Sign In",
+                btn_signup: "Sign Up",
+                btn_reset: "Update Password & Sign In",
+                link_forgot: "Forgot Password?",
+                link_create: "Create Account",
+                link_have_account: "Already have an account? Sign In",
+                link_back_signin: "Back to Sign In",
+                form_title: "Create Your Scannable CV",
+                form_sub: "Fill out your details below to generate a modern, professionally structured CV tailored for work experience.",
+                label_firstname: "First Name",
+                label_surname: "Surname",
+                label_location: "Location (City, Country)",
+                label_phone: "Phone Number",
+                label_linkedin: "LinkedIn Profile (Optional)",
+                label_school: "Current School / College Name",
+                label_focus: "Strongest Academic Focus Area",
+                label_grades: "Current / Predicted Grades",
+                label_hobby: "Sports Team, Leadership, or Main Hobby",
+                label_interests: "Interests & Volunteering",
+                btn_generate: "Generate Template & View Matches",
+                dash_title: "Your CVmatch Dashboard",
+                dash_section_cv: "1. Your Formatted CV Template",
+                dash_section_matches: "2. Tailored Placements",
+                btn_print: "🖨️ Print / Save PDF",
+                btn_edit: "Edit Form Details",
+                btn_logout: "Log Out",
+                alert_fill: "Please fill out all fields correctly on this step.",
+                alert_created: "Account successfully created! Logging you in...",
+                alert_welcome: "Welcome back to CVmatch!",
+                alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
+                alert_reset: "Password updated successfully! Logging you in...",
+                cv_prof_title: "Professional Profile",
+                cv_prof_desc: "A motivated and disciplined Student with a strong academic foundation and a proven track record of leadership and teamwork demonstrated through competitive activities. Adept at balancing rigorous study schedules with extracurricular commitments. Possesses excellent communication, time-management, and problem-solving skills, eager to bring a dedicated work ethic to a professional work environment.",
+                cv_edu_title: "Education",
+                cv_edu_sub: "High School Diploma / Academic Studies",
+                cv_edu_bullet1: "Relevant Modules: Advanced focus paths in ",
+                cv_edu_bullet2: "Key Projects: Developed individual portfolio analysis which involved intensive evaluation, presentation delivery, and group collaboration.",
+                cv_ach_title: "Key Achievements",
+                cv_ach_b1: "Academic Excellence Recognition: Consistently commended for high-level module scores.",
+                cv_ach_b2: "Skills Development Award: Completed demanding core programs focusing on community engagement.",
+                cv_ach_b3: "Public Presentation Milestone: Secured highly commended positioning across evaluation panels.",
+                cv_sports_title: "Sports & Leadership",
+                cv_sports_sub: "Extracurricular Engagement",
+                cv_sports_b1: "Leadership: Collaborated with peers, co-organized weekly sessions, and motivated teams.",
+                cv_sports_b2: "Discipline: Successfully balanced regular training alongside full-time academic tasks.",
+                cv_skills_title: "Skills",
+                cv_skills_tech: "Technical Skills: Microsoft Office Suite, Digital Literacy paths, Asset formatting templates.",
+                cv_skills_soft: "Soft Skills: Teamwork built via group tasks; Reliable Time Management; Clear Communication.",
+                cv_interests_title: "Interests",
+                cv_ref: "References available upon request.",
+                step1_text: "Step 1 of 3: Personal Information",
+                step2_text: "Step 2 of 3: Academic Focus",
+                step3_text: "Step 3 of 3: Extracurricular Activities"
+            },
+            cy: {
+                signin_title: "Croeso Nôl",
+                signin_sub: "Mewngofnodwch i weld eich dangosfwrdd CV.",
+                signup_title: "Creu Cyfrif",
+                signup_sub: "Cofrestrwch i ddechrau teilwra eich CV a dilyn lleoliadau profiad gwaith.",
+                forgot_title: "Ailosod Eich Cyfrinair",
+                forgot_sub: "Nodwch eich e-bost cofrestredig a chyfrinair newydd isod i ailosod eich manylion.",
+                label_email: "Cyfeiriad E-bost",
+                label_password: "Cyfrinair",
+                label_new_password: "Dewiswch Gyfrinair Newydd",
+                btn_signin: "Mewngofnodi",
+                btn_signup: "Cofrestru",
+                btn_reset: "Diweddaru Cyfrinair a Mewngofnodi",
+                link_forgot: "Wedi anghofio cyfrinair?",
+                link_create: "Creu Cyfrif",
+                link_have_account: "Oes gennych chi gyfrif eisoes? Mewngofnodwch",
+                link_back_signin: "Yn ôl i Mewngofnodi",
+                form_title: "Creu Eich CV Sganiadwy",
+                form_sub: "Llenwch eich manylion isod i gynhyrchu CV modern, strwythuredig sydd wedi'i deilwra ar gyfer profiad gwaith.",
+                label_firstname: "Enw Cyntaf",
+                label_surname: "Cyfenw",
+                label_location: "Lleoliad (Dinas, Gwlad)",
+                label_phone: "Rhif Ffôn",
+                label_linkedin: "Proffil LinkedIn (Dewisol)",
+                label_school: "Enw'r Ysgol / Coleg Cyfredol",
+                label_focus: "Prif Faes Ffocws Academaidd",
+                label_grades: "Graddau Cyfredol / Rhagwelir",
+                label_hobby: "Tîm Chwaraeon, Arweinyddiaeth, neu Brif Hobi",
+                label_interests: "Diddordebau a Gwirfoddoli",
+                btn_generate: "Cynhyrchu Templeg a Gweld Matchys",
+                dash_title: "Eich Dangosfwrdd CVmatch",
+                dash_section_cv: "1. Eich Templeg CV Wedi'i Fformatio",
+                dash_section_matches: "2. Lleoliadau Profiad Gwaith wedi'u Teilwra",
+                btn_print: "🖨️ Argraffu / Cadw fel PDF",
+                btn_edit: "Golygu Manylion y Ffurflen",
+                btn_logout: "Allgofnodi",
+                alert_fill: "Llenwch bob maes yn gywir ar y cam hwn, os gwelwch yn dda.",
+                alert_created: "Cyfrif wedi'i greu yn llwyddiannus! Yn eich mewngofnodi...",
+                alert_welcome: "Croeso nôl i CVmatch!",
+                alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
+                alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
+                cv_prof_title: "Proffil Proffesiynol",
+                cv_prof_desc: "Myfyriwr gweithgar a disgybledig sydd â sylfaen academaidd gref a hanes o arweinyddiaeth a gwaith tîm trwy weithgareddau cystadleuol. Galluog i gydbwyso amserlenni astudio caeth gyda hymrwymiadau allgyrsiol. Meddu ar sgiliau cyfathrebu, rheoli amser a datrys problemau gwych, yn awyddus i ddod â moeseg gwaith ymroddedig i amgylchedd proffesiynol.",
+                cv_edu_title: "Addysg",
+                cv_edu_sub: "Diploma Ysgol Uwchradd / Astudiaethau Academaidd",
+                cv_edu_bullet1: "Modiwlau Perthnasol: Llwybrau ffocws uwch mewn ",
+                cv_edu_bullet2: "Prosiectau Allweddol: Datblygu dadansoddiad portffolio unigol a oedd yn cynnwys gwerthuso dwys, cyflwyno, a chydweithio grŵp.",
+                cv_ach_title: "Prif Gyflawniadau",
+                cv_ach_b1: "Cydnabyddiaeth o Ragoriaeth Academaidd: Clodfori'n gyson am sgorau modiwl lefel uchel.",
+                cv_ach_b2: "Gwobr Datblygu Sgiliau: Wedi cwblhau rhaglenni craidd heriol sy'n canolbwyntio ar ymgysylltu â'r gymuned.",
+                cv_ach_b3: "Cerrig Milltir Cyflwyno Cyhoeddus: Sicrhau safle canmoladwy iawn ar draws paneli gwerthuso prosiectau.",
+                cv_sports_title: "Chwaraeon ac Arweinyddiaeth",
+                cv_sports_sub: "Ymgysylltu Allgyrsiol",
+                cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol, a hwb i grwpiau tîm.",
+                cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus ochr yn ochr â thasgau academaidd llawn amser.",
+                cv_skills_title: "Sgiliau",
+                cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol, Templedi fformatio.",
+                cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser yn ddibynadwy; Cyfathrebu Clir.",
+                cv_interests_title: "Diddordebau",
+                cv_ref: "Geirdaon ar gael ar gais.",
+                step1_text: "Cam 1 o 3: Gwybodaeth Bersonol",
+                step2_text: "Cam 2 o 3: Ffocws Academaidd",
+                step3_text: "Cam 3 o 3: Gweithgareddau Allgyrsiol"
+            }
+        };
+
+        const opportunityDb = {
+            "IT & Computer Science": [
+                { title: "Software Engineering Shadowing Day", company: "TechStart Corp", desc: "Observe active agile development sprints and receive direct career advice from junior frontend developers." },
+                { title: "IT Support & Infrastructure Placement", company: "EduTech Solutions", desc: "Gain hands-on experience diagnostic testing and deploying tech hardware architectures within modern offices." }
+            ],
+            "Air Traffic Control & Logistics": [
+                { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts." },
+                { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks." }
+            ],
+            "Digital Forensics & Cyber Investigation": [
+                { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes." },
+                { title: "Digital Discovery & Investigations Day", company: "Apex Integrity Partners", desc: "An overview of analytical methodologies used to preserve digital proof footprints, trace network trails, and structure audit reviews." }
+            ],
+            "Aerospace & Aircraft Maintenance": [
+                { title: "Avionics Engineering Maintenance Shadowing", company: "Horizon Aviation Systems", desc: "Observe certified structural teams performing diagnostics, component calibrations, and scheduled hardware preventive maintenance routines." },
+                { title: "Precision Systems & Component Logistics Workshop", company: "Centurion Aero Tech", desc: "Gain insights into strict aerospace quality controls, supply chain asset distributions, and technical documentation audits." }
+            ],
+            "Mathematics & Sciences": [
+                { title: "Data Analyst Taster Day", company: "FinMetrics Group", desc: "A foundational look at interpreting business metrics, tracking performance graphs, and building spreadsheet structures." },
+                { title: "Laboratory Logistics Assistant", company: "Apex BioHealth Labs", desc: "An entry-level overview of health safety codes, asset inventory logs, and cleanroom operations." }
+            ],
+            "English Literature & Media": [
+                { title: "Copywriting & Digital Marketing Workshop", company: "The Chronicle Press", desc: "Learn how to draft commercial advertising copy and optimize weekly email newsletter communication frameworks." },
+                { title: "Social Media Outreach Coordinator", company: "Youth Sports Initiative", desc: "A highly flexible role managing communication threads, taking photos, and drafting engagement updates." }
+            ],
+            "Art & Creative Design": [
+                { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts." },
+                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design." }
+            ],
+            "General Studies": [
+                { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows." }
+            ]
+        };
+
+        function changeTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.innerText = i18n[lang][key];
+                }
+            });
+            updateProgressBarLabels();
+        }
+
+        function goToFormStep(stepNum) {
+            if (stepNum > 1) {
+                const currentActiveStep = document.querySelector('.form-step-panel.active');
+                const fields = currentActiveStep.querySelectorAll('input, textarea, select');
+                let isValid = true;
+                
+                fields.forEach(field => {
+                    field.classList.add('touched');
+                    if (!field.checkValidity()) {
+                        isValid = false;
+                    }
+                });
+                
+                if (!isValid) {
+                    alert(i18n[currentLang].alert_fill);
+                    return;
+                }
+            }
+
+            document.querySelectorAll('.form-step-panel').forEach(panel => panel.classList.remove('active'));
+            document.getElementById(`form-panel-${stepNum}`).classList.add('active');
+
+            const fillPercent = stepNum === 1 ? '33.33%' : stepNum === 2 ? '66.66%' : '100%';
+            document.getElementById('wizard-progress-fill').style.width = fillPercent;
+            document.getElementById('progress-percent').innerText = stepNum === 1 ? '33%' : stepNum === 2 ? '66%' : '100%';
+            
+            updateProgressBarLabels(stepNum);
+        }
+
+        function updateProgressBarLabels(stepNum) {
+            const activeStep = stepNum || (document.getElementById('form-panel-1').classList.contains('active') ? 1 : document.getElementById('form-panel-2').classList.contains('active') ? 2 : 3);
+            const labelEl = document.getElementById('progress-text');
+            if (activeStep === 1) labelEl.innerText = i18n[currentLang].step1_text;
+            if (activeStep === 2) labelEl.innerText = i18n[currentLang].step2_text;
+            if (activeStep === 3) labelEl.innerText = i18n[currentLang].step3_text;
+        }
+
+        function switchAuthView(view) {
+            document.getElementById('auth-signup-view').classList.add('hidden');
+            document.getElementById('auth-signin-view').classList.add('hidden');
+            document.getElementById('auth-forgot-view').classList.add('hidden');
+
+            if (view === 'signup') document.getElementById('auth-signup-view').classList.remove('hidden');
+            if (view === 'signin') document.getElementById('auth-signin-view').classList.remove('hidden');
+            if (view === 'forgot') document.getElementById('auth-forgot-view').classList.remove('hidden');
+        }
+
+        function handleAuth(event, type) {
+            event.preventDefault();
+            
+            if (type === 'signup') {
+                const email = document.getElementById('auth-email-signup').value.trim().toLowerCase();
+                const password = document.getElementById('auth-password-signup').value;
+                
+                if (!email || !password) {
+                    alert(i18n[currentLang].alert_fill);
+                    return;
+                }
+                
+                localStorage.setItem(`user_${email}`, password);
+                alert(i18n[currentLang].alert_created);
+                
+                document.getElementById('email').value = email;
+                document.getElementById('auth-card').classList.add('hidden');
+                document.getElementById('step-1').classList.remove('hidden');
+                goToFormStep(1);
+                
+            } else if (type === 'signin') {
+                const email = document.getElementById('auth-email-signin').value.trim().toLowerCase();
+                const password = document.getElementById('auth-password-signin').value;
+                
+                const storedPassword = localStorage.getItem(`user_${email}`);
+                
+                if (storedPassword && storedPassword === password) {
+                    alert(i18n[currentLang].alert_welcome);
+                    document.getElementById('email').value = email;
+                    document.getElementById('auth-card').classList.add('hidden');
+                    document.getElementById('step-1').classList.remove('hidden');
+                    goToFormStep(1);
+                } else {
+                    alert(i18n[currentLang].alert_invalid);
+                }
+                
+            } else if (type === 'forgot') {
+                const email = document.getElementById('auth-email-forgot').value.trim().toLowerCase();
+                const newPassword = document.getElementById('auth-password-forgot').value;
+                
+                if (!email || !newPassword) {
+                    alert(i18n[currentLang].alert_fill);
+                    return;
+                }
+                
+                localStorage.setItem(`user_${email}`, newPassword);
+                alert(i18n[currentLang].alert_reset);
+                
+                document.getElementById('email').value = email;
+                document.getElementById('auth-card').classList.add('hidden');
+                document.getElementById('step-1').classList.remove('hidden');
+                goToFormStep(1);
+            }
+        }
+
+        function logout() {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('auth-card').classList.remove('hidden');
+            switchAuthView('signin');
+        }
+       
+        function clearCurrentStep() {
+            const activePanel = document.querySelector('.form-step-panel.active');
+            if (!activePanel) return;
+            
+            const inputs = activePanel.querySelectorAll('input, textarea');
+            inputs.forEach(inputField => {
+                inputField.value = "";
+                inputField.classList.remove('touched');
+                
+                const counterElement = document.getElementById(`${inputField.id}-counter`);
+                if (counterElement) {
+                    counterElement.innerText = "0";
+                    counterElement.parentElement.classList.remove('limit-reached');
+                }
+            });
+        }
+        
+        function processCV() {
+            const currentActiveStep = document.querySelector('.form-step-panel.active');
+            const fields = currentActiveStep.querySelectorAll('input, textarea, select');
+            let isValid = true;
+            
+            fields.forEach(field => {
+                field.classList.add('touched');
+                if (!field.checkValidity()) isValid = false;
+            });
+            
+            if (!isValid) {
+                alert(i18n[currentLang].alert_fill);
+                return;
+            }
+
+            const first = document.getElementById('firstname').value || "FIRSTNAME";
+            const last = document.getElementById('surname').value || "SURNAME";
+            const loc = document.getElementById('location').value || "City, Country";
+            const phone = document.getElementById('phone').value || "+44 7123 456789";
+            const email = document.getElementById('email').value || "your.email@email.com";
+            const linkedin = document.getElementById('linkedin').value || "linkedin.com/in/yourprofile";
+            
+            const school = document.getElementById('school').value || "High School / College Name";
+            const subject = document.getElementById('subject').value;
+            const grades = document.getElementById('grades').value || "Straight As / High Passes";
+            const sports = document.getElementById('sports').value || "Sports Team / Club Member";
+            const interests = document.getElementById('interests').value || "Technology, Analysis, Volunteering";
+
+            const t = i18n[currentLang];
+            const cvTarget = document.getElementById('cv-document-target');
+            
+            cvTarget.innerHTML = `
+                <div class="cv-name">${first} ${last}</div>
+                <div class="cv-contact">
+                    ${loc} | ${phone} | ${email} ${linkedin ? `| ${linkedin}` : ''}
+                </div>
+
+                <div class="cv-section-title">${t.cv_prof_title}</div>
+                <p style="margin: 0 0 15px 0; text-align: justify; color: #1e293b;">${t.cv_prof_desc}</p>
+
+                <div class="cv-section-title">${t.cv_edu_title}</div>
+                <div class="cv-split-header">
+                    <div>${school}</div>
+                    <div>${loc}</div>
+                </div>
+                <div class="cv-split-sub">
+                    <div>${t.cv_edu_sub}</div>
+                    <div>September 2024 – Present</div>
+                </div>
+                <ul class="cv-bullet-list">
+                    <li><strong>Grades:</strong> ${grades}</li>
+                    <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
+                    <li>${t.cv_edu_bullet2}</li>
+                </ul>
+
+                <div class="cv-section-title">${t.cv_ach_title}</div>
+                <ul class="cv-bullet-list">
+                    <li>${t.cv_ach_b1}</li>
+                    <li>${t.cv_ach_b2}</li>
+                    <li>${t.cv_ach_b3}</li>
+                </ul>
+
+                <div class="cv-section-title">${t.cv_sports_title}</div>
+                <div class="cv-split-header">
+                    <div>${sports}</div>
+                    <div>Active Contributor</div>
+                </div>
+                <div class="cv-split-sub">
+                    <div>${t.cv_sports_sub}</div>
+                    <div>September 2024 – Present</div>
+                </div>
+                <ul class="cv-bullet-list">
+                    <li>${t.cv_sports_b1}</li>
+                    <li>${t.cv_sports_b2}</li>
+                </ul>
+
+                <div class="cv-section-title">${t.cv_skills_title}</div>
+                <div style="margin-top: 5px; font-size: 0.95rem;">
+                    <strong>${t.cv_skills_tech}</strong><br>
+                    <strong>${t.cv_skills_soft}</strong>
+                </div>
+
+                <div class="cv-section-title">${t.cv_interests_title}</div>
+                <p style="margin: 0 0 15px 0;">${interests}</p>
+
+                <div style="text-align: center; font-style: italic; font-size: 0.9rem; color: #718096; margin-top: 20px;">
+                    ${t.cv_ref}
+                </div>
+            `;
+
+            const matches = opportunityDb[subject] || [];
+            const resultsContainer = document.getElementById('match-results');
+            resultsContainer.innerHTML = ''; 
+
+            matches.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'match-item';
+                div.innerHTML = `
+                    <div class="match-title">${item.title}</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; opacity: 0.8; color: var(--text-muted);">${item.company}</div>
+                    <div style="margin-top: 5px; font-size: 0.95rem; color: var(--text-main);">${item.desc}</div>
+                `;
+                resultsContainer.appendChild(div);
+            });
+
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+        }
+
+        function resetApp() {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-1').classList.remove('hidden');
+            goToFormStep(1);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('auth-password-signup').addEventListener('input', checkPasswordStrength);
+
+            const monitoredInputs = ['firstname', 'surname', 'location', 'phone', 'email', 'linkedin', 'school', 'grades', 'sports', 'interests'];
+            
+            monitoredInputs.forEach(id => {
+                const inputElement = document.getElementById(id);
+                const counterElement = document.getElementById(`${id}-counter`);
+                
+                if (inputElement && counterElement) {
+                    const maxLength = inputElement.getAttribute('maxlength');
+                    
+                    inputElement.addEventListener('input', () => {
+                        const currentLength = inputElement.value.length;
+                        counterElement.innerText = currentLength;
+                        
+                        if (currentLength >= maxLength) {
+                            counterElement.parentElement.classList.add('limit-reached');
+                        } else {
+                            counterElement.parentElement.classList.remove('limit-reached');
+                        }
+                    });
+
+                    inputElement.addEventListener('blur', () => {
+                        inputElement.classList.add('touched');
+                    });
+                }
+            }); 
+        }); 
+     
+        function checkPasswordStrength() {
+            const password = document.getElementById('auth-password-signup').value;
+            const strengthText = document.getElementById('strength-text');
+            const strengthBar = document.getElementById('strength-bar-fill');
+            
+            let score = 0;
+            
+            if (password.length === 0) {
+                strengthText.innerText = "Strength: Empty";
+                strengthBar.style.width = "0%";
+                strengthBar.style.backgroundColor = "transparent";
+                return;
+            }
+            
+            if (password.length >= 6) score++;
+            if (password.length >= 10) score++;
+            if (/\d/.test(password)) score++;
+            if (/[A-Z]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
+            
+            if (score <= 1) {
+                strengthText.innerText = "Strength: Weak 🔴";
+                strengthBar.style.width = "25%";
+                strengthBar.style.backgroundColor = "#ef4444";
+            } else if (score === 2 || score === 3) {
+                strengthText.innerText = "Strength: Medium 🟡";
+                strengthBar.style.width = "60%";
+                strengthBar.style.backgroundColor = "#f59e0b";
+            } else if (score >= 4) {
+                strengthText.innerText = "Strength: Strong 🟢";
+                strengthBar.style.width = "100%";
+                strengthBar.style.backgroundColor = "#10b981";
+            }
+        }
+    </script>
+</body>
+</html>
