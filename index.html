@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVmatch - Connect Talent to Opportunity</title>
+    <title>CVmatch - Tailored Work Experience</title>
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
     
     <style>
         /* ==========================================================================
-           RADICAL BLUEPRINT REDESIGN (NEOBRUTALISM / TECH-PREMIUM HYBRID)
+           CLEAN NEOBRUTALISM / MODERN TECH HYBRID THEME
            ========================================================================== */
         :root {
             --bg-main: #090d16;
@@ -21,11 +21,11 @@
             --text-muted: #94a3b8;
             --text-accent: #38bdf8;
             
-            --primary-accent: #6366f1; /* Neon Purple-Indigo */
+            --primary-accent: #6366f1; 
             --primary-glow: rgba(99, 102, 241, 0.15);
-            --success-accent: #10b981; /* Emerald */
+            --success-accent: #10b981; 
             --success-glow: rgba(16, 185, 129, 0.15);
-            --error-accent: #f43f5e; /* Rose */
+            --error-accent: #f43f5e; 
             
             --border-primary: #242f47;
             --border-focus: #6366f1;
@@ -37,7 +37,6 @@
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Light Theme Override */
         body[data-theme="light"] {
             --bg-main: #f1f5f9;
             --bg-card: #ffffff;
@@ -51,7 +50,6 @@
             --border-focus: #2563eb;
         }
 
-        /* Cyber Slate Theme Override */
         body[data-theme="slate"] {
             --bg-main: #121318;
             --bg-card: #1a1c23;
@@ -65,7 +63,6 @@
             --border-focus: #a855f7;
         }
 
-        /* Global Structural Reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -81,14 +78,12 @@
             overflow-x: hidden;
         }
 
-        /* Typography Adjustments */
         h1, h2, h3, h4 {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             letter-spacing: -0.02em;
         }
 
-        /* App Navbar Container */
         header {
             background-color: var(--bg-card);
             border-bottom: 2px solid var(--border-primary);
@@ -137,14 +132,12 @@
             box-shadow: 0 0 0 4px var(--primary-glow);
         }
 
-        /* Core Application Layout Frame */
         .container {
             max-width: 1300px;
             margin: 40px auto;
             padding: 0 30px;
         }
 
-        /* Card Panels Modernized */
         .card {
             background-color: var(--bg-card);
             border: 2px solid var(--border-primary);
@@ -156,7 +149,6 @@
             overflow: hidden;
         }
 
-        /* Wizard Architecture Header Progress Metrics */
         .progress-container {
             margin-bottom: 40px;
             background: var(--bg-input);
@@ -196,7 +188,6 @@
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Unified Smart Form Infrastructure */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -216,10 +207,6 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 8px;
-        }
-
-        .input-group {
-            position: relative;
         }
 
         input[type="text"],
@@ -247,7 +234,6 @@
             background-color: var(--bg-card);
         }
 
-        /* Realtime Validation System Matrix CSS states */
         input.touched:valid, textarea.touched:valid {
             border-color: var(--success-accent);
             box-shadow: 0 0 0 4px var(--success-glow);
@@ -271,7 +257,6 @@
             animation: shake 0.2s ease-in-out;
         }
 
-        /* Action Controls Buttons Configuration */
         .wizard-buttons {
             display: flex;
             justify-content: flex-end;
@@ -331,7 +316,6 @@
             display: none !important;
         }
 
-        /* Dynamic Realtime Feedback Modules */
         .password-strength-row {
             margin-top: 10px;
         }
@@ -350,7 +334,6 @@
             transition: var(--transition-smooth);
         }
 
-        /* Authentication Context Formatting Elements */
         .auth-footer-links {
             display: flex;
             justify-content: space-between;
@@ -372,7 +355,7 @@
         }
 
         /* ==========================================================================
-           STAGE 2 DESIGN OVERHAUL: Split-Layout Advanced Application Matrix Dashboard
+           DASHBOARD & INTERACTIVE CV PREVIEW
            ========================================================================== */
         .dashboard-layout-grid {
             display: grid;
@@ -388,7 +371,6 @@
             }
         }
 
-        /* High-End Architecture Print-Engine Blueprint (The Interactive Document Canvas) */
         .cv-document {
             background-color: #ffffff;
             color: #0f172a;
@@ -501,7 +483,6 @@
             color: #334155;
         }
 
-        /* Sidebar Placement Framework Feed */
         .matches-sidebar-panel {
             background-color: var(--bg-card);
             border: 2px solid var(--border-primary);
@@ -542,14 +523,12 @@
             margin-bottom: 10px;
         }
 
-        /* Keyframes Animations */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-4px); }
             75% { transform: translateX(4px); }
         }
 
-        /* Form step components animation mechanics */
         .form-step-panel {
             display: none;
         }
@@ -569,8 +548,7 @@
 
     <header>
         <div class="logo-container">
-            <!-- Tailored Fallback Logo Engine Component -->
-            <img src="image_adb067.png" alt="CVmatch System Branding" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:var(--text-main);font-family:\"Space Grotesk\" \'>CV<span style=\'color:var(--primary-accent)\'>match</span></h2>'">
+            <img src="image_adb067.png" alt="CVmatch Branding Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:var(--text-main);font-family:\"Space Grotesk\" \'>CV<span style=\'color:var(--primary-accent)\'>match</span></h2>'">
         </div>
         <div class="controls-panel">
             <select id="lang-selector" onchange="changeLanguage(this.value)">
@@ -587,92 +565,87 @@
 
     <div class="container">
         
-        <!-- ==========================================================================
-           STAGE 1A: USER SECURE SIGN-IN & ENROLLMENT PARADIGM
-           ========================================================================== */ -->
+        <!-- SIGN IN / ACCREDITATION -->
         <div id="auth-card" class="card">
-            
             <div id="auth-signin-view">
                 <h2 data-i18n="signin_title" style="font-size: 2rem; margin-bottom: 8px;">Welcome Back</h2>
-                <p data-i18n="signin_sub" style="color: var(--text-muted); margin-bottom: 25px;">Sign in to access your CV matching terminal.</p>
+                <p data-i18n="signin_sub" style="color: var(--text-muted); margin-bottom: 25px;">Sign in to build your CV and match with placement positions.</p>
                 
                 <form onsubmit="handleAuth(event, 'signin')">
                     <div class="input-group">
-                        <label data-i18n="label_email" for="auth-email-signin">Account Email</label>
-                        <input type="email" id="auth-email-signin" placeholder="alex.morgan@domain.com" required>
+                        <label data-i18n="label_email" for="auth-email-signin">Email Address</label>
+                        <input type="email" id="auth-email-signin" placeholder="name@email.com" required>
                     </div>
                     <div class="input-group" style="margin-top: 20px;">
-                        <label data-i18n="label_password" for="auth-password-signin">Security Credentials</label>
+                        <label data-i18n="label_password" for="auth-password-signin">Password</label>
                         <input type="password" id="auth-password-signin" placeholder="••••••••" required>
                     </div>
                     <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signin">Sign In</button>
                 </form>
                 
                 <div class="auth-footer-links">
-                    <a class="auth-toggle-link" onclick="switchAuthView('forgot')" data-i18n="link_forgot">Recover Credentials</a>
-                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create Fresh Account</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('forgot')" data-i18n="link_forgot">Forgot Password?</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create an Account</a>
                 </div>
             </div>
 
             <div id="auth-signup-view" class="hidden">
-                <h2 data-i18n="signup_title" style="font-size: 2rem; margin-bottom: 8px;">Create Access Account</h2>
-                <p data-i18n="signup_sub" style="color: var(--text-muted); margin-bottom: 25px;">Build tailored documentation and match with localized apprenticeships.</p>
+                <h2 data-i18n="signup_title" style="font-size: 2rem; margin-bottom: 8px;">Create an Account</h2>
+                <p data-i18n="signup_sub" style="color: var(--text-muted); margin-bottom: 25px;">Build a high-quality CV tailored for apprenticeships and jobs.</p>
                 
                 <form onsubmit="handleAuth(event, 'signup')">
                     <div class="input-group">
-                        <label data-i18n="label_email" for="auth-email-signup">Designated Email Address</label>
-                        <input type="email" id="auth-email-signup" placeholder="candidate@domain.com" required>
+                        <label data-i18n="label_email" for="auth-email-signup">Email Address</label>
+                        <input type="email" id="auth-email-signup" placeholder="candidate@email.com" required>
                     </div>
                     <div class="input-group" style="margin-top: 20px;">
-                        <label data-i18n="label_password" for="auth-password-signup">Choose Complex Password</label>
+                        <label data-i18n="label_password" for="auth-password-signup">Choose Password</label>
                         <input type="password" id="auth-password-signup" placeholder="••••••••" required>
                     </div>
                     
                     <div class="password-strength-row">
                         <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700;">
-                            <span style="color: var(--text-muted)">Complexity Gauge Matrix:</span>
+                            <span style="color: var(--text-muted)">Password Strength:</span>
                             <span id="strength-text" style="color: var(--text-main)">Empty</span>
                         </div>
                         <div class="strength-bar-bg"><div id="strength-bar-fill"></div></div>
                     </div>
                     
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signup">Register & Initialize</button>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signup">Register & Get Started</button>
                 </form>
                 
                 <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-primary);">
-                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Return to Account Sign In</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Already have an account? Log In</a>
                 </div>
             </div>
 
             <div id="auth-forgot-view" class="hidden">
-                <h2 data-i18n="forgot_title" style="font-size: 2rem; margin-bottom: 8px;">Reset Pipeline Access</h2>
-                <p data-i18n="forgot_sub" style="color: var(--text-muted); margin-bottom: 25px;">Enter configuration parameters to overwrite account access profiles.</p>
+                <h2 data-i18n="forgot_title" style="font-size: 2rem; margin-bottom: 8px;">Reset Password</h2>
+                <p data-i18n="forgot_sub" style="color: var(--text-muted); margin-bottom: 25px;">Provide your registered email to establish a new password.</p>
                 
                 <form onsubmit="handleAuth(event, 'forgot')">
                     <div class="input-group">
-                        <label data-i18n="label_email" for="auth-email-forgot">Registered Target Email</label>
+                        <label data-i18n="label_email" for="auth-email-forgot">Registered Email</label>
                         <input type="email" id="auth-email-forgot" placeholder="yourname@email.com" required>
                     </div>
                     <div class="input-group" style="margin-top: 20px;">
-                        <label data-i18n="label_new_password" for="auth-password-forgot">Establish New Password</label>
+                        <label data-i18n="label_new_password" for="auth-password-forgot">New Password</label>
                         <input type="password" id="auth-password-forgot" placeholder="••••••••" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_reset">Override System Credentials</button>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_reset">Reset Password</button>
                 </form>
                 
                 <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-primary);">
-                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Abort & Return to Log In</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Go Back to Log In</a>
                 </div>
             </div>
         </div>
 
-        <!-- ==========================================================================
-           STAGE 1B: SYSTEM SEQUENTIAL DATA CAPTURE STEPPER WIZARD
-           ========================================================================== */ -->
+        <!-- STEPPER CARD BUILDER FORM WIZARD -->
         <div id="step-1" class="card hidden">
             <div class="progress-container">
                 <div class="progress-labels">
-                    <span id="progress-text">Step 1 of 3: Core Contact Parameters</span>
+                    <span id="progress-text">Step 1 of 3: Contact Information</span>
                     <span id="progress-percent">33%</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -680,103 +653,99 @@
                 </div>
             </div>
             
-            <h2 data-i18n="form_title" style="font-size: 2.2rem; margin-bottom: 8px;">Structured CV Generation Terminal</h2>
-            <p data-i18n="form_sub" style="color: var(--text-muted); max-width: 700px; margin-bottom: 30px;">Input configuration metrics below. All inputs undergo programmatic parser check validation for scannable compatibility rendering.</p>
+            <h2 data-i18n="form_title" style="font-size: 2.2rem; margin-bottom: 8px;">CV Generator Terminal</h2>
+            <p data-i18n="form_sub" style="color: var(--text-muted); max-width: 700px; margin-bottom: 30px;">Fill out your details below. Your inputs will be formatted into an ATS-optimized CV draft ready for printing or saving.</p>
             
-            <!-- STEPPER SECTOR 1: CORE BIOMETRIC / IDENTITY FIELDS -->
+            <!-- STEP 1: CONTACT INFO -->
             <div id="form-panel-1" class="form-step-panel active">
                 <div class="form-grid">
                     <div class="input-group">
-                        <label data-i18n="label_firstname" for="firstname">Given First Name</label>
+                        <label data-i18n="label_firstname" for="firstname">First Name</label>
                         <input type="text" id="firstname" placeholder="Alex" maxlength="35" required>
                         <div class="counter-container"><span id="firstname-counter">0</span> / 35</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_surname" for="surname">Family Surname</label>
+                        <label data-i18n="label_surname" for="surname">Surname</label>
                         <input type="text" id="surname" placeholder="Morgan" maxlength="35" required>
                         <div class="counter-container"><span id="surname-counter">0</span> / 35</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_location" for="location">Geographic Node Location</label>
-                        <input type="text" id="location" placeholder="e.g., Gloucester, UK" maxlength="50" required>
+                        <label data-i18n="label_location" for="location">Town / City & County</label>
+                        <input type="text" id="location" placeholder="e.g., Gloucester, Gloucestershire" maxlength="50" required>
                         <div class="counter-container"><span id="location-counter">0</span> / 50</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_phone" for="phone">Primary Comms Link (Phone)</label>
-                        <input type="tel" id="phone" placeholder="+44 7123 456789" maxlength="20" required>
+                        <label data-i18n="label_phone" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="e.g., 07123 456789" maxlength="20" required>
                         <div class="counter-container"><span id="phone-counter">0</span> / 20</div>
                     </div>
                     <div class="input-group full-width">
-                        <label data-i18n="label_linkedin" for="linkedin">Professional Repository Index Link (LinkedIn URL)</label>
-                        <input type="text" id="linkedin" placeholder="linkedin.com/in/profile-handle" maxlength="75">
+                        <label data-i18n="label_linkedin" for="linkedin">LinkedIn Profile URL (Optional)</label>
+                        <input type="text" id="linkedin" placeholder="linkedin.com/in/username" maxlength="75">
                         <div class="counter-container"><span id="linkedin-counter">0</span> / 75</div>
                     </div>
-                    <!-- Hidden field to safely carry authenticated email matrix structure -->
                     <input type="hidden" id="email">
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Flush Parameters</button>
-                    <button type="button" class="primary-btn" onclick="goToFormStep(2)">Proceed Next Step →</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
+                    <button type="button" class="primary-btn" onclick="goToFormStep(2)">Next Step →</button>
                 </div>
             </div>
 
-            <!-- STEPPER SECTOR 2: ACADEMIC FRAMEWORK METRICS -->
+            <!-- STEP 2: EDUCATION -->
             <div id="form-panel-2" class="form-step-panel">
                 <div class="form-grid">
                     <div class="full-width input-group">
-                        <label data-i18n="label_school" for="school">Active Education Facility Matrix / Institutional Node</label>
+                        <label data-i18n="label_school" for="school">School or College Name</label>
                         <input type="text" id="school" placeholder="e.g., Cambridge Comprehensive College" maxlength="75" required>
                         <div class="counter-container"><span id="school-counter">0</span> / 75</div>
                     </div>
                     <div>
-                        <label data-i18n="label_focus" for="subject">Specialized Core Functional Path</label>
+                        <label data-i18n="label_focus" for="subject">Career Area of Interest</label>
                         <select id="subject">
-                            <option value="IT & Computer Science">IT & Computer Science Systems Architecture</option>
-                            <option value="Air Traffic Control & Logistics">Air Traffic Control Tracking & Logistics Engineering</option>
-                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics Cyber Incident Analysis</option>
-                            <option value="Aerospace & Aircraft Maintenance">Aerospace Flight Mechanics & Propulsion Avionics</option>
-                            <option value="Mathematics & Sciences">Advanced Statistical Mathematics & Quantitative Physics</option>
+                            <option value="IT & Computer Science">Software Development & IT Systems</option>
+                            <option value="Air Traffic Control & Logistics">Air Traffic Control & Systems Logistics</option>
+                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics & Cyber Security</option>
+                            <option value="Aerospace & Aircraft Maintenance">Aerospace & Aircraft Mechanics</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_grades" for="grades">Evaluated Verification Score (Predicted / Earned Grades)</label>
-                        <input type="text" id="grades" placeholder="e.g., GCSE 8 Grade Average / 3 A-Levels Tracking (A*, A, A)" maxlength="60" required>
+                        <label data-i18n="label_grades" for="grades">Grades (Predicted or Achieved)</label>
+                        <input type="text" id="grades" placeholder="e.g., GCSEs: 8 Grade Average / A-Levels: A, A, B" maxlength="60" required>
                         <div class="counter-container"><span id="grades-counter">0</span> / 60</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" class="secondary-btn" onclick="goToFormStep(1)">← Step Back</button>
-                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Flush Parameters</button>
-                    <button type="button" class="primary-btn" onclick="goToFormStep(3)">Proceed Next Step →</button>
+                    <button type="button" class="secondary-btn" onclick="goToFormStep(1)">← Back</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
+                    <button type="button" class="primary-btn" onclick="goToFormStep(3)">Next Step →</button>
                 </div>
             </div>
 
-            <!-- STEPPER SECTOR 3: EXTRA FUNCTIONAL CAPABILITIES AND HOBBIES -->
+            <!-- STEP 3: ACTIVITIES AND INTERESTS -->
             <div id="form-panel-3" class="form-step-panel">
                 <div class="form-grid">
                     <div class="full-width input-group">
-                        <label data-i18n="label_hobby" for="sports">Dynamic Group Operational Profile (Extracurricular / Sports Matrix)</label>
-                        <input type="text" id="sports" placeholder="e.g., Vice Captain of Regional Football League / Lead Organizer Technical Coding Club" maxlength="100" required>
+                        <label data-i18n="label_hobby" for="sports">Sports, Clubs or Team Leadership Positions</label>
+                        <input type="text" id="sports" placeholder="e.g., Vice Captain of Regional Football League / Coding Club Coordinator" maxlength="100" required>
                         <div class="counter-container"><span id="sports-counter">0</span> / 100</div>
                     </div>
                     
                     <div class="full-width input-group">
-                        <label data-i18n="label_interests" for="interests">Self-Directed Field Exploration & Ancillary Focus Areas</label>
-                        <textarea id="interests" placeholder="e.g., Advanced network infrastructure configurations, analytics modeling, tactical football strategies mapping" maxlength="200" rows="4" required></textarea>
+                        <label data-i18n="label_interests" for="interests">Personal Hobbies & Self-Directed Technical Projects</label>
+                        <textarea id="interests" placeholder="e.g., Building basic web applications, troubleshooting network setups, reading about forensic techniques, studying tactical football positioning" maxlength="200" rows="4" required></textarea>
                         <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" class="secondary-btn" onclick="goToFormStep(2)">← Step Back</button>
-                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Flush Parameters</button>
-                    <button type="button" class="primary-btn" onclick="processCV()" data-i18n="btn_generate">Compile Matrix & Execute Matches ⚡</button>
+                    <button type="button" class="secondary-btn" onclick="goToFormStep(2)">← Back</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
+                    <button type="button" class="primary-btn" onclick="processCV()" data-i18n="btn_generate">Compile CV & Match Work Placements ⚡</button>
                 </div>
             </div>
         </div>
 
-        <!-- ==========================================================================
-           STAGE 2: SPLIT-SCREEN ADVANCED APPLICATION TERMINAL INTERFACE
-           ========================================================================== */ -->
+        <!-- SPLIT CONTAINER MAIN VIEW: RESULT PANEL -->
         <div id="step-2" class="hidden">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid var(--border-primary); padding-bottom: 20px;">
                 <div>
@@ -785,27 +754,27 @@
                     </h1>
                 </div>
                 <div style="display: flex; gap: 14px;">
-                    <button onclick="window.print()" class="primary-btn" style="background: linear-gradient(135deg, var(--success-accent), #059669); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);" data-i18n="btn_print">🖨️ Print Blueprint / Save PDF</button>
-                    <button onclick="resetApp()" class="secondary-btn" data-i18n="btn_edit">Modify Parameters</button>
+                    <button onclick="window.print()" class="primary-btn" style="background: linear-gradient(135deg, var(--success-accent), #059669); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);" data-i18n="btn_print">🖨️ Save CV as PDF / Print</button>
+                    <button onclick="resetApp()" class="secondary-btn" data-i18n="btn_edit">Edit Information</button>
                 </div>
             </div>
 
             <div class="dashboard-layout-grid">
-                <!-- LEFT TERMINAL NODE: PARSED COMPILATION SHOWCASE (CLEAN ROOM ARCHITECTURE STYLE) -->
+                <!-- THE COMPREHENSIVE RENDERED DOCUMENT -->
                 <div>
-                    <h3 style="margin-bottom: 16px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-accent);" data-i18n="dash_section_cv">1. Validated Target Portfolio Frame</h3>
+                    <h3 style="margin-bottom: 16px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-accent);" data-i18n="dash_section_cv">1. Finished Portfolio Document</h3>
                     <div class="cv-document" id="cv-document-target"></div>
                 </div>
 
-                <!-- RIGHT TERMINAL NODE: MATCHING ENGINE INTERACTIVE ENGINE STACK CONTAINER -->
+                <!-- SIDEBAR OPPORTUNITIES SCHEDULER MATCH FEED -->
                 <div class="matches-sidebar-panel">
-                    <h3 style="margin-bottom: 6px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main);" data-i18n="dash_section_matches">2. Algorithmic System Placements</h3>
+                    <h3 style="margin-bottom: 6px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main);" data-i18n="dash_section_matches">2. Matched Apprenticeship Openings</h3>
                     <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;">Placements analyzed instantly based on compatibility vectors matching your chosen curriculum path specialization focus stream:</p>
                     
                     <div id="match-results"></div>
                     
                     <div style="margin-top: 40px; border-top: 2px solid var(--border-primary); padding-top: 25px; display: flex; justify-content: flex-end;">
-                        <button onclick="logout()" class="clear-btn" style="color: var(--error-accent);" data-i18n="btn_logout">Terminate Session & Disconnect</button>
+                        <button onclick="logout()" class="clear-btn" style="color: var(--error-accent);" data-i18n="btn_logout">Log Out of Terminal Session</button>
                     </div>
                 </div>
             </div>
@@ -813,161 +782,155 @@
     </div>
 
     <script>
-        // System Data Structures and Orchestration Core Logic
         let currentLang = 'en';
 
         const i18n = {
             en: {
-                signin_title: "System Sign In",
-                signin_sub: "Access configuration framework metrics through certified credentials.",
-                signup_title: "Initialize Candidate Register",
-                signup_sub: "Register unique identity mapping parameters to unlock the deployment dashboard.",
-                forgot_title: "Reset Terminal Encryption",
-                forgot_sub: "Verify target registration index vectors to patch system access parameters.",
-                label_email: "Account Network Gateway (Email Address)",
-                label_password: "Security Encryption Token (Password)",
-                label_new_password: "Assign Overwrite Token (New Password)",
-                btn_signin: "Authenticate Access",
-                btn_signup: "Register Profile Matrix",
-                btn_reset: "Push Account Overwrite",
-                link_forgot: "Recover Account",
-                link_create: "Initialize Profile",
-                link_have_account: "Return to Sign In Hub",
-                link_back_signin: "Abort Process Vector",
-                form_title: "Engine Data Capture",
-                form_sub: "Provide data points to configure an ATS-optimized, high-yield technical CV layout template.",
-                label_firstname: "Legal First Name",
-                label_surname: "Legal Family Surname",
-                label_location: "Geographic Location Hub",
-                label_phone: "Comms Destination Vector (Phone)",
-                label_linkedin: "Professional Profile Index (LinkedIn URL Link)",
-                label_school: "Educational Node Academy Name",
-                label_focus: "Target Core Specialization Path",
-                label_grades: "Verification Metrics Index (Grades Summary)",
-                label_hobby: "Group Operational Dynamic Profile (Main Leadership or Team Activity)",
-                label_interests: "Self-Directed System Interests & Voluntarism Profile",
-                btn_generate: "Execute Assembly Engine & Match",
+                signin_title: "Welcome Back",
+                signin_sub: "Log into your account using your credentials.",
+                signup_title: "Create an Account",
+                signup_sub: "Create a user account to open up the matching system dashboard.",
+                forgot_title: "Reset Account Password",
+                forgot_sub: "Type in your email address to replace your account password.",
+                label_email: "Email Address",
+                label_password: "Password",
+                label_new_password: "Choose a New Password",
+                btn_signin: "Sign In",
+                btn_signup: "Register Profile",
+                btn_reset: "Update Password",
+                link_forgot: "Forgot Password?",
+                link_create: "Create an Account",
+                link_have_account: "Back to Sign In Hub",
+                link_back_signin: "Cancel and Go Back",
+                form_title: "CV Generator Terminal",
+                form_sub: "Provide your details to arrange a clean, high-yield professional CV template.",
+                label_firstname: "First Name",
+                label_surname: "Surname",
+                label_location: "Town / City & County",
+                label_phone: "Phone Number",
+                label_linkedin: "LinkedIn Profile URL (Optional)",
+                label_school: "School or College Name",
+                label_focus: "Career Area of Interest",
+                label_grades: "Grades Summary (Predicted or Achieved)",
+                label_hobby: "Sports, Clubs or Team Leadership Positions",
+                label_interests: "Personal Hobbies & Self-Directed Technical Projects",
+                btn_generate: "Compile CV & Match Placements",
                 dash_title: "Application Lifecycle Dashboard",
-                dash_section_cv: "1. Structured Engine Core Document Output",
-                dash_section_matches: "2. Real-Time Validated System Placements Feed",
-                btn_print: "🖨️ Export to System PDF / Print",
-                btn_edit: "Reconfigure Parameters",
-                btn_logout: "Disconnect Session",
-                alert_fill: "CRITICAL PARSING ERROR: System fields fail validator constraints. Correct highlighted structures to compile.",
-                alert_created: "Identity parameters recorded. Granting workspace initialization rights...",
-                alert_welcome: "Authentication confirmed. Reopening target pipeline environment...",
-                alert_invalid: "AUTHENTICATION TIMEOUT: Provided criteria matches no known cluster profile. Retry or register account.",
-                alert_reset: "Credential patch deployed successfully. Initializing access parameters...",
-                cv_prof_title: "Target Structural Objective / Personal Statement Matrix",
-                cv_prof_desc: "Highly disciplined, technically driven aspiring Software Engineer seeking to secure a collaborative Software Engineering Apprenticeship challenge. Combines an analytical academic foundation with self-directed programming competence across fundamental web languages and software design patterns. Adept at managing structured, logical engineering workflows, diagnosing core system anomalies, and parsing functional design parameters. Proven leadership capabilities and strong teamwork mechanics refined in high-stakes environments, balancing rigorous schedules alongside rigorous performance standards. Eager to contribute an unyielding work ethic, continuous programmatic curiosity, and an optimization-oriented mindset to a dynamic, forward-thinking enterprise agile engineering workspace.",
-                cv_edu_title: "Academic Tracks & Core Verification Accreditations",
-                cv_edu_sub: "Secondary Institutional Tracking Block & Core Modules",
-                cv_edu_bullet1: "Curriculum Pathways Focus: Enrolled under an advanced, highly specialized track sequence directly profiling ",
-                cv_edu_bullet2: "Applied Technical Projects: Successfully executed programmatic analysis models, parsed metrics tracking frameworks, structured detailed code updates, and verified design paradigms within collaborative environments.",
-                cv_ach_title: "Institutional Milestones & System Highlights",
-                cv_ach_b1: "Performance Index Distinction: Earned top-tier performance index marks over consecutive cycles within advanced stem modules.",
-                cv_ach_b2: "Operational Architecture Challenge: Successfully navigated multi-agent simulation routines focusing on systems integrity.",
-                cv_ach_b3: "Technical Panel Commendation: Awarded structural presentation accolades following evaluation by external industry advisory boards.",
-                cv_sports_title: "Extracurricular Coordination & Collaborative Dynamics",
-                cv_sports_sub: "Strategic Team Operations & Peer Framework Logistics",
-                cv_sports_b1: "Functional Coordination Roles: Efficiently co-coordinated schedules, adapted to dynamic team tasks under constraint, and mapped reliable execution profiles.",
-                cv_sports_b2: "Time Optimization Discipline: Mastered strict schedule prioritization matrices to balance rigorous athletic training routines alongside core development work.",
-                cv_skills_title: "Technical Stack Matrix & Core Capabilities",
-                cv_skills_tech: "Technical Domain Matrix: Logical Software Engineering Frameworks, Advanced Digital Literacy Schemas, Data Modeling Modalities, Enterprise Systems Analysis.",
-                cv_skills_soft: "Human Interpersonal Integration: Iterative Lifecycle Methodologies, High-Fidelity Communication Interfaces, Diagnostic Logic Paradigms, Collaborative Peer Optimization.",
-                cv_interests_title: "Self-Directed Technical Fields & Focus Explorations",
-                cv_ref: "Formal comprehensive verification records and professional cross-references available on demand.",
-                step1_text: "Step 1 of 3: Core Contact Parameters",
-                step2_text: "Step 2 of 3: Academic Tracking Block",
-                step3_text: "Step 3 of 3: Extracurricular Dynamics Matrix"
+                dash_section_cv: "1. Rendered Professional Portfolio",
+                dash_section_matches: "2. Matched Opportunities Feed",
+                btn_print: "🖨️ Save CV as PDF / Print",
+                btn_edit: "Edit Details",
+                btn_logout: "Log Out of Session",
+                alert_fill: "ERROR: Some required inputs are empty or invalid. Check the form fields to continue.",
+                alert_created: "Account generated successfully. Loading your dashboard...",
+                alert_welcome: "Sign in successful. Opening your profile draft...",
+                alert_invalid: "AUTHENTICATION ERROR: Check your email and password entry and try again.",
+                alert_reset: "Password has been overwritten. Re-initializing view...",
+                cv_prof_title: "Professional Objective / Personal Statement",
+                cv_prof_desc: "Highly motivated and technically focused individual seeking to secure a Software Engineering Apprenticeship. Combines a logical approach to problem-solving with independent programming practice across essential web technologies and software fundamentals. Comfortable building clean code structures, diagnosing logical issues, and learning new tools quickly. Developed strong teamwork, communication, and time-management skills through group projects and athletic schedules. Eager to bring a committed work ethic and a desire for continuous technical development to a progressive development team.",
+                cv_edu_title: "Education & Qualifications",
+                cv_edu_sub: "Secondary Education & Key Studies",
+                cv_edu_bullet1: "Core Focus Field: Dedicated study trajectory and specialized practical focus in ",
+                cv_edu_bullet2: "Practical Project Applications: Actively designed program modules, reviewed functional data, updated codebases, and collaborated on clean design implementations.",
+                cv_ach_title: "Academic Achievements & Highlights",
+                cv_ach_b1: "Academic Merit: Consistently achieved top-tier marks within advanced STEM modules and projects.",
+                cv_ach_b2: "Problem Solving Challenge: Successfully completed systems simulation challenges emphasizing structural accuracy and design patterns.",
+                cv_ach_b3: "Presentation Recognition: Commended for delivering clear, structured technical design presentations to external review panels.",
+                cv_sports_title: "Extracurricular Activities & Teamwork Dynamics",
+                cv_sports_sub: "Team Roles & Peer Operations",
+                cv_sports_b1: "Team Coordination: Successfully coordinated local schedules, assisted peers under tight schedules, and executed reliable performance outcomes.",
+                cv_sports_b2: "Time Management: Maintained high standard of personal responsibility to balance demanding extracurricular schedules alongside core technical studies.",
+                cv_skills_title: "Core Skills & Technical Assets",
+                cv_skills_tech: "Technical Domain Skills: Core Software Fundamentals, Digital Systems Literacy, Data Flow Concepts, Systems Logic Analysis.",
+                cv_skills_soft: "Interpersonal Practices: Team-Oriented Communication, Agile Collaboration Methods, Analytical Problem Solving, Structured Peer Coordination.",
+                cv_interests_title: "Independent Technical Exploration & Personal Focus Areas",
+                cv_ref: "Formal character references and school academic verification records are available on request.",
+                step1_text: "Step 1 of 3: Contact Information",
+                step2_text: "Step 2 of 3: Academic Studies Block",
+                step3_text: "Step 3 of 3: Extracurricular Activities Matrix"
             },
             cy: {
-                signin_title: "Mewngofnodi i'r System",
-                signin_sub: "Cyrchwch y fframwaith cyfluniad gan ddefnyddio manylion dilys.",
-                signup_title: "Cofrestru Cyfrif Newydd",
-                signup_sub: "Cofrestrwch baramedrau hunaniaeth unigryw i ddatgloi'r dangosfwrdd.",
-                forgot_title: "Ailosod Tocyn Diogelwch",
-                forgot_sub: "Gwirio e-bost i ddiweddaru a phatshio paramedrau mynediad.",
-                label_email: "Porth Rhwydwaith (Cyfeiriad E-bost)",
-                label_password: "Tocyn Encryption Diogelwch (Cyfrinair)",
-                label_new_password: "Tocyn Newydd (Cyfrinair Newydd)",
-                btn_signin: "Dilysu Mynediad",
-                btn_signup: "Cofrestru Proffil Matrix",
-                btn_reset: "Diweddaru Diogelwch",
-                link_forgot: "Adfer Cyfrif",
-                link_create: "Dechrau Proffil",
+                signin_title: "Croeso Nôl",
+                signin_sub: "Mewngofnodwch i'ch cyfrif gan ddefnyddio'ch manylion.",
+                signup_title: "Creu Cyfrif",
+                signup_sub: "Creu cyfrif defnyddiwr i agor dangosfwrdd y system fatchio.",
+                forgot_title: "Ailosod Cyfrinair Cyfrif",
+                forgot_sub: "Teipiwch eich e-bost i osod cyfrinair newydd.",
+                label_email: "Cyfeiriad E-bost",
+                label_password: "Cyfrinair",
+                label_new_password: "Dewiswch Gyfrinair Newydd",
+                btn_signin: "Mewngofnodi",
+                btn_signup: "Cofrestru Proffil",
+                btn_reset: "Diweddaru Cyfrinair",
+                link_forgot: "Wedi anghofio cyfrinair?",
+                link_create: "Creu Cyfrif Newydd",
                 link_have_account: "Yn ôl i Mewngofnodi",
-                link_back_signin: "Atal y Broses",
-                form_title: "Cipio Data Peiriant",
-                form_sub: "Darparwch ddata i ffurfweddu templeg CV technegol sydd wedi'i optimeiddio ar gyfer systemau ATS.",
-                label_firstname: "Enw Cyntaf Cyfreithiol",
-                label_surname: "Cyfenw Cyfreithiol",
-                label_location: "Lleoliad Daearyddol",
-                label_phone: "Rhif Ffôn Cyswllt Cyntaf",
-                label_linkedin: "Proffil Proffesiynol (Dolen LinkedIn)",
-                label_school: "Enw'r Sefydliad Academaidd",
-                label_focus: "Prif Faes Arbenigo",
-                label_grades: "Mynegai Graddau (Crynodeb o Ddiffiniadau)",
-                label_hobby: "Proffil Dynamig Tîm (Prif Weithgaredd Arwain neu Chwaraeon)",
-                label_interests: "Diddordebau System Allgyrsiol a Gwirfoddoli",
-                btn_generate: "Gweithredu'r Peiriant a Chwilio am Matchys",
+                link_back_signin: "Canslo ac Mynd Nôl",
+                form_title: "Terfynell Cynhyrchu CV",
+                form_sub: "Darparwch eich manylion i drefnu templed CV proffesiynol clir ac effeithiol.",
+                label_firstname: "Enw Cyntaf",
+                label_surname: "Cyfenw",
+                label_location: "Tref / Dinas a Sir",
+                label_phone: "Rhif Ffôn",
+                label_linkedin: "Dolen LinkedIn (Dewisol)",
+                label_school: "Enw Ysgol neu Goleg",
+                label_focus: "Maes Diddordeb Gyrfa",
+                label_grades: "Crynodeb o Raddau (Wedi'u Rhagfynegi neu Ennill)",
+                label_hobby: "Chwaraeon, Clybiau neu Swyddi Arwain Tîm",
+                label_interests: "Diddordebau Personol a Phrosiectau Technegol Hunangyfeiriedig",
+                btn_generate: "Llunio CV a Chwilio am Leoliadau",
                 dash_title: "Dangosfwrdd Rheoli Prosiect",
-                dash_section_cv: "1. Allbwn Strwythuredig Dogfen Beiriant",
-                dash_section_matches: "2. Lleoliadau Cyfatebol Amser Real",
-                btn_print: "🖨️ Allforio i PDF System / Argraffu",
-                btn_edit: "Ailgyflunio Paramedrau",
+                dash_section_cv: "1. Portffolio Proffesiynol Allbwn",
+                dash_section_matches: "2. Ffrwd Lleoliadau Cyfatebol",
+                btn_print: "🖨️ Cadw CV fel PDF / Argraffu",
+                btn_edit: "Golygu Manylion",
                 btn_logout: "Terfynu Sesiwn",
-                alert_fill: "GWALL PARSIO: Mae meysydd yn methu dilysu rheolau dylunio. Cywirwch i barhau.",
-                alert_created: "Paramedrau wedi'u nodi. Yn cychwyn y gweithle...",
-                alert_welcome: "Dilysiad wedi'i gadarnhau. Yn ailagor y biblinell...",
-                alert_invalid: "DIAMSERU DILYSIAD: Manylion heb gael eu canfod. Rhowch gynnig arall arni.",
-                alert_reset: "Wedi diweddaru manylion yn llwyddiannus. Yn cychwyn...",
-                cv_prof_title: "Amcan Strwythuredig / Datganiad Personol Matrix",
-                cv_prof_desc: "Darpar Beiriannydd Meddalwedd hynod ysgogol a phenderfynol sy'n ceisio sicrhau Brentisiaeth Peirianneg Meddalwedd gydweithredol. Yn cyfuno sylfaen academaidd ddadansoddol â chymhwysedd rhaglennu hunangyfeiriedig ar draws ieithoedd gwe craidd a phatrymau dylunio meddalwedd. Sgiliau arwain profedig a gwaith tîm cryf wedi'u mireinio mewn amgylcheddau heriol, gan gydbwyso amserlenni tynn ochr yn ochr â safonau perfformiad uchel. Yn eiddgar i gyfrannu moeseg gwaith diflino, chwilfrydedd rhaglennu parhaus, a meddylfryd optimeiddio i weithle peirianneg ystwyth a blaengar.",
-                cv_edu_title: "Traciau Academaidd a Gwirfoddoli Cadarnhaol",
-                cv_edu_sub: "Bloc Tracio Sefydliad Uwchradd a Modiwlau Craidd",
-                cv_edu_bullet1: "Ffocws Llwybrau Cwricwlwm: Wedi cofrestru ar sequence arbenigol sy'n canolbwyntio ar ",
-                cv_edu_bullet2: "Prosiectau Technegol Cymhwysol: Cynllunio modiwlau dadansoddi rhaglennu, metrigau olrhain, strwythuro diweddariadau cod, a gwerthuso dyluniadau mewn timau.",
-                cv_ach_title: "Cerrig Milltir Sefydliadol a High-Lights",
-                cv_ach_b1: "Rhagoriaeth Fynegai Perfformiad: Enillwyd marciau uchaf dros gyfnodau olynol mewn modiwlau STEM uwch.",
-                cv_ach_b2: "Her Bensaernïaeth Weithredol: Llwyddwyd mewn heriau efelychu systemau cymhleth ar gyfer cywirdeb data.",
-                cv_ach_b3: "Canmoliaeth Panel Technegol: Dyfarnwyd anrhydeddau cyflwyniad strwythuredig gan baneli arbenigol allanol.",
-                cv_sports_title: "Cydlynu Allgyrsiol a Dynameg Cydweithredol",
-                cv_sports_sub: "Gweithrediadau Tîm Strategol a Logisteg Cyfoedion",
-                cv_sports_b1: "Rolau Cydlynu Gweithredol: Cyd-drefnu amserlenni'n effeithlon, addasu i dasgau grŵp dindan bwysau, a mapio proffiliau perfformiad.",
-                cv_sports_b2: "Disgyblaeth Optimeiddio Amser: Rheoli amserlenni hyfforddiant chwaraeon llym ochr yn ochr â gwaith academaidd craidd.",
-                cv_skills_title: "Matrix Sgiliau Technegol a Chymwyseddau",
-                cv_skills_tech: "Sgiliau Technegol Domain: Fframweithiau rhesymeg meddalwedd, llythrennedd digidol uwch, modelu data, dadansoddi systemau menter.",
-                cv_skills_soft: "Integreiddio Rhyngbersonol: Methodolegau gwaith ystwyth, rhyngwynebau cyfathrebu clir, rhesymeg ddiagnostig, optimeiddio cyfoedion.",
-                cv_interests_title: "Meysydd Technegol Hunangyfeiriedig ac Archwiliadau",
-                cv_ref: "Mae cofnodion dilysu ffurfiol a geirdaon proffesiynol ar gael ar gais ar unwaith.",
-                step1_text: "Cam 1 o 3: Paramedrau Cyswllt Craidd",
-                step2_text: "Cam 2 o 3: Bloc Tracio Academaidd",
-                step3_text: "Cam 3 o 3: Matrix Dynameg Allgyrsiol"
+                alert_fill: "GWALL: Mae rhai meysydd gofynnol yn wag neu'n annilys. Gwiriwch y meysydd i barhau.",
+                alert_created: "Cyfrif wedi'i greu yn llwyddiannus. Yn llwytho'ch dangosfwrdd...",
+                alert_welcome: "Mewngofnodi'n llwyddiannus. Yn agor eich drafft proffil...",
+                alert_invalid: "GWALL DILYSU: Gwiriwch eich e-bost a'ch cyfrinair ac rhowch gynnig arall arni.",
+                alert_reset: "Mae'r cyfrinair wedi'i ailosod. Yn ail-gychwyn...",
+                cv_prof_title: "Amcan Proffesiynol / Datganiad Personol",
+                cv_prof_desc: "Unigolyn llawn cymhelliant sy'n canolbwyntio ar dechnoleg sy'n ceisio sicrhau Brentisiaeth Peirianneg Meddalwedd. Yn cyfuno dull rhesymegol o ddatrys problemau ag arferion rhaglennu annibynnol ar draws technolegau gwe craidd a sylfeini meddalwedd. Yn gyfforddus yn adeiladu strwythurau cod clir, yn canfod materion rhesymegol, ac yn dysgu offer newydd yn gyflym. Wedi datblygu sgiliau gwaith tîm, cyfathrebu a rheoli amser cryf trwy brosiectau grŵp ac amserlenni athletaidd. Yn eiddgar i ddod â moeseg gwaith ymroddedig ac awydd am ddatblygiad technegol parhaus i dîm datblygu blaengar.",
+                cv_edu_title: "Addysg a Chymwysterau",
+                cv_edu_sub: "Addysg Uwchradd a Phrif Astudiaethau",
+                cv_edu_bullet1: "Prif Faes Ffocws: Llwybr astudio penodol a ffocws ymarferol arbenigol mewn ",
+                cv_edu_bullet2: "Cymwysiadau Prosiect Ymarferol: Wedi dylunio modiwlau rhaglen, adolygu data gweithredol, diweddaru codffynonellau, a chydweithio ar ddyluniadau glân.",
+                cv_ach_title: "Llwyddiannau Academaidd ac Uchafbwyntiau",
+                cv_ach_b1: "Teilyngdod Academaidd: Wedi cyflawni marciau uchel yn gyson mewn modiwlau a phrosiectau STEM uwch.",
+                cv_ach_b2: "Her Datrys Problemau: Wedi cwblhau heriau efelychu systemau yn llwyddiannus gan bwysleisio cywirdeb strwythuorol a phatrymau dylunio.",
+                cv_ach_b3: "Cydnabyddiaeth Cyflwyniad: Canmoliaeth am draddodi cyflwyniadau dylunio technegol clir a strwythuredig i baneli adolygu allanol.",
+                cv_sports_title: "Gweithgareddau Allgyrsiol a Dynameg Gwaith Tîm",
+                cv_sports_sub: "Rolau Tîm a Gweithrediadau Cyfoedion",
+                cv_sports_b1: "Cydlynu Tîm: Wedi cydlynu amserlenni lleol yn llwyddiannus, gan helpu cyfoedion o dan amserlenni tynn, a chyflawni canlyniadau dibynadwy.",
+                cv_sports_b2: "Rheoli Amser: Wedi cynnal safon uchel o gyfrifoldeb personol i gydbwyso amserlenni allgyrsiol heriol ochr yn ochr ag astudiaethau technegol craidd.",
+                cv_skills_title: "Sgiliau Craidd ac Asedau Technegol",
+                cv_skills_tech: "Sgiliau Technegol: Sylfeini Meddalwedd Craidd, Llythrennedd Systemau Digidol, Cysyniadau Llif Data, Dadansoddi Rhesymeg Systemau.",
+                cv_skills_soft: "Arferion Rhyngbersonol: Cyfathrebu Tîm, Cydweithredu Ystwyth, Datrys Problemau'n Ddadansoddol, Cydlynu Cyfoedion Strwythuredig.",
+                cv_interests_title: "Archwiliadau Technegol Annibynnol a Meysydd Ffocws Personol",
+                cv_ref: "Mae geirdaon ffurfiol a chofnodion gwiriad academaidd ysgol ar gael ar gais.",
+                step1_text: "Cam 1 o 3: Gwybodaeth Gyswllt",
+                step2_text: "Cam 2 o 3: Bloc Astudiaethau Academaidd",
+                step3_text: "Cam 3 o 3: Matrics Gweithgareddau Allgyrsiol"
             }
         };
 
-        // Complete Local Simulated Database Cluster
         const opportunityDb = {
             "IT & Computer Science": [
-                { title: "Junior Software Engineer Apprentice Pipeline", company: "Quantum Logic Infrastructure", desc: "Gain deep integration with active agile sprints. Learn structural system refactoring and cloud architecture patterns under senior mentoring engineers." },
-                { title: "Enterprise Database Optimization Assistant", company: "DataSync Systems UK", desc: "Validate system schemas, map pipeline metrics arrays, and deploy testing automation protocols inside staging nodes." }
+                { title: "Software Engineer Apprenticeship", company: "Quantum Logic Infrastructure", desc: "Integrate with active engineering agile teams. Learn modular codebase updates, clean version control processes, and cloud services scaling blueprints alongside a designated technical mentor." },
+                { title: "Database & Applications Placement", company: "DataSync Systems UK", desc: "Assist with code testing automation protocols, monitor local backend tracking updates, and structure system schemas inside isolated test deployment servers." }
             ],
             "Air Traffic Control & Logistics": [
-                { title: "Mission Control Traffic System Shadowing", company: "AeroControl Transit Node", desc: "Analyze telemetry coordination matrices, flight pattern sequence grids, and dynamic spatial mapping architectures under strict live constraints." },
-                { title: "Logistics Optimization Systems Assistant", company: "Alpha Cargo Fleet Matrix", desc: "Track system capacity routing patterns, schedule constraints compliance windows, and resource routing matrix engines." }
+                { title: "Air Traffic Telemetry Assistant", company: "AeroControl Transit Node", desc: "Study system tracking dashboards, look over real-time communication routing panels, and evaluate radar simulation parameters under supervised guidance." },
+                { title: "Logistics Routing Systems Scheme", company: "Alpha Cargo Fleet Matrix", desc: "Review daily cargo route scheduling software configurations, verify constraint checks, and monitor data updates inside vehicle deployment platforms." }
             ],
             "Digital Forensics & Cyber Investigation": [
-                { title: "Cyber Forensic Intrusion Discovery Intern", company: "Sentinel Digital Security", desc: "Parse event sequence logs, trace digital proof pathways, and analyze security perimeter bypass vectors in simulated diagnostics environments." },
-                { title: "Network Integrity Auditing Placement", company: "Vanguard Audit Partners", desc: "Audit active server communication footprints, configure verification checklists, and verify infrastructure compliance indices." }
+                { title: "Cyber Security Analyst Intern", company: "Sentinel Digital Security", desc: "Review server access history files, learn the basics of tracking data integrity, and run system configurations inside a isolated laboratory testing suite." },
+                { title: "Network Integrity Compliance Assistant", company: "Vanguard Audit Partners", desc: "Review active network layout models, match equipment setup records to safety checklists, and track validation metrics across corporate networks." }
             ],
             "Aerospace & Aircraft Maintenance": [
-                { title: "Propulsion Avionics Systems Engineering Trainee", company: "Horizon Propulsion Labs", desc: "Shadow aerospace maintenance teams executing calibration metrics tests, hardware component diagnostic routines, and technical blueprint tracking." },
-                { title: "Avionics Structural Maintenance Scheme", company: "Centurion Fleet Support", desc: "Audit mechanical safety documentation, learn parts diagnostic processing schemas, and track preventive asset checks." }
-            ],
-            "Mathematics & Sciences": [
-                { title: "Quantitative Risk Analytics Scheme", company: "Apex Capital Analytics", desc: "Model statistical predictive charts, track regression indices, and process big data spreadsheets utilizing corporate analytics engines." },
-                { title: "Laboratory Logistics Protocol Assistant", company: "BioHealth Diagnostics Node", desc: "Track laboratory asset configurations, configure safety compliance logs, and handle micro-matrix equipment logistics." }
+                { title: "Avionics Software Systems Trainee", company: "Horizon Propulsion Labs", desc: "Assist avionics teams with component calibration logs, diagnostic checks software runs, and updating technical system engineering manual catalogs." },
+                { title: "Aircraft Systems Log Associate", company: "Centurion Fleet Support", desc: "Organize mechanical maintenance history documents, track diagnostic parts database codes, and review preventative equipment checklist forms." }
             ]
         };
 
@@ -1056,7 +1019,6 @@
             } else if (type === 'signin') {
                 const email = document.getElementById('auth-email-signin').value.trim().toLowerCase();
                 const password = document.getElementById('auth-password-signin').value;
-                
                 const storedPassword = localStorage.getItem(`user_${email}`);
                 
                 if (storedPassword && storedPassword === password) {
@@ -1127,87 +1089,163 @@
                 return;
             }
 
-            const first = document.getElementById('firstname').value || "ALEX";
-            const last = document.getElementById('surname').value || "MORGAN";
-            const loc = document.getElementById('location').value || "Gloucester, UK";
-            const phone = document.getElementById('phone').value || "+44 7123 456789";
+            // Using textContent and strict extraction to prevent formatting strings from breaking characters
+            const first = document.getElementById('firstname').value;
+            const last = document.getElementById('surname').value;
+            const loc = document.getElementById('location').value;
+            const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value || "alex.morgan@domain.com";
-            const linkedin = document.getElementById('linkedin').value || "linkedin.com/in/profile";
+            const linkedin = document.getElementById('linkedin').value;
             
-            const school = document.getElementById('school').value || "Cambridge Comprehensive College";
+            const school = document.getElementById('school').value;
             const subject = document.getElementById('subject').value;
-            const grades = document.getElementById('grades').value || "GCSE Grade 8 Average";
-            const sports = document.getElementById('sports').value || "School Football Captain";
-            const interests = document.getElementById('interests').value || "Network configurations, analytics tracking";
+            const grades = document.getElementById('grades').value;
+            const sports = document.getElementById('sports').value;
+            const interests = document.getElementById('interests').value;
 
             const t = i18n[currentLang];
             const cvTarget = document.getElementById('cv-document-target');
             
-            cvTarget.innerHTML = `
-                <div class="cv-name">${first} ${last}</div>
-                <div class="cv-subtitle">Aspiring Software & Systems Engineering Apprentice</div>
-                <div class="cv-contact">
-                    <span class="cv-contact-item">${loc}</span>
-                    <span class="cv-contact-item">${phone}</span>
-                    <span class="cv-contact-item">${email}</span>
-                    ${linkedin ? `<span class="cv-contact-item">${linkedin}</span>` : ''}
-                </div>
+            // Reconstructed with clean structural elements to avoid trailing quote errors
+            cvTarget.innerHTML = '';
+            
+            const nameHeader = document.createElement('div');
+            nameHeader.className = 'cv-name';
+            nameHeader.textContent = first + ' ' + last;
+            cvTarget.appendChild(nameHeader);
 
-                <div class="cv-section-title">${t.cv_prof_title}</div>
-                <div class="cv-personal-statement-box">
-                    <p style="margin: 0;">${t.cv_prof_desc}</p>
-                </div>
+            const subHeader = document.createElement('div');
+            subHeader.className = 'cv-subtitle';
+            subHeader.textContent = 'Aspiring Software & Systems Engineering Apprentice';
+            cvTarget.appendChild(subHeader);
 
-                <div class="cv-section-title">${t.cv_edu_title}</div>
-                <div class="cv-split-header">
-                    <div>${school}</div>
-                    <div>${loc}</div>
-                </div>
-                <div class="cv-split-sub">
-                    <div>${t.cv_edu_sub}</div>
-                    <div>September 2024 – Present</div>
-                </div>
-                <ul class="cv-bullet-list">
-                    <li><strong>Verified Metric Evaluation:</strong> Currently maintaining tracking baseline of ${grades}.</li>
-                    <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
-                    <li>${t.cv_edu_bullet2}</li>
-                </ul>
-
-                <div class="cv-section-title">${t.cv_ach_title}</div>
-                <ul class="cv-bullet-list">
-                    <li>${t.cv_ach_b1}</li>
-                    <li>${t.cv_ach_b2}</li>
-                    <li>${t.cv_ach_b3}</li>
-                </ul>
-
-                <div class="cv-section-title">${t.cv_sports_title}</div>
-                <div class="cv-split-header">
-                    <div>${sports}</div>
-                    <div>Operational Framework Alignment</div>
-                </div>
-                <div class="cv-split-sub">
-                    <div>${t.cv_sports_sub}</div>
-                    <div>September 2024 – Present</div>
-                </div>
-                <ul class="cv-bullet-list">
-                    <li>${t.cv_sports_b1}</li>
-                    <li>${t.cv_sports_b2}</li>
-                </ul>
-
-                <div class="cv-section-title">${t.cv_skills_title}</div>
-                <div class="cv-skills-grid">
-                    <div class="cv-skills-row"><strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
-                    <div class="cv-skills-row"><strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
-                </div>
-
-                <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 4px 0 15px 0; color: #334155; font-size: 0.9rem;">${interests}</p>
-
-                <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 25px; border-top: 2px solid #e2e8f0; padding-top: 15px;">
-                    ${t.cv_ref}
-                </div>
+            const contactLine = document.createElement('div');
+            contactLine.className = 'cv-contact';
+            contactLine.innerHTML = `
+                <span class="cv-contact-item">${loc}</span>
+                <span class="cv-contact-item">${phone}</span>
+                <span class="cv-contact-item">${email}</span>
+                ${linkedin ? `<span class="cv-contact-item">${linkedin}</span>` : ''}
             `;
+            cvTarget.appendChild(contactLine);
 
+            // Statement Section
+            const sectionTitle1 = document.createElement('div');
+            sectionTitle1.className = 'cv-section-title';
+            sectionTitle1.textContent = t.cv_prof_title;
+            cvTarget.appendChild(sectionTitle1);
+
+            const descBox = document.createElement('div');
+            descBox.className = 'cv-personal-statement-box';
+            const descPara = document.createElement('p');
+            descPara.style.margin = '0';
+            descPara.textContent = t.cv_prof_desc;
+            descBox.appendChild(descPara);
+            cvTarget.appendChild(descBox);
+
+            // Education Section
+            const sectionTitle2 = document.createElement('div');
+            sectionTitle2.className = 'cv-section-title';
+            sectionTitle2.textContent = t.cv_edu_title;
+            cvTarget.appendChild(sectionTitle2);
+
+            const eduSplit = document.createElement('div');
+            eduSplit.className = 'cv-split-header';
+            eduSplit.innerHTML = `<div>${school}</div><div>${loc}</div>`;
+            cvTarget.appendChild(eduSplit);
+
+            const eduSub = document.createElement('div');
+            eduSub.className = 'cv-split-sub';
+            eduSub.innerHTML = `<div>${t.cv_edu_sub}</div><div>September 2024 – Present</div>`;
+            cvTarget.appendChild(eduSub);
+
+            const eduList = document.createElement('ul');
+            eduList.className = 'cv-bullet-list';
+            eduList.innerHTML = `
+                <li><strong>Reported Standing:</strong> Tracking evaluation of ${grades}.</li>
+                <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
+                <li>${t.cv_edu_bullet2}</li>
+            `;
+            cvTarget.appendChild(eduList);
+
+            // Achievements Section
+            const sectionTitle3 = document.createElement('div');
+            sectionTitle3.className = 'cv-section-title';
+            sectionTitle3.textContent = t.cv_ach_title;
+            cvTarget.appendChild(sectionTitle3);
+
+            const achList = document.createElement('ul');
+            achList.className = 'cv-bullet-list';
+            achList.innerHTML = `
+                <li>${t.cv_ach_b1}</li>
+                <li>${t.cv_ach_b2}</li>
+                <li>${t.cv_ach_b3}</li>
+            `;
+            cvTarget.appendChild(achList);
+
+            // Extra Activities Section
+            const sectionTitle4 = document.createElement('div');
+            sectionTitle4.className = 'cv-section-title';
+            sectionTitle4.textContent = t.cv_sports_title;
+            cvTarget.appendChild(sectionTitle4);
+
+            const sportSplit = document.createElement('div');
+            sportSplit.className = 'cv-split-header';
+            sportSplit.innerHTML = `<div>${sports}</div><div>Activities & Core Coordination</div>`;
+            cvTarget.appendChild(sportSplit);
+
+            const sportSub = document.createElement('div');
+            sportSub.className = 'cv-split-sub';
+            sportSub.innerHTML = `<div>${t.cv_sports_sub}</div><div>September 2024 – Present</div>`;
+            cvTarget.appendChild(sportSub);
+
+            const sportList = document.createElement('ul');
+            sportList.className = 'cv-bullet-list';
+            sportList.innerHTML = `
+                <li>${t.cv_sports_b1}</li>
+                <li>${t.cv_sports_b2}</li>
+            `;
+            cvTarget.appendChild(sportList);
+
+            // Skills Matrix
+            const sectionTitle5 = document.createElement('div');
+            sectionTitle5.className = 'cv-section-title';
+            sectionTitle5.textContent = t.cv_skills_title;
+            cvTarget.appendChild(sectionTitle5);
+
+            const skillsGrid = document.createElement('div');
+            skillsGrid.className = 'cv-skills-grid';
+            skillsGrid.innerHTML = `
+                <div class="cv-skills-row"><strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
+                <div class="cv-skills-row"><strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
+            `;
+            cvTarget.appendChild(skillsGrid);
+
+            // Personal Projects Footer Row
+            const sectionTitle6 = document.createElement('div');
+            sectionTitle6.className = 'cv-section-title';
+            sectionTitle6.textContent = t.cv_interests_title;
+            cvTarget.appendChild(sectionTitle6);
+
+            const interestPara = document.createElement('p');
+            interestPara.style.margin = '4px 0 15px 0';
+            interestPara.style.color = '#334155';
+            interestPara.style.fontSize = '0.9rem';
+            interestPara.textContent = interests;
+            cvTarget.appendChild(interestPara);
+
+            const footerRef = document.createElement('div');
+            footerRef.style.textAlign = 'center';
+            footerRef.style.fontStyle = 'italic';
+            footerRef.style.fontSize = '0.85rem';
+            footerRef.style.color = '#64748b';
+            footerRef.style.marginTop = '25px';
+            footerRef.style.borderTop = '2px solid #e2e8f0';
+            footerRef.style.paddingTop = '15px';
+            footerRef.textContent = t.cv_ref;
+            cvTarget.appendChild(footerRef);
+
+            // Handle Opportunities Matching Stack Generation
             const matches = opportunityDb[subject] || [];
             const resultsContainer = document.getElementById('match-results');
             resultsContainer.innerHTML = ''; 
@@ -1216,10 +1254,13 @@
                 const div = document.createElement('div');
                 div.className = 'match-item';
                 div.innerHTML = `
-                    <div class="match-title">${item.title}</div>
-                    <div class="match-company">${item.company}</div>
-                    <div style="font-size: 0.9rem; line-height: 1.5; color: var(--text-main);">${item.desc}</div>
+                    <div class="match-title"></div>
+                    <div class="match-company"></div>
+                    <div class="match-desc" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-main);"></div>
                 `;
+                div.querySelector('.match-title').textContent = item.title;
+                div.querySelector('.match-company').textContent = item.company;
+                div.querySelector('.match-desc').textContent = item.desc;
                 resultsContainer.appendChild(div);
             });
 
@@ -1269,7 +1310,6 @@
             const strengthBar = document.getElementById('strength-bar-fill');
             
             let score = 0;
-            
             if (password.length === 0) {
                 strengthText.innerText = "Empty";
                 strengthBar.style.width = "0%";
@@ -1283,15 +1323,15 @@
             if (/[A-Z]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
             
             if (score <= 1) {
-                strengthText.innerText = "Vulnerable (Weak) 🔴";
+                strengthText.innerText = "Weak 🔴";
                 strengthBar.style.width = "25%";
                 strengthBar.style.backgroundColor = "var(--error-accent)";
             } else if (score === 2 || score === 3) {
-                strengthText.innerText = "Optimal (Medium) 🟡";
+                strengthText.innerText = "Medium 🟡";
                 strengthBar.style.width = "60%";
                 strengthBar.style.backgroundColor = "#eab308";
             } else if (score >= 4) {
-                strengthText.innerText = "Encrypted (Strong) 🟢";
+                strengthText.innerText = "Strong 🟢";
                 strengthBar.style.width = "100%";
                 strengthBar.style.backgroundColor = "var(--success-accent)";
             }
