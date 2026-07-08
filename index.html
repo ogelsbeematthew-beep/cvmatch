@@ -299,48 +299,56 @@
         .cv-document {
             background: #ffffff;
             border: 1px solid #cbd5e0;
-            padding: 40px;
-            border-radius: 6px;
+            padding: 45px;
+            border-radius: 8px;
             color: #1e293b;
             line-height: 1.6;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
             font-size: 0.95rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
         }
         .cv-name {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: #0f172a;
             text-align: center;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
         .cv-contact {
             font-size: 0.85rem;
             color: #475569;
             text-align: center;
-            margin: 5px 0 15px 0;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 12px;
+            margin: 8px 0 20px 0;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 16px;
+            font-weight: 500;
+        }
+        .cv-personal-statement-box {
+            background: #f8fafc;
+            border-left: 4px solid #1e3a8a;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 20px;
         }
         .cv-section-title {
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.15rem;
+            font-weight: 700;
             color: #1e3a8a;
-            margin-top: 24px;
-            margin-bottom: 8px;
+            margin-top: 28px;
+            margin-bottom: 10px;
             border-bottom: 1px solid #cbd5e0;
             padding-bottom: 4px;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
         }
         .cv-split-header {
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
+            font-weight: 700;
             color: #0f172a;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         .cv-split-sub {
             display: flex;
@@ -348,14 +356,14 @@
             color: #475569;
             font-style: italic;
             font-size: 0.9rem;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .cv-bullet-list {
-            margin: 4px 0 12px 0;
+            margin: 4px 0 14px 0;
             padding-left: 20px;
         }
         .cv-bullet-list li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         /* Real-time Dynamic Password Gauge Styling Layout */
@@ -595,9 +603,9 @@
         <div id="step-2" class="card hidden">
             <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
             
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h3 style="margin: 0;" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
-                <button onclick="window.print()" style="margin: 0; width: auto; padding: 8px 15px; font-size: 0.85rem;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
+                <button onclick="window.print()" style="margin: 0; width: auto; padding: 10px 18px; font-size: 0.85rem; border-radius: 6px;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
             </div>
             
             <div class="cv-document" id="cv-document-target"></div>
@@ -659,9 +667,9 @@
                 alert_welcome: "Welcome back to CVmatch!",
                 alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
                 alert_reset: "Password updated successfully! Logging you in...",
-                cv_prof_title: "Professional Profile",
-                cv_prof_desc: "A motivated and disciplined Student with a strong academic foundation and a proven track record of leadership and teamwork demonstrated through competitive activities. Adept at balancing rigorous study schedules with extracurricular commitments. Possesses excellent communication, time-management, and problem-solving skills, eager to bring a dedicated work ethic to a professional work environment.",
-                cv_edu_title: "Education",
+                cv_prof_title: "Professional Summary",
+                cv_prof_desc: "A highly motivated, technically minded aspiring Software Engineer with a solid foundational understanding of programming principles, application development, and computational problem-solving. Driven by a passion for clean architecture and practical software creation, supported by hands-on engineering projects and active self-directed learning modules. Possesses sharp analytical thinking, excellent collaborative skills refined through team leadership, and a disciplined approach to managing technical workflows alongside academic deadlines. Eager to contribute a dedicated work ethic and a continuous optimization mindset to a high-performing engineering crew while rapidly accelerating professional technical competencies through a structured apprenticeship framework.",
+                cv_edu_title: "Education & Qualifications",
                 cv_edu_sub: "High School Diploma / Academic Studies",
                 cv_edu_bullet1: "Relevant Modules: Advanced focus paths in ",
                 cv_edu_bullet2: "Key Projects: Developed individual portfolio analysis which involved intensive evaluation, presentation delivery, and group collaboration.",
@@ -673,7 +681,7 @@
                 cv_sports_sub: "Extracurricular Engagement",
                 cv_sports_b1: "Leadership: Collaborated with peers, co-organized weekly sessions, and motivated teams.",
                 cv_sports_b2: "Discipline: Successfully balanced regular training alongside full-time academic tasks.",
-                cv_skills_title: "Skills",
+                cv_skills_title: "Skills Inventory",
                 cv_skills_tech: "Technical Skills: Microsoft Office Suite, Digital Literacy paths, Asset formatting templates.",
                 cv_skills_soft: "Soft Skills: Teamwork built via group tasks; Reliable Time Management; Clear Communication.",
                 cv_interests_title: "Interests",
@@ -724,8 +732,8 @@
                 alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
                 alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
                 cv_prof_title: "Proffil Proffesiynol",
-                cv_prof_desc: "Myfyriwr gweithgar a disgybledig sydd â sylfaen academaidd gref a hanes o arweinyddiaeth a gwaith tîm trwy weithgareddau cystadleuol. Galluog i gydbwyso amserlenni astudio caeth gyda hymrwymiadau allgyrsiol. Meddu ar sgiliau cyfathrebu, rheoli amser a datrys problemau gwych, yn awyddus i ddod â moeseg gwaith ymroddedig i amgylchedd proffesiynol.",
-                cv_edu_title: "Addysg",
+                cv_prof_desc: "Darpar Beiriannydd Meddalwedd llawn cymhelliant sydd â dealltwriaeth gadarn o egwyddorion rhaglennu a datblygu cymwysiadau. Gyda mwynhad mawr o adeiladu systemau ac adeiladwaith digidol ymarferol, wedi'i gefnogi gan brosiectau codio ymarferol a dysgu annibynnol parhaus. Yn meddu ar feddwl dadansoddol craff, sgiliau cydweithredu gwych, a dull disgybledig o reoli llwythi gwaith technegol ochr yn ochr â thasgau academaidd. Yn eiddgar i ddod â moeseg gwaith ymroddedig a meddylfryd optimeiddio parhaus i dîm peirianneg perfformiad uchel tra'n cyflymu cymwyseddau technegol proffesiynol trwy brentisiaeth strwythuredig.",
+                cv_edu_title: "Addysg a Chymwysterau",
                 cv_edu_sub: "Diploma Ysgol Uwchradd / Astudiaethau Academaidd",
                 cv_edu_bullet1: "Modiwlau Perthnasol: Llwybrau ffocws uwch mewn ",
                 cv_edu_bullet2: "Prosiectau Allweddol: Datblygu dadansoddiad portffolio unigol a oedd yn cynnwys gwerthuso dwys, cyflwyno, a chydweithio grŵp.",
@@ -737,7 +745,7 @@
                 cv_sports_sub: "Ymgysylltu Allgyrsiol",
                 cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol, a hwb i grwpiau tîm.",
                 cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus ochr yn ochr â thasgau academaidd llawn amser.",
-                cv_skills_title: "Sgiliau",
+                cv_skills_title: "Sgiliau Allweddol",
                 cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol, Templedi fformatio.",
                 cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser yn ddibynadwy; Cyfathrebu Clir.",
                 cv_interests_title: "Diddordebau",
@@ -961,7 +969,9 @@
                 </div>
 
                 <div class="cv-section-title">${t.cv_prof_title}</div>
-                <p style="margin: 0 0 15px 0; text-align: justify; color: #1e293b;">${t.cv_prof_desc}</p>
+                <div class="cv-personal-statement-box">
+                    <p style="margin: 0; text-align: justify; color: #334155; font-size: 0.95rem;">${t.cv_prof_desc}</p>
+                </div>
 
                 <div class="cv-section-title">${t.cv_edu_title}</div>
                 <div class="cv-split-header">
@@ -1000,15 +1010,15 @@
                 </ul>
 
                 <div class="cv-section-title">${t.cv_skills_title}</div>
-                <div style="margin-top: 5px; font-size: 0.95rem;">
+                <div style="margin-top: 5px; font-size: 0.95rem; color: #1e293b;">
                     <strong>${t.cv_skills_tech}</strong><br>
-                    <strong>${t.cv_skills_soft}</strong>
+                    <strong style="display: block; margin-top: 4px;">${t.cv_skills_soft}</strong>
                 </div>
 
                 <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 0 0 15px 0;">${interests}</p>
+                <p style="margin: 0 0 15px 0; color: #1e293b;">${interests}</p>
 
-                <div style="text-align: center; font-style: italic; font-size: 0.9rem; color: #718096; margin-top: 20px;">
+                <div style="text-align: center; font-style: italic; font-size: 0.9rem; color: #64748b; margin-top: 25px; border-top: 1px dashed #cbd5e0; padding-top: 15px;">
                     ${t.cv_ref}
                 </div>
             `;
