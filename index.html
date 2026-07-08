@@ -6,9 +6,6 @@
     <title>CVmatch - Connect Talent to Opportunity</title>
     <style>
         /* Modern CSS Custom Property Framework for Multi-Theme Architecture */
-        /* Monochrome professional palette: neutral greys/blacks for brand & UI chrome,
-           with a small desaturated green/red reserved for meaningful status signals
-           (form validation, password strength, match results). */
         body[data-theme="light"] {
             --primary-blue: #18181b;
             --primary-hover: #000000;
@@ -195,7 +192,6 @@
             font-weight: bold;
         }
 
-        /* Modernized Wizard Buttons Styling Matrix */
         .wizard-buttons {
             display: flex;
             gap: 12px;
@@ -218,7 +214,6 @@
             margin-top: 0;
         }
 
-        /* Button Roles Rules */
         .wizard-buttons button[data-i18n="btn_generate"],
         .wizard-buttons button:not([style*="background-color"]):not(.clear-btn) {
             background-color: var(--primary-blue) !important;
@@ -298,7 +293,6 @@
             display: block;
         }
         
-        /* Dashboard styling (Step 2) */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -380,9 +374,9 @@
             .dashboard-header { flex-direction: column; }
             .dashboard-footer { flex-direction: column; align-items: stretch; }
             .dashboard-stats { flex-direction: column; }
+            .cv-document { padding: 20px !important; }
         }
 
-        /* Dashboard summary stat strip */
         .dashboard-stats {
             display: flex;
             gap: 12px;
@@ -534,70 +528,84 @@
             font-weight: 600;
         }
 
-        /* Premium CV Template styling rules */
+        /* -------------------------------------------------------------
+           PREMIUM DYNAMIC CV DOCUMENT TYPOGRAPHY & LAYOUT UPGRADES
+        ------------------------------------------------------------- */
         .cv-document {
             background: #ffffff;
-            border: 1px solid #cbd5e0;
-            padding: 40px;
-            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            padding: 45px 50px;
+            border-radius: 8px;
             color: #1e293b;
             line-height: 1.6;
-            font-family: 'Arial', sans-serif;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 0.92rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            letter-spacing: -0.01em;
         }
         .cv-name {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 2.25rem;
+            font-weight: 800;
             color: #0f172a;
             text-align: center;
             margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: -0.03em;
         }
         .cv-contact {
-            font-size: 0.85rem;
-            color: #475569;
+            font-size: 0.82rem;
+            color: #64748b;
             text-align: center;
-            margin: 5px 0 15px 0;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 12px;
+            margin: 6px 0 24px 0;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 16px;
+            font-weight: 500;
         }
         .cv-section-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #1e3a8a;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0f172a;
             margin-top: 24px;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #cbd5e0;
-            padding-bottom: 4px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 3px;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
         .cv-split-header {
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
+            font-weight: 700;
             color: #0f172a;
-            margin-top: 8px;
+            margin-top: 10px;
+            font-size: 0.96rem;
         }
         .cv-split-sub {
             display: flex;
             justify-content: space-between;
-            color: #475569;
-            font-style: italic;
-            font-size: 0.9rem;
-            margin-bottom: 6px;
+            color: #64748b;
+            font-style: normal;
+            font-size: 0.86rem;
+            font-weight: 500;
+            margin-bottom: 8px;
         }
         .cv-bullet-list {
-            margin: 4px 0 12px 0;
-            padding-left: 20px;
+            margin: 6px 0 14px 0;
+            padding-left: 18px;
         }
         .cv-bullet-list li {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
+            color: #334155;
+        }
+        .cv-bullet-list li strong {
+            color: #0f172a;
+        }
+        .cv-skills-grid {
+            margin-top: 8px;
+            font-size: 0.92rem;
+            color: #334155;
+            line-height: 1.5;
         }
         
-        /* Real-time Dynamic Password Gauge Styling Layout */
         .password-strength-row {
             margin-top: 8px;
             font-size: 0.8rem;
@@ -664,7 +672,6 @@
     <div class="container">
         
         <div id="auth-card" class="card">
-            
             <div id="auth-signin-view">
                 <h2 data-i18n="signin_title">Welcome Back</h2>
                 <p data-i18n="signin_sub">Sign in to access your CV dashboard.</p>
@@ -929,24 +936,24 @@
                 alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
                 alert_reset: "Password updated successfully! Logging you in...",
                 cv_prof_title: "Professional Profile",
-                cv_prof_desc: "A motivated and disciplined Student with a strong academic foundation and a proven track record of leadership and teamwork demonstrated through competitive activities. Adept at balancing rigorous study schedules with extracurricular commitments. Possesses excellent communication, time-management, and problem-solving skills, eager to bring a dedicated work ethic to a professional work environment.",
-                cv_edu_title: "Education",
-                cv_edu_sub: "High School Diploma / Academic Studies",
-                cv_edu_bullet1: "Relevant Modules: Advanced focus paths in ",
-                cv_edu_bullet2: "Key Projects: Developed individual portfolio analysis which involved intensive evaluation, presentation delivery, and group collaboration.",
-                cv_ach_title: "Key Achievements",
-                cv_ach_b1: "Academic Excellence Recognition: Consistently commended for high-level module scores.",
-                cv_ach_b2: "Skills Development Award: Completed demanding core programs focusing on community engagement.",
-                cv_ach_b3: "Public Presentation Milestone: Secured highly commended positioning across evaluation panels.",
-                cv_sports_title: "Sports & Leadership",
-                cv_sports_sub: "Extracurricular Engagement",
-                cv_sports_b1: "Leadership: Collaborated with peers, co-organized weekly sessions, and motivated teams.",
-                cv_sports_b2: "Discipline: Successfully balanced regular training alongside full-time academic tasks.",
-                cv_skills_title: "Skills",
-                cv_skills_tech: "Technical Skills: Microsoft Office Suite, Digital Literacy paths, Asset formatting templates.",
-                cv_skills_soft: "Soft Skills: Teamwork built via group tasks; Reliable Time Management; Clear Communication.",
-                cv_interests_title: "Interests",
-                cv_ref: "References available upon request.",
+                cv_prof_desc: "A motivated, disciplined individual with a robust academic foundation and a proven track record of proactive problem solving, logical sequencing, and analytical team leadership. Highly adaptive and eager to transition academic insights into intensive, hands-on environments via professional training and placements.",
+                cv_edu_title: "Education & Qualifications",
+                cv_edu_sub: "Secondary Education Portfolio & Academic Track",
+                cv_edu_bullet1: "Academic Core Focus: Accelerated paths in ",
+                cv_edu_bullet2: "Core Frameworks: Actively managed modular portfolios involving technical requirements, case review presentations, and collaborative performance reviews.",
+                cv_ach_title: "Key Track Records",
+                cv_ach_b1: "Academic Distinction: Recognized consistently for analytical precision and high-tier project delivery metrics.",
+                cv_ach_b2: "Project Lifecycle Deployment: Engineered structured club platforms, managing timelines and core execution criteria.",
+                cv_ach_b3: "Presentation Commendations: Formally commended by evaluation panels for articulate delivery of research briefs.",
+                cv_sports_title: "Extracurricular Leadership & Engagement",
+                cv_sports_sub: "Team Dynamics & Collaboration Metrics",
+                cv_sports_b1: "Strategic Execution: Directed peer groups, facilitated communication threads, and maintained performance standards under challenging conditions.",
+                cv_sports_b2: "Time Management Matrix: Effectively sustained rigorous extracurricular responsibilities alongside structured full-time academic obligations.",
+                cv_skills_title: "Core Skill Matrix",
+                cv_skills_tech: "Technical Capabilities: Systems Logic, Pattern Analysis, Dynamic Productivity Tools, Information Mapping Layouts.",
+                cv_skills_soft: "Operational Competencies: Distributed Teamwork, High-Pressure Prioritization, Structured Communication Cadence.",
+                cv_interests_title: "Personal Interests & Research Directions",
+                cv_ref: "References, portfolio data, and credential validations available upon direct request.",
                 step1_text: "Step 1 of 3: Personal Information",
                 step2_text: "Step 2 of 3: Academic Focus",
                 step3_text: "Step 3 of 3: Extracurricular Activities"
@@ -1003,22 +1010,22 @@
                 alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
                 alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
                 cv_prof_title: "Proffil Proffesiynol",
-                cv_prof_desc: "Myfyriwr gweithgar a disgybledig sydd â sylfaen academaidd gref a hanes o arweinyddiaeth a gwaith tîm trwy weithgareddau cystadleuol. Galluog i gydbwyso amserlenni astudio caeth gyda hymrwymiadau allgyrsiol. Meddu ar sgiliau cyfathrebu, rheoli amser a datrys problemau gwych, yn awyddus i ddod â moeseg gwaith ymroddedig i amgylchedd proffesiynol.",
+                cv_prof_desc: "Myfyriwr gweithgar a disgybledig sydd â sylfaen academaidd gref a hanes o arweinyddiaeth a gwaith tîm trwy weithgareddau cystadleuol. Meddu ar sgiliau cyfathrebu, rheoli amser a datrys problemau gwych.",
                 cv_edu_title: "Addysg",
                 cv_edu_sub: "Diploma Ysgol Uwchradd / Astudiaethau Academaidd",
                 cv_edu_bullet1: "Modiwlau Perthnasol: Llwybrau ffocws uwch mewn ",
                 cv_edu_bullet2: "Prosiectau Allweddol: Datblygu dadansoddiad portffolio unigol a oedd yn cynnwys gwerthuso dwys, cyflwyno, a chydweithio grŵp.",
                 cv_ach_title: "Prif Gyflawniadau",
                 cv_ach_b1: "Cydnabyddiaeth o Ragoriaeth Academaidd: Clodfori'n gyson am sgorau modiwl lefel uchel.",
-                cv_ach_b2: "Gwobr Datblygu Sgiliau: Wedi cwblhau rhaglenni craidd heriol sy'n canolbwyntio ar ymgysylltu â'r gymuned.",
-                cv_ach_b3: "Cerrig Milltir Cyflwyno Cyhoeddus: Sicrhau safle canmoladwy iawn ar draws paneli gwerthuso prosiectau.",
+                cv_ach_b2: "Gwobr Datblygu Sgiliau: Wedi cwblhau rhaglenni craidd heriol.",
+                cv_ach_b3: "Cerrig Milltir Cyflwyno Cyhoeddus: Sicrhau safle canmoladwy iawn.",
                 cv_sports_title: "Chwaraeon ac Arweinyddiaeth",
                 cv_sports_sub: "Ymgysylltu Allgyrsiol",
-                cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol, a hwb i grwpiau tîm.",
-                cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus ochr yn ochr â thasgau academaidd llawn amser.",
+                cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol.",
+                cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus.",
                 cv_skills_title: "Sgiliau",
-                cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol, Templedi fformatio.",
-                cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser yn ddibynadwy; Cyfathrebu Clir.",
+                cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol.",
+                cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser; Cyfathrebu Clir.",
                 cv_interests_title: "Diddordebau",
                 cv_ref: "Geirdaon ar gael ar gais.",
                 step1_text: "Cam 1 o 3: Gwybodaeth Bersonol",
@@ -1029,18 +1036,16 @@
 
         const opportunityDb = {
             "IT & Computer Science": [
-                { title: "Software Engineering Shadowing Day", company: "TechStart Corp", desc: "Observe active agile development sprints and receive direct career advice from junior frontend developers.", location: "London", duration: "1 Day", deadline: "15 Aug 2026", link: "https://careers.techstartcorp.example/placements/software-shadowing-day" },
-                { title: "IT Support & Infrastructure Placement", company: "EduTech Solutions", desc: "Gain hands-on experience diagnostic testing and deploying tech hardware architectures within modern offices.", location: "Manchester", duration: "1 Week", deadline: "22 Aug 2026", link: "https://careers.edutechsolutions.example/placements/it-support-infrastructure" },
-                { title: "Junior QA & Test Automation Clinic", company: "NorthBridge QA", desc: "Learn how teams plan test cases, validate releases, and automate checks using lightweight scripts and structured reporting.", location: "Leeds", duration: "3 Days", deadline: "5 Sep 2026", link: "https://careers.northbridgeqa.example/placements/qa-test-automation-clinic" },
-                { title: "Data-Driven Systems Workshop", company: "Helio Analytics Lab", desc: "Explore how metrics are collected, interpreted, and transformed into actionable dashboards for engineering stakeholders.", location: "Bristol", duration: "2 Days", deadline: "29 Aug 2026", link: "https://careers.helioanalyticslab.example/placements/data-systems-workshop" },
-                { title: "Security Basics & Access Control Session", company: "VantaByte Security", desc: "Get hands-on exposure to permissions, credential hygiene, and the fundamentals of threat modeling in day-to-day systems.", location: "Reading", duration: "Half Day", deadline: "12 Aug 2026", link: "https://careers.vantabytesecurity.example/placements/security-basics-session" }
+                { title: "Software Engineer Apprenticeship - Frontend Core", company: "AlphaStack Systems", desc: "Collaborate closely with feature squads using modern JavaScript libraries. Learn component modularity, state trees, and code review standards.", location: "London", duration: "Level 4 Apprenticeship", deadline: "18 Aug 2026", link: "https://careers.alphastacksystems.example/jobs/apprentice-software-engineer" },
+                { title: "Junior Software Developer Scheme", company: "QuantumGrid Labs", desc: "Gain deep immersion into relational database design, test-driven logic deployment pipelines, and continuous integration infrastructure.", location: "Manchester", duration: "12 Months", deadline: "01 Sep 2026", link: "https://recruitment.quantumgridlabs.example/tracks/junior-developer-scheme" },
+                { title: "Apprentice Application Developer", company: "DevNexus Limited", desc: "Shadow cross-functional engineering teams drafting requirements, debugging web service layers, and tracking Git versioning trees.", location: "Bristol", duration: "Level 3 Apprenticeship", deadline: "12 Sep 2026", link: "https://devnexus.example/opportunities/apprentice-application-dev" },
+                { title: "Full-Stack Development Taster Placement", company: "Apex digital architecture", desc: "Get structural training in backend route controllers, visual UI styling architectures, and server compliance configurations.", location: "Birmingham", duration: "2 Weeks", deadline: "25 Aug 2026", link: "https://careers.apexdigital.example/placements/fullstack-taster" },
+                { title: "Junior QA & Test Automation Clinic", company: "NorthBridge QA", desc: "Learn how teams plan test cases, validate releases, and automate checks using lightweight scripts and structured reporting.", location: "Leeds", duration: "3 Days", deadline: "5 Sep 2026", link: "https://careers.northbridgeqa.example/placements/qa-test-automation-clinic" }
             ],
             "Air Traffic Control & Logistics": [
                 { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts.", location: "Birmingham", duration: "1 Week", deadline: "10 Sep 2026", link: "https://careers.aerotransithubs.example/placements/operations-logistics-insight" },
                 { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks.", location: "Glasgow", duration: "3 Days", deadline: "3 Sep 2026", link: "https://careers.nexustransitgroup.example/placements/simulation-planning-scheme" },
-                { title: "Dispatch Coordination & Live Monitoring Session", company: "SkyFlow Operations", desc: "Follow real-time handovers, incident escalation paths, and route optimization checks in a controlled training environment.", location: "Edinburgh", duration: "1 Day", deadline: "18 Aug 2026", link: "https://careers.skyflowoperations.example/placements/dispatch-monitoring-session" },
-                { title: "Safety-First Communications Drill", company: "Aether Command Center", desc: "Practice structured messaging, reporting cadence, and clarity standards used when working under time pressure.", location: "Newcastle", duration: "Half Day", deadline: "25 Aug 2026", link: "https://careers.aethercommandcenter.example/placements/comms-safety-drill" },
-                { title: "Logistics Systems & Inventory Triage Workshop", company: "PortLine Solutions", desc: "Learn how inventory levels influence throughput, and how teams prioritize shipments using simple decision matrices.", location: "Southampton", duration: "2 Days", deadline: "1 Sep 2026", link: "https://careers.portlinesolutions.example/placements/inventory-triage-workshop" }
+                { title: "Airfield Operations Apprentice Pathway", company: "SkyBound Logistics", desc: "Gain comprehensive knowledge regarding terminal routing grids, safety clearance profiles, and complex asset distributions.", location: "London Heathrow", duration: "18 Months", deadline: "29 Aug 2026", link: "https://skybound.example/apprentice/airfield-operations-pathway" }
             ],
             "Digital Forensics & Cyber Investigation": [
                 { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes.", location: "London", duration: "1 Week", deadline: "20 Sep 2026", link: "https://careers.vanguardcyberanalytics.example/placements/forensic-diagnostics-placement" },
@@ -1060,10 +1065,7 @@
             ],
             "Art & Creative Design": [
                 { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts.", location: "London", duration: "3 Days", deadline: "17 Aug 2026", link: "https://careers.pixelmediaagency.example/placements/graphic-design-insight-week" },
-                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design.", location: "Swansea", duration: "Weekend (Flexible)", deadline: "24 Aug 2026", link: "https://careers.localcommunityhub.example/placements/content-creator-assistant" },
-                { title: "Brand Identity & Layout Iteration Sprint", company: "CedarGrid Studio", desc: "Work on iterative mockups, typography selections, and layout consistency checks for small campaigns.", location: "Nottingham", duration: "2 Days", deadline: "31 Aug 2026", link: "https://careers.cedargridstudio.example/placements/brand-identity-sprint" },
-                { title: "Photo-to-Poster Conversion Session", company: "LensForge Collective", desc: "Turn raw images into polished posters, learning crop rules, contrast improvements, and export best practices.", location: "Liverpool", duration: "1 Day", deadline: "6 Sep 2026", link: "https://careers.lensforgecollective.example/placements/photo-poster-session" },
-                { title: "Content Scheduling & Creative Feedback Loop", company: "Orbit Youth Media", desc: "Observe review meetings and learn how teams turn feedback into improved posts on a weekly cadence.", location: "Belfast", duration: "1 Week", deadline: "13 Sep 2026", link: "https://careers.orbityouthmedia.example/placements/content-scheduling-feedback-loop" }
+                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design.", location: "Swansea", duration: "Weekend (Flexible)", deadline: "24 Aug 2026", link: "https://careers.localcommunityhub.example/placements/content-creator-assistant" }
             ],
             "General Studies": [
                 { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows.", location: "London", duration: "3 Days", deadline: "27 Aug 2026", link: "https://careers.unifiedcorepartners.example/placements/business-operations-explorer" }
@@ -1245,11 +1247,11 @@
             cvTarget.innerHTML = `
                 <div class="cv-name">${first} ${last}</div>
                 <div class="cv-contact">
-                    ${loc} | ${phone} | ${email} ${linkedin ? `| ${linkedin}` : ''}
+                    ${loc} &nbsp;|&nbsp; ${phone} &nbsp;|&nbsp; ${email} ${linkedin ? `&nbsp;|&nbsp; ${linkedin}` : ''}
                 </div>
 
                 <div class="cv-section-title">${t.cv_prof_title}</div>
-                <p style="margin: 0 0 15px 0; text-align: justify; color: #1e293b;">${t.cv_prof_desc}</p>
+                <p style="margin: 0 0 16px 0; text-align: justify; color: #334155;">${t.cv_prof_desc}</p>
 
                 <div class="cv-section-title">${t.cv_edu_title}</div>
                 <div class="cv-split-header">
@@ -1261,7 +1263,7 @@
                     <div>September 2024 – Present</div>
                 </div>
                 <ul class="cv-bullet-list">
-                    <li><strong>Grades:</strong> ${grades}</li>
+                    <li><strong>Academic Metrics & Performance:</strong> ${grades}</li>
                     <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
                     <li>${t.cv_edu_bullet2}</li>
                 </ul>
@@ -1288,15 +1290,15 @@
                 </ul>
 
                 <div class="cv-section-title">${t.cv_skills_title}</div>
-                <div style="margin-top: 5px; font-size: 0.95rem;">
-                    <strong>${t.cv_skills_tech}</strong><br>
-                    <strong>${t.cv_skills_soft}</strong>
+                <div class="cv-skills-grid">
+                    <div>• <strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
+                    <div style="margin-top: 4px;">• <strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
                 </div>
 
                 <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 0 0 15px 0;">${interests}</p>
+                <p style="margin: 0 0 16px 0; color: #334155;">${interests}</p>
 
-                <div style="text-align: center; font-style: italic; font-size: 0.9rem; color: #718096; margin-top: 20px;">
+                <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 30px; border-top: 1px dashed #e2e8f0; padding-top: 15px;">
                     ${t.cv_ref}
                 </div>
             `;
@@ -1308,7 +1310,7 @@
             matches.forEach((item, idx) => {
                 const div = document.createElement('div');
                 div.className = 'match-card';
-                const matchScore = 96 - (idx * 4);
+                const matchScore = 98 - (idx * 3);
                 div.innerHTML = `
                     <div class="match-card-header">
                         <div>
