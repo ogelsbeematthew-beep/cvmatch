@@ -3,544 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVmatch - Tailored Work Experience</title>
-    <!-- Google Fonts for Modern Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
+    <title>CVmatch - Connect Talent to Opportunity</title>
     <style>
-        /* ==========================================================================
-           CLEAN NEOBRUTALISM / MODERN TECH HYBRID THEME
-           ========================================================================== */
-        :root {
-            --bg-main: #090d16;
-            --bg-card: #131926;
-            --bg-input: #1b2336;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-accent: #38bdf8;
-            
-            --primary-accent: #6366f1; 
-            --primary-glow: rgba(99, 102, 241, 0.15);
-            --success-accent: #10b981; 
-            --success-glow: rgba(16, 185, 129, 0.15);
-            --error-accent: #f43f5e; 
-            
-            --border-primary: #242f47;
-            --border-focus: #6366f1;
-            
-            --radius-lg: 16px;
-            --radius-md: 12px;
-            --radius-sm: 8px;
-            
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        /* Modern CSS Custom Property Framework for Multi-Theme Architecture */
         body[data-theme="light"] {
-            --bg-main: #f1f5f9;
-            --bg-card: #ffffff;
-            --bg-input: #f8fafc;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --text-accent: #2563eb;
-            --primary-accent: #2563eb;
-            --primary-glow: rgba(37, 99, 235, 0.1);
-            --border-primary: #e2e8f0;
-            --border-focus: #2563eb;
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-green: #10b981;
+            --dark-blue: #0f172a;
+            --light-bg: #f8fafc;        /* FIXED: True light background */
+            --card-bg: #ffffff;          /* FIXED: Clean white card background */
+            --text-main: #0f172a;        /* FIXED: Dark readable text */
+            --text-muted: #64748b;       /* FIXED: Balanced muted text */
+            --border-color: #e2e8f0;     /* FIXED: Light border styling */
+            --progress-empty: #e2e8f0;   /* FIXED: Clear progress channel */
+            --error-color: #ef4444;
+            --danger-hover: #dc2626;
         }
-
-        body[data-theme="slate"] {
-            --bg-main: #121318;
-            --bg-card: #1a1c23;
-            --bg-input: #232631;
-            --text-main: #f3f4f6;
+        body[data-theme="dark"] {
+            --primary-blue: #38bdf8;
+            --primary-hover: #0284c7;
+            --primary-green: #34d399;
+            --dark-blue: #f8fafc;
+            --light-bg: #030712;
+            --card-bg: #111827;
+            --text-main: #f9fafb;
             --text-muted: #9ca3af;
-            --text-accent: #a855f7;
-            --primary-accent: #a855f7;
-            --primary-glow: rgba(168, 85, 247, 0.15);
-            --border-primary: #2d3142;
-            --border-focus: #a855f7;
+            --border-color: #374151;
+            --progress-empty: #374151;
+            --error-color: #f87171;
+            --danger-hover: #dc2626;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        body[data-theme="slate"] {
+            --primary-blue: #6366f1;
+            --primary-hover: #4f46e5;
+            --primary-green: #10b981;
+            --dark-blue: #0f172a;
+            --light-bg: #1e1e24;
+            --card-bg: #2a2a35;
+            --text-main: #f8fafc;
+            --text-muted: #a1a1aa;
+            --border-color: #3f3f46;
+            --progress-empty: #3f3f46;
+            --error-color: #ef4444;
+            --danger-hover: #dc2626;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
             color: var(--text-main);
-            transition: var(--transition-smooth);
-            min-height: 100vh;
-            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
-
-        h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
         header {
-            background-color: var(--bg-card);
-            border-bottom: 2px solid var(--border-primary);
-            padding: 20px 40px;
+            background-color: var(--card-bg);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+            border-bottom: 1px solid var(--border-color);
         }
-
         .logo-container {
-            height: 40px;
-            display: flex;
-            align-items: center;
+            max-width: 160px;
         }
-
         .logo-container img {
-            height: 100%;
-            width: auto;
-            object-fit: contain;
+            width: 100%;
+            height: auto;
         }
-
         .controls-panel {
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            align-items: center;
         }
-
-        select {
-            background-color: var(--bg-input);
+        .controls-panel select {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-bg);
             color: var(--text-main);
-            border: 2px solid var(--border-primary);
-            padding: 10px 16px;
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-            font-weight: 600;
             cursor: pointer;
-            transition: var(--transition-smooth);
-            outline: none;
+            margin-top: 0;
+            width: auto;
         }
-
-        select:focus {
-            border-color: var(--border-focus);
-            box-shadow: 0 0 0 4px var(--primary-glow);
-        }
-
         .container {
-            max-width: 1300px;
+            max-width: 850px;
             margin: 40px auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
-
         .card {
-            background-color: var(--bg-card);
-            border: 2px solid var(--border-primary);
-            border-radius: var(--radius-lg);
-            padding: 45px;
-            box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.5);
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
         }
-
-        .progress-container {
-            margin-bottom: 40px;
-            background: var(--bg-input);
-            padding: 24px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-primary);
-        }
-
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .progress-labels span:first-child {
-            color: var(--text-main);
-        }
-
-        .progress-bar-bg {
-            background-color: var(--border-primary);
-            height: 12px;
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar-fill {
-            background: linear-gradient(90deg, var(--primary-accent), var(--text-accent));
-            height: 100%;
-            width: 33.33%;
-            border-radius: 6px;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-            margin-top: 25px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
-
         .full-width {
             grid-column: span 2;
         }
-
+        h2 {
+            color: var(--text-main);
+            margin-top: 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        h3 {
+            color: var(--text-main);
+            margin-top: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
         label {
             display: block;
-            font-weight: 700;
-            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
             color: var(--text-muted);
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 8px;
         }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="tel"],
-        textarea,
-        select {
+        .input-group {
+            position: relative;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
             width: 100%;
-            background-color: var(--bg-input);
-            color: var(--text-main);
-            border: 2px solid var(--border-primary);
-            padding: 14px 18px;
-            border-radius: var(--radius-md);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition-smooth);
+            padding: 12px;
+            margin-top: 6px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             box-sizing: border-box;
+            font-family: inherit;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--border-focus);
-            box-shadow: 0 0 0 4px var(--primary-glow);
-            background-color: var(--bg-card);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
-
         input.touched:valid, textarea.touched:valid {
-            border-color: var(--success-accent);
-            box-shadow: 0 0 0 4px var(--success-glow);
+            border-color: var(--primary-green);
         }
-
         input.touched:invalid, textarea.touched:invalid {
-            border-color: var(--error-accent);
+            border-color: var(--error-color);
         }
-
         .counter-container {
             display: flex;
             justify-content: flex-end;
             font-size: 0.75rem;
-            font-weight: 600;
             color: var(--text-muted);
-            margin-top: 6px;
+            margin-top: 4px;
         }
-
         .counter-container.limit-reached {
-            color: var(--error-accent);
-            animation: shake 0.2s ease-in-out;
+            color: var(--error-color);
+            font-weight: bold;
         }
 
+        /* Modernized Wizard Buttons Styling Matrix */
         .wizard-buttons {
             display: flex;
-            justify-content: flex-end;
-            gap: 16px;
-            margin-top: 40px;
+            gap: 12px;
+            margin-top: 32px;
+            background: transparent;
         }
-
-        button {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            padding: 14px 28px;
-            border-radius: var(--radius-md);
-            border: none;
+        .wizard-buttons button {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid transparent;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.2s ease-in-out;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            width: auto;
+            margin-top: 0;
         }
 
-        button.primary-btn {
-            background-color: var(--primary-accent);
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+        /* Button Roles Rules */
+        .wizard-buttons button[data-i18n="btn_generate"],
+        .wizard-buttons button:not([style*="background-color"]):not(.clear-btn) {
+            background-color: var(--primary-blue) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            flex: 2;
         }
-
-        button.primary-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-            filter: brightness(1.1);
+        .wizard-buttons button[data-i18n="btn_generate"]:hover,
+        .wizard-buttons button:not([style*="background-color"]):not(.clear-btn):hover {
+            background-color: var(--primary-hover) !important;
+            transform: translateY(-1px);
         }
-
-        button.secondary-btn {
-            background-color: transparent;
-            border: 2px solid var(--border-primary);
-            color: var(--text-main);
+        .wizard-buttons button[onclick*="goToFormStep"][style*="background-color"] {
+            background-color: transparent !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-main) !important;
+            flex: 1;
         }
-
-        button.secondary-btn:hover {
-            background-color: var(--border-primary);
+        .wizard-buttons button[onclick*="goToFormStep"][style*="background-color"]:hover {
+            background-color: var(--border-color) !important;
         }
-
-        button.clear-btn {
-            background-color: transparent;
-            border: 2px solid transparent;
-            color: var(--text-muted);
+        .wizard-buttons .clear-btn {
+            background-color: transparent !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-muted) !important;
+            flex: 1;
         }
-
-        button.clear-btn:hover {
-            color: var(--error-accent);
-            background-color: rgba(244, 63, 94, 0.08);
+        .wizard-buttons .clear-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1) !important;
+            border-color: var(--error-color) !important;
+            color: var(--error-color) !important;
         }
 
         .hidden {
             display: none !important;
         }
-
-        .password-strength-row {
-            margin-top: 10px;
-        }
-
-        .strength-bar-bg {
-            background-color: var(--border-primary);
-            height: 6px;
-            border-radius: 3px;
-            margin-top: 6px;
-            overflow: hidden;
-        }
-
-        #strength-bar-fill {
-            height: 100%;
-            width: 0%;
-            transition: var(--transition-smooth);
-        }
-
-        .auth-footer-links {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-primary);
-        }
-
         .auth-toggle-link {
-            color: var(--text-accent);
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-blue);
             text-decoration: none;
-            font-weight: 600;
             font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
         }
-
         .auth-toggle-link:hover {
             text-decoration: underline;
         }
-
-        /* ==========================================================================
-           DASHBOARD & INTERACTIVE CV PREVIEW
-           ========================================================================== */
-        .dashboard-layout-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: start;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 1100px) {
-            .dashboard-layout-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .cv-document {
-            background-color: #ffffff;
-            color: #0f172a;
-            padding: 50px;
-            border-radius: var(--radius-md);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            border: 1px solid #e2e8f0;
-        }
-
-        .cv-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #1e3a8a;
-            line-height: 1.1;
-            margin-bottom: 4px;
-        }
-
-        .cv-subtitle {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
-        }
-
-        .cv-contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            font-size: 0.85rem;
-            color: #475569;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 16px;
-            margin-bottom: 24px;
-            font-weight: 500;
-        }
-
-        .cv-contact-item:not(:last-child)::after {
-            content: "•";
-            margin-left: 14px;
-            color: #cbd5e0;
-        }
-
-        .cv-section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #1e3a8a;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid #cbd5e0;
-            padding-bottom: 6px;
-            margin-top: 28px;
-            margin-bottom: 14px;
-        }
-
-        .cv-personal-statement-box {
-            background-color: #f8fafc;
-            border-left: 4px solid #2563eb;
-            padding: 18px 22px;
-            border-radius: 4px;
-        }
-
-        .cv-personal-statement-box p {
-            color: #334155;
-            text-align: justify;
-        }
-
-        .cv-split-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            color: #0f172a;
-            font-size: 1.05rem;
-        }
-
-        .cv-split-sub {
-            display: flex;
-            justify-content: space-between;
-            color: #64748b;
-            font-style: italic;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .cv-bullet-list {
-            padding-left: 20px;
-            margin-bottom: 16px;
-        }
-
-        .cv-bullet-list li {
-            margin-bottom: 8px;
-            color: #334155;
-            text-align: justify;
-        }
-
-        .cv-skills-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .cv-skills-row {
-            font-size: 0.9rem;
-            color: #334155;
-        }
-
-        .matches-sidebar-panel {
-            background-color: var(--bg-card);
-            border: 2px solid var(--border-primary);
-            border-radius: var(--radius-lg);
-            padding: 30px;
-            position: sticky;
-            top: 110px;
-        }
-
         .match-item {
-            background-color: var(--bg-input);
-            border: 2px solid var(--border-primary);
-            border-left: 5px solid var(--success-accent);
-            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--primary-green);
+            background: rgba(16, 185, 129, 0.08);
             padding: 20px;
-            margin-top: 16px;
-            transition: var(--transition-smooth);
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
-
-        .match-item:hover {
-            transform: translateX(4px);
-            border-color: var(--success-accent);
-        }
-
         .match-title {
+            font-weight: bold;
             font-size: 1.1rem;
-            font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 4px;
         }
-
-        .match-company {
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-accent);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
         }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-4px); }
-            75% { transform: translateX(4px); }
+        .progress-bar-bg {
+            background-color: var(--progress-empty);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
         }
-
+        .progress-bar-fill {
+            background-color: var(--primary-green);
+            height: 100%;
+            width: 33.33%;
+            transition: width 0.3s ease-in-out;
+        }
         .form-step-panel {
             display: none;
         }
-
         .form-step-panel.active {
             display: block;
-            animation: fadeIn 0.4s ease;
+        }
+        
+        /* Premium CV Template styling rules */
+        .cv-document {
+            background: #ffffff;
+            border: 1px solid #cbd5e0;
+            padding: 40px;
+            border-radius: 6px;
+            color: #1e293b;
+            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .cv-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0f172a;
+            text-align: center;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cv-contact {
+            font-size: 0.85rem;
+            color: #475569;
+            text-align: center;
+            margin: 5px 0 15px 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+        .cv-section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cv-split-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #0f172a;
+            margin-top: 8px;
+        }
+        .cv-split-sub {
+            display: flex;
+            justify-content: space-between;
+            color: #475569;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .cv-bullet-list {
+            margin: 4px 0 12px 0;
+            padding-left: 20px;
+        }
+        .cv-bullet-list li {
+            margin-bottom: 6px;
+        }
+        
+        /* Real-time Dynamic Password Gauge Styling Layout */
+        .password-strength-row {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .strength-bar-bg {
+            background-color: var(--progress-empty);
+            height: 5px;
+            border-radius: 3px;
+            margin-top: 6px;
+            width: 100%;
+            overflow: hidden;
+        }
+        #strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        #step-2 button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        #auth-card button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -548,104 +407,87 @@
 
     <header>
         <div class="logo-container">
-            <img src="image_adb067.png" alt="CVmatch Branding Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:var(--text-main);font-family:\"Space Grotesk\" \'>CV<span style=\'color:var(--primary-accent)\'>match</span></h2>'">
+            <img src="image_adb067.png" alt="CVmatch Logo">
         </div>
         <div class="controls-panel">
             <select id="lang-selector" onchange="changeLanguage(this.value)">
-                <option value="en">English (UK)</option>
+                <option value="en">English</option>
                 <option value="cy">Cymraeg (Welsh)</option>
             </select>
             <select id="theme-selector" onchange="changeTheme(this.value)">
-                <option value="dark">⚡ Cyber Neon</option>
-                <option value="light">☀️ Minimal Stark</option>
-                <option value="slate">🔷 Deep Indigo Slate</option>
+                <option value="dark">🌙 Dark Theme</option>
+                <option value="light">☀️ Light Theme</option>
+                <option value="slate">🔷 Slate Blue</option>
             </select>
         </div>
     </header>
 
     <div class="container">
         
-        <!-- SIGN IN / ACCREDITATION -->
         <div id="auth-card" class="card">
+            
             <div id="auth-signin-view">
-                <h2 data-i18n="signin_title" style="font-size: 2rem; margin-bottom: 8px;">Welcome Back</h2>
-                <p data-i18n="signin_sub" style="color: var(--text-muted); margin-bottom: 25px;">Sign in to build your CV and match with placement positions.</p>
-                
+                <h2 data-i18n="signin_title">Welcome Back</h2>
+                <p data-i18n="signin_sub">Sign in to access your CV dashboard.</p>
                 <form onsubmit="handleAuth(event, 'signin')">
-                    <div class="input-group">
-                        <label data-i18n="label_email" for="auth-email-signin">Email Address</label>
-                        <input type="email" id="auth-email-signin" placeholder="name@email.com" required>
-                    </div>
-                    <div class="input-group" style="margin-top: 20px;">
-                        <label data-i18n="label_password" for="auth-password-signin">Password</label>
-                        <input type="password" id="auth-password-signin" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signin">Sign In</button>
+                    <label data-i18n="label_email" for="auth-email-signin">Email Address</label>
+                    <input type="email" id="auth-email-signin" placeholder="yourname@email.com" required>
+                    
+                    <label data-i18n="label_password" for="auth-password-signin">Password</label>
+                    <input type="password" id="auth-password-signin" placeholder="••••••••" required>
+                    
+                    <button type="submit" data-i18n="btn_signin">Sign In</button>
                 </form>
-                
-                <div class="auth-footer-links">
+                <div style="text-align: center; display: flex; justify-content: space-between; padding: 0 10px;">
                     <a class="auth-toggle-link" onclick="switchAuthView('forgot')" data-i18n="link_forgot">Forgot Password?</a>
-                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create an Account</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create Account</a>
                 </div>
             </div>
 
             <div id="auth-signup-view" class="hidden">
-                <h2 data-i18n="signup_title" style="font-size: 2rem; margin-bottom: 8px;">Create an Account</h2>
-                <p data-i18n="signup_sub" style="color: var(--text-muted); margin-bottom: 25px;">Build a high-quality CV tailored for apprenticeships and jobs.</p>
-                
+                <h2 data-i18n="signup_title">Create an Account</h2>
+                <p data-i18n="signup_sub">Sign up to start tailoring your CV and tracking experience placements.</p>
                 <form onsubmit="handleAuth(event, 'signup')">
-                    <div class="input-group">
-                        <label data-i18n="label_email" for="auth-email-signup">Email Address</label>
-                        <input type="email" id="auth-email-signup" placeholder="candidate@email.com" required>
-                    </div>
-                    <div class="input-group" style="margin-top: 20px;">
-                        <label data-i18n="label_password" for="auth-password-signup">Choose Password</label>
-                        <input type="password" id="auth-password-signup" placeholder="••••••••" required>
-                    </div>
+                    <label data-i18n="label_email" for="auth-email-signup">Email Address</label>
+                    <input type="email" id="auth-email-signup" placeholder="yourname@email.com" required>
+                    
+                    <label data-i18n="label_password" for="auth-password-signup">Password</label>
+                    <input type="password" id="auth-password-signup" placeholder="••••••••" required>
                     
                     <div class="password-strength-row">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700;">
-                            <span style="color: var(--text-muted)">Password Strength:</span>
-                            <span id="strength-text" style="color: var(--text-main)">Empty</span>
-                        </div>
+                        <span id="strength-text">Strength: Empty</span>
                         <div class="strength-bar-bg"><div id="strength-bar-fill"></div></div>
                     </div>
                     
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signup">Register & Get Started</button>
+                    <button type="submit" data-i18n="btn_signup">Sign Up</button>
                 </form>
-                
-                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-primary);">
-                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Already have an account? Log In</a>
+                <div style="text-align: center;">
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Already have an account? Sign In</a>
                 </div>
             </div>
 
             <div id="auth-forgot-view" class="hidden">
-                <h2 data-i18n="forgot_title" style="font-size: 2rem; margin-bottom: 8px;">Reset Password</h2>
-                <p data-i18n="forgot_sub" style="color: var(--text-muted); margin-bottom: 25px;">Provide your registered email to establish a new password.</p>
-                
+                <h2 data-i18n="forgot_title">Reset Your Password</h2>
+                <p data-i18n="forgot_sub">Enter your registered email and a new password below to reset your credentials.</p>
                 <form onsubmit="handleAuth(event, 'forgot')">
-                    <div class="input-group">
-                        <label data-i18n="label_email" for="auth-email-forgot">Registered Email</label>
-                        <input type="email" id="auth-email-forgot" placeholder="yourname@email.com" required>
-                    </div>
-                    <div class="input-group" style="margin-top: 20px;">
-                        <label data-i18n="label_new_password" for="auth-password-forgot">New Password</label>
-                        <input type="password" id="auth-password-forgot" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_reset">Reset Password</button>
+                    <label data-i18n="label_email" for="auth-email-forgot">Account Email Address</label>
+                    <input type="email" id="auth-email-forgot" placeholder="yourname@email.com" required>
+                    
+                    <label data-i18n="label_new_password" for="auth-password-forgot">Choose New Password</label>
+                    <input type="password" id="auth-password-forgot" placeholder="••••••••" required>
+                    
+                    <button type="submit" data-i18n="btn_reset">Update Password & Sign In</button>
                 </form>
-                
-                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-primary);">
-                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Go Back to Log In</a>
+                <div style="text-align: center;">
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Back to Sign In</a>
                 </div>
             </div>
         </div>
 
-        <!-- STEPPER CARD BUILDER FORM WIZARD -->
         <div id="step-1" class="card hidden">
             <div class="progress-container">
                 <div class="progress-labels">
-                    <span id="progress-text">Step 1 of 3: Contact Information</span>
+                    <span id="progress-text">Step 1 of 3: Personal Information</span>
                     <span id="progress-percent">33%</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -653,10 +495,9 @@
                 </div>
             </div>
             
-            <h2 data-i18n="form_title" style="font-size: 2.2rem; margin-bottom: 8px;">CV Generator Terminal</h2>
-            <p data-i18n="form_sub" style="color: var(--text-muted); max-width: 700px; margin-bottom: 30px;">Fill out your details below. Your inputs will be formatted into an ATS-optimized CV draft ready for printing or saving.</p>
+            <h2 data-i18n="form_title">Create Your Scannable CV</h2>
+            <p data-i18n="form_sub">Fill out your details below to generate a modern, professionally structured CV tailored for work experience.</p>
             
-            <!-- STEP 1: CONTACT INFO -->
             <div id="form-panel-1" class="form-step-panel active">
                 <div class="form-grid">
                     <div class="input-group">
@@ -670,113 +511,105 @@
                         <div class="counter-container"><span id="surname-counter">0</span> / 35</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_location" for="location">Town / City & County</label>
-                        <input type="text" id="location" placeholder="e.g., Gloucester, Gloucestershire" maxlength="50" required>
+                        <label data-i18n="label_location" for="location">Location (City, Country)</label>
+                        <input type="text" id="location" placeholder="London, UK" maxlength="50" required>
                         <div class="counter-container"><span id="location-counter">0</span> / 50</div>
                     </div>
                     <div class="input-group">
                         <label data-i18n="label_phone" for="phone">Phone Number</label>
-                        <input type="tel" id="phone" placeholder="e.g., 07123 456789" maxlength="20" required>
+                        <input type="tel" id="phone" placeholder="+44 7123 456789" maxlength="20" required>
                         <div class="counter-container"><span id="phone-counter">0</span> / 20</div>
                     </div>
-                    <div class="input-group full-width">
-                        <label data-i18n="label_linkedin" for="linkedin">LinkedIn Profile URL (Optional)</label>
-                        <input type="text" id="linkedin" placeholder="linkedin.com/in/username" maxlength="75">
+                    <div class="input-group">
+                        <label data-i18n="label_email" for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="alex.morgan@email.com" maxlength="50" required>
+                        <div class="counter-container"><span id="email-counter">0</span> / 50</div>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label_linkedin" for="linkedin">LinkedIn Profile (Optional)</label>
+                        <input type="text" id="linkedin" placeholder="linkedin.com/in/yourprofile" maxlength="75">
                         <div class="counter-container"><span id="linkedin-counter">0</span> / 75</div>
                     </div>
-                    <input type="hidden" id="email">
                 </div>
                 <div class="wizard-buttons">
                     <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
-                    <button type="button" class="primary-btn" onclick="goToFormStep(2)">Next Step →</button>
+                    <button type="button" onclick="goToFormStep(2)">Next Step</button>
                 </div>
             </div>
 
-            <!-- STEP 2: EDUCATION -->
             <div id="form-panel-2" class="form-step-panel">
                 <div class="form-grid">
                     <div class="full-width input-group">
-                        <label data-i18n="label_school" for="school">School or College Name</label>
-                        <input type="text" id="school" placeholder="e.g., Cambridge Comprehensive College" maxlength="75" required>
+                        <label data-i18n="label_school" for="school">Current School / College Name</label>
+                        <input type="text" id="school" placeholder="Oakridge High School" maxlength="75" required>
                         <div class="counter-container"><span id="school-counter">0</span> / 75</div>
                     </div>
                     <div>
-                        <label data-i18n="label_focus" for="subject">Career Area of Interest</label>
+                        <label data-i18n="label_focus" for="subject">Strongest Academic Focus Area</label>
                         <select id="subject">
-                            <option value="IT & Computer Science">Software Development & IT Systems</option>
-                            <option value="Air Traffic Control & Logistics">Air Traffic Control & Systems Logistics</option>
-                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics & Cyber Security</option>
-                            <option value="Aerospace & Aircraft Maintenance">Aerospace & Aircraft Mechanics</option>
+                            <option value="IT & Computer Science">IT & Computer Science</option>
+                            <option value="Air Traffic Control & Logistics">Air Traffic Control & Logistics</option>
+                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics & Cyber Investigation</option>
+                            <option value="Aerospace & Aircraft Maintenance">Aerospace & Aircraft Maintenance</option>
+                            <option value="Mathematics & Sciences">Mathematics & Sciences</option>
+                            <option value="English Literature & Media">English Literature & Media</option>
+                            <option value="Art & Creative Design">Art & Creative Design</option>
+                            <option value="General Studies">General Studies & Alternative Streams</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_grades" for="grades">Grades (Predicted or Achieved)</label>
-                        <input type="text" id="grades" placeholder="e.g., GCSEs: 8 Grade Average / A-Levels: A, A, B" maxlength="60" required>
+                        <label data-i18n="label_grades" for="grades">Current / Predicted Grades</label>
+                        <input type="text" id="grades" placeholder="e.g., Straight As / 3 A-Levels (A, A, B)" maxlength="60" required>
                         <div class="counter-container"><span id="grades-counter">0</span> / 60</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" class="secondary-btn" onclick="goToFormStep(1)">← Back</button>
+                    <button type="button" style="background-color: #718096;" onclick="goToFormStep(1)">Back</button>
                     <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
-                    <button type="button" class="primary-btn" onclick="goToFormStep(3)">Next Step →</button>
+                    <button type="button" onclick="goToFormStep(3)">Next Step</button>
                 </div>
             </div>
 
-            <!-- STEP 3: ACTIVITIES AND INTERESTS -->
             <div id="form-panel-3" class="form-step-panel">
                 <div class="form-grid">
                     <div class="full-width input-group">
-                        <label data-i18n="label_hobby" for="sports">Sports, Clubs or Team Leadership Positions</label>
-                        <input type="text" id="sports" placeholder="e.g., Vice Captain of Regional Football League / Coding Club Coordinator" maxlength="100" required>
+                        <label data-i18n="label_hobby" for="sports">Sports Team, Leadership, or Main Hobby</label>
+                        <input type="text" id="sports" placeholder="e.g., Captain of School Football Team / Coding Club Member" maxlength="100" required>
                         <div class="counter-container"><span id="sports-counter">0</span> / 100</div>
                     </div>
                     
                     <div class="full-width input-group">
-                        <label data-i18n="label_interests" for="interests">Personal Hobbies & Self-Directed Technical Projects</label>
-                        <textarea id="interests" placeholder="e.g., Building basic web applications, troubleshooting network setups, reading about forensic techniques, studying tactical football positioning" maxlength="200" rows="4" required></textarea>
+                        <label data-i18n="label_interests" for="interests">Interests & Volunteering</label>
+                        <textarea id="interests" placeholder="e.g., Aviation systems, Football tactics, Strategic PC gaming" maxlength="200" rows="3" required></textarea>
                         <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" class="secondary-btn" onclick="goToFormStep(2)">← Back</button>
+                    <button type="button" style="background-color: #718096;" onclick="goToFormStep(2)">Back</button>
                     <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
-                    <button type="button" class="primary-btn" onclick="processCV()" data-i18n="btn_generate">Compile CV & Match Work Placements ⚡</button>
+                    <button type="button" onclick="processCV()" data-i18n="btn_generate">Generate Template & View Matches</button>
                 </div>
             </div>
         </div>
 
-        <!-- SPLIT CONTAINER MAIN VIEW: RESULT PANEL -->
-        <div id="step-2" class="hidden">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid var(--border-primary); padding-bottom: 20px;">
-                <div>
-                    <h1 style="font-size: 2.2rem; color: var(--text-main); display: flex; align-items: center; gap: 10px;">
-                        <span>⚙️</span> <span data-i18n="dash_title">Application Lifecycle Control Terminal</span>
-                    </h1>
-                </div>
-                <div style="display: flex; gap: 14px;">
-                    <button onclick="window.print()" class="primary-btn" style="background: linear-gradient(135deg, var(--success-accent), #059669); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);" data-i18n="btn_print">🖨️ Save CV as PDF / Print</button>
-                    <button onclick="resetApp()" class="secondary-btn" data-i18n="btn_edit">Edit Information</button>
-                </div>
+        <div id="step-2" class="card hidden">
+            <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
+                <button onclick="window.print()" style="margin: 0; width: auto; padding: 8px 15px; font-size: 0.85rem;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
             </div>
+            
+            <div class="cv-document" id="cv-document-target"></div>
 
-            <div class="dashboard-layout-grid">
-                <!-- THE COMPREHENSIVE RENDERED DOCUMENT -->
-                <div>
-                    <h3 style="margin-bottom: 16px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-accent);" data-i18n="dash_section_cv">1. Finished Portfolio Document</h3>
-                    <div class="cv-document" id="cv-document-target"></div>
-                </div>
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 35px 0;">
 
-                <!-- SIDEBAR OPPORTUNITIES SCHEDULER MATCH FEED -->
-                <div class="matches-sidebar-panel">
-                    <h3 style="margin-bottom: 6px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main);" data-i18n="dash_section_matches">2. Matched Apprenticeship Openings</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;">Placements analyzed instantly based on compatibility vectors matching your chosen curriculum path specialization focus stream:</p>
-                    
-                    <div id="match-results"></div>
-                    
-                    <div style="margin-top: 40px; border-top: 2px solid var(--border-primary); padding-top: 25px; display: flex; justify-content: flex-end;">
-                        <button onclick="logout()" class="clear-btn" style="color: var(--error-accent);" data-i18n="btn_logout">Log Out of Terminal Session</button>
-                    </div>
-                </div>
+            <h3 data-i18n="dash_section_matches">2. Tailored Placement Placements</h3>
+            <div id="match-results"></div>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <button onclick="resetApp()" style="background-color: #718096; margin-top: 0;" data-i18n="btn_edit">Edit Form Details</button>
+                <button onclick="logout()" style="background-color: var(--error-color); margin-top: 0; max-width: 150px;" data-i18n="btn_logout">Log Out</button>
             </div>
         </div>
     </div>
@@ -787,150 +620,165 @@
         const i18n = {
             en: {
                 signin_title: "Welcome Back",
-                signin_sub: "Log into your account using your credentials.",
+                signin_sub: "Sign in to access your CV dashboard.",
                 signup_title: "Create an Account",
-                signup_sub: "Create a user account to open up the matching system dashboard.",
-                forgot_title: "Reset Account Password",
-                forgot_sub: "Type in your email address to replace your account password.",
+                signup_sub: "Sign up to start tailoring your CV and tracking experience placements.",
+                forgot_title: "Reset Your Password",
+                forgot_sub: "Enter your registered email and a new password below to reset your credentials.",
                 label_email: "Email Address",
                 label_password: "Password",
-                label_new_password: "Choose a New Password",
+                label_new_password: "Choose New Password",
                 btn_signin: "Sign In",
-                btn_signup: "Register Profile",
-                btn_reset: "Update Password",
+                btn_signup: "Sign Up",
+                btn_reset: "Update Password & Sign In",
                 link_forgot: "Forgot Password?",
-                link_create: "Create an Account",
-                link_have_account: "Back to Sign In Hub",
-                link_back_signin: "Cancel and Go Back",
-                form_title: "CV Generator Terminal",
-                form_sub: "Provide your details to arrange a clean, high-yield professional CV template.",
+                link_create: "Create Account",
+                link_have_account: "Already have an account? Sign In",
+                link_back_signin: "Back to Sign In",
+                form_title: "Create Your Scannable CV",
+                form_sub: "Fill out your details below to generate a modern, professionally structured CV tailored for work experience.",
                 label_firstname: "First Name",
                 label_surname: "Surname",
-                label_location: "Town / City & County",
+                label_location: "Location (City, Country)",
                 label_phone: "Phone Number",
-                label_linkedin: "LinkedIn Profile URL (Optional)",
-                label_school: "School or College Name",
-                label_focus: "Career Area of Interest",
-                label_grades: "Grades Summary (Predicted or Achieved)",
-                label_hobby: "Sports, Clubs or Team Leadership Positions",
-                label_interests: "Personal Hobbies & Self-Directed Technical Projects",
-                btn_generate: "Compile CV & Match Placements",
-                dash_title: "Application Lifecycle Dashboard",
-                dash_section_cv: "1. Rendered Professional Portfolio",
-                dash_section_matches: "2. Matched Opportunities Feed",
-                btn_print: "🖨️ Save CV as PDF / Print",
-                btn_edit: "Edit Details",
-                btn_logout: "Log Out of Session",
-                alert_fill: "ERROR: Some required inputs are empty or invalid. Check the form fields to continue.",
-                alert_created: "Account generated successfully. Loading your dashboard...",
-                alert_welcome: "Sign in successful. Opening your profile draft...",
-                alert_invalid: "AUTHENTICATION ERROR: Check your email and password entry and try again.",
-                alert_reset: "Password has been overwritten. Re-initializing view...",
-                cv_prof_title: "Professional Objective / Personal Statement",
-                cv_prof_desc: "Highly motivated and technically focused individual seeking to secure a Software Engineering Apprenticeship. Combines a logical approach to problem-solving with independent programming practice across essential web technologies and software fundamentals. Comfortable building clean code structures, diagnosing logical issues, and learning new tools quickly. Developed strong teamwork, communication, and time-management skills through group projects and athletic schedules. Eager to bring a committed work ethic and a desire for continuous technical development to a progressive development team.",
-                cv_edu_title: "Education & Qualifications",
-                cv_edu_sub: "Secondary Education & Key Studies",
-                cv_edu_bullet1: "Core Focus Field: Dedicated study trajectory and specialized practical focus in ",
-                cv_edu_bullet2: "Practical Project Applications: Actively designed program modules, reviewed functional data, updated codebases, and collaborated on clean design implementations.",
-                cv_ach_title: "Academic Achievements & Highlights",
-                cv_ach_b1: "Academic Merit: Consistently achieved top-tier marks within advanced STEM modules and projects.",
-                cv_ach_b2: "Problem Solving Challenge: Successfully completed systems simulation challenges emphasizing structural accuracy and design patterns.",
-                cv_ach_b3: "Presentation Recognition: Commended for delivering clear, structured technical design presentations to external review panels.",
-                cv_sports_title: "Extracurricular Activities & Teamwork Dynamics",
-                cv_sports_sub: "Team Roles & Peer Operations",
-                cv_sports_b1: "Team Coordination: Successfully coordinated local schedules, assisted peers under tight schedules, and executed reliable performance outcomes.",
-                cv_sports_b2: "Time Management: Maintained high standard of personal responsibility to balance demanding extracurricular schedules alongside core technical studies.",
-                cv_skills_title: "Core Skills & Technical Assets",
-                cv_skills_tech: "Technical Domain Skills: Core Software Fundamentals, Digital Systems Literacy, Data Flow Concepts, Systems Logic Analysis.",
-                cv_skills_soft: "Interpersonal Practices: Team-Oriented Communication, Agile Collaboration Methods, Analytical Problem Solving, Structured Peer Coordination.",
-                cv_interests_title: "Independent Technical Exploration & Personal Focus Areas",
-                cv_ref: "Formal character references and school academic verification records are available on request.",
-                step1_text: "Step 1 of 3: Contact Information",
-                step2_text: "Step 2 of 3: Academic Studies Block",
-                step3_text: "Step 3 of 3: Extracurricular Activities Matrix"
+                label_linkedin: "LinkedIn Profile (Optional)",
+                label_school: "Current School / College Name",
+                label_focus: "Strongest Academic Focus Area",
+                label_grades: "Current / Predicted Grades",
+                label_hobby: "Sports Team, Leadership, or Main Hobby",
+                label_interests: "Interests & Volunteering",
+                btn_generate: "Generate Template & View Matches",
+                dash_title: "Your CVmatch Dashboard",
+                dash_section_cv: "1. Your Formatted CV Template",
+                dash_section_matches: "2. Tailored Placements",
+                btn_print: "🖨️ Print / Save PDF",
+                btn_edit: "Edit Form Details",
+                btn_logout: "Log Out",
+                alert_fill: "Please fill out all fields correctly on this step.",
+                alert_created: "Account successfully created! Logging you in...",
+                alert_welcome: "Welcome back to CVmatch!",
+                alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
+                alert_reset: "Password updated successfully! Logging you in...",
+                cv_prof_title: "Professional Profile",
+                cv_prof_desc: "A motivated and disciplined Student with a strong academic foundation and a proven track record of leadership and teamwork demonstrated through competitive activities. Adept at balancing rigorous study schedules with extracurricular commitments. Possesses excellent communication, time-management, and problem-solving skills, eager to bring a dedicated work ethic to a professional work environment.",
+                cv_edu_title: "Education",
+                cv_edu_sub: "High School Diploma / Academic Studies",
+                cv_edu_bullet1: "Relevant Modules: Advanced focus paths in ",
+                cv_edu_bullet2: "Key Projects: Developed individual portfolio analysis which involved intensive evaluation, presentation delivery, and group collaboration.",
+                cv_ach_title: "Key Achievements",
+                cv_ach_b1: "Academic Excellence Recognition: Consistently commended for high-level module scores.",
+                cv_ach_b2: "Skills Development Award: Completed demanding core programs focusing on community engagement.",
+                cv_ach_b3: "Public Presentation Milestone: Secured highly commended positioning across evaluation panels.",
+                cv_sports_title: "Sports & Leadership",
+                cv_sports_sub: "Extracurricular Engagement",
+                cv_sports_b1: "Leadership: Collaborated with peers, co-organized weekly sessions, and motivated teams.",
+                cv_sports_b2: "Discipline: Successfully balanced regular training alongside full-time academic tasks.",
+                cv_skills_title: "Skills",
+                cv_skills_tech: "Technical Skills: Microsoft Office Suite, Digital Literacy paths, Asset formatting templates.",
+                cv_skills_soft: "Soft Skills: Teamwork built via group tasks; Reliable Time Management; Clear Communication.",
+                cv_interests_title: "Interests",
+                cv_ref: "References available upon request.",
+                step1_text: "Step 1 of 3: Personal Information",
+                step2_text: "Step 2 of 3: Academic Focus",
+                step3_text: "Step 3 of 3: Extracurricular Activities"
             },
             cy: {
                 signin_title: "Croeso Nôl",
-                signin_sub: "Mewngofnodwch i'ch cyfrif gan ddefnyddio'ch manylion.",
+                signin_sub: "Mewngofnodwch i weld eich dangosfwrdd CV.",
                 signup_title: "Creu Cyfrif",
-                signup_sub: "Creu cyfrif defnyddiwr i agor dangosfwrdd y system fatchio.",
-                forgot_title: "Ailosod Cyfrinair Cyfrif",
-                forgot_sub: "Teipiwch eich e-bost i osod cyfrinair newydd.",
+                signup_sub: "Cofrestrwch i ddechrau teilwra eich CV a dilyn lleoliadau profiad gwaith.",
+                forgot_title: "Ailosod Eich Cyfrinair",
+                forgot_sub: "Nodwch eich e-bost cofrestredig a chyfrinair newydd isod i ailosod eich manylion.",
                 label_email: "Cyfeiriad E-bost",
                 label_password: "Cyfrinair",
                 label_new_password: "Dewiswch Gyfrinair Newydd",
                 btn_signin: "Mewngofnodi",
-                btn_signup: "Cofrestru Proffil",
-                btn_reset: "Diweddaru Cyfrinair",
+                btn_signup: "Cofrestru",
+                btn_reset: "Diweddaru Cyfrinair a Mewngofnodi",
                 link_forgot: "Wedi anghofio cyfrinair?",
-                link_create: "Creu Cyfrif Newydd",
-                link_have_account: "Yn ôl i Mewngofnodi",
-                link_back_signin: "Canslo ac Mynd Nôl",
-                form_title: "Terfynell Cynhyrchu CV",
-                form_sub: "Darparwch eich manylion i drefnu templed CV proffesiynol clir ac effeithiol.",
+                link_create: "Creu Cyfrif",
+                link_have_account: "Oes gennych chi gyfrif eisoes? Mewngofnodwch",
+                link_back_signin: "Yn ôl i Mewngofnodi",
+                form_title: "Creu Eich CV Sganiadwy",
+                form_sub: "Llenwch eich manylion isod i gynhyrchu CV modern, strwythuredig sydd wedi'i deilwra ar gyfer profiad gwaith.",
                 label_firstname: "Enw Cyntaf",
                 label_surname: "Cyfenw",
-                label_location: "Tref / Dinas a Sir",
+                label_location: "Lleoliad (Dinas, Gwlad)",
                 label_phone: "Rhif Ffôn",
-                label_linkedin: "Dolen LinkedIn (Dewisol)",
-                label_school: "Enw Ysgol neu Goleg",
-                label_focus: "Maes Diddordeb Gyrfa",
-                label_grades: "Crynodeb o Raddau (Wedi'u Rhagfynegi neu Ennill)",
-                label_hobby: "Chwaraeon, Clybiau neu Swyddi Arwain Tîm",
-                label_interests: "Diddordebau Personol a Phrosiectau Technegol Hunangyfeiriedig",
-                btn_generate: "Llunio CV a Chwilio am Leoliadau",
-                dash_title: "Dangosfwrdd Rheoli Prosiect",
-                dash_section_cv: "1. Portffolio Proffesiynol Allbwn",
-                dash_section_matches: "2. Ffrwd Lleoliadau Cyfatebol",
-                btn_print: "🖨️ Cadw CV fel PDF / Argraffu",
-                btn_edit: "Golygu Manylion",
-                btn_logout: "Terfynu Sesiwn",
-                alert_fill: "GWALL: Mae rhai meysydd gofynnol yn wag neu'n annilys. Gwiriwch y meysydd i barhau.",
-                alert_created: "Cyfrif wedi'i greu yn llwyddiannus. Yn llwytho'ch dangosfwrdd...",
-                alert_welcome: "Mewngofnodi'n llwyddiannus. Yn agor eich drafft proffil...",
-                alert_invalid: "GWALL DILYSU: Gwiriwch eich e-bost a'ch cyfrinair ac rhowch gynnig arall arni.",
-                alert_reset: "Mae'r cyfrinair wedi'i ailosod. Yn ail-gychwyn...",
-                cv_prof_title: "Amcan Proffesiynol / Datganiad Personol",
-                cv_prof_desc: "Unigolyn llawn cymhelliant sy'n canolbwyntio ar dechnoleg sy'n ceisio sicrhau Brentisiaeth Peirianneg Meddalwedd. Yn cyfuno dull rhesymegol o ddatrys problemau ag arferion rhaglennu annibynnol ar draws technolegau gwe craidd a sylfeini meddalwedd. Yn gyfforddus yn adeiladu strwythurau cod clir, yn canfod materion rhesymegol, ac yn dysgu offer newydd yn gyflym. Wedi datblygu sgiliau gwaith tîm, cyfathrebu a rheoli amser cryf trwy brosiectau grŵp ac amserlenni athletaidd. Yn eiddgar i ddod â moeseg gwaith ymroddedig ac awydd am ddatblygiad technegol parhaus i dîm datblygu blaengar.",
-                cv_edu_title: "Addysg a Chymwysterau",
-                cv_edu_sub: "Addysg Uwchradd a Phrif Astudiaethau",
-                cv_edu_bullet1: "Prif Faes Ffocws: Llwybr astudio penodol a ffocws ymarferol arbenigol mewn ",
-                cv_edu_bullet2: "Cymwysiadau Prosiect Ymarferol: Wedi dylunio modiwlau rhaglen, adolygu data gweithredol, diweddaru codffynonellau, a chydweithio ar ddyluniadau glân.",
-                cv_ach_title: "Llwyddiannau Academaidd ac Uchafbwyntiau",
-                cv_ach_b1: "Teilyngdod Academaidd: Wedi cyflawni marciau uchel yn gyson mewn modiwlau a phrosiectau STEM uwch.",
-                cv_ach_b2: "Her Datrys Problemau: Wedi cwblhau heriau efelychu systemau yn llwyddiannus gan bwysleisio cywirdeb strwythuorol a phatrymau dylunio.",
-                cv_ach_b3: "Cydnabyddiaeth Cyflwyniad: Canmoliaeth am draddodi cyflwyniadau dylunio technegol clir a strwythuredig i baneli adolygu allanol.",
-                cv_sports_title: "Gweithgareddau Allgyrsiol a Dynameg Gwaith Tîm",
-                cv_sports_sub: "Rolau Tîm a Gweithrediadau Cyfoedion",
-                cv_sports_b1: "Cydlynu Tîm: Wedi cydlynu amserlenni lleol yn llwyddiannus, gan helpu cyfoedion o dan amserlenni tynn, a chyflawni canlyniadau dibynadwy.",
-                cv_sports_b2: "Rheoli Amser: Wedi cynnal safon uchel o gyfrifoldeb personol i gydbwyso amserlenni allgyrsiol heriol ochr yn ochr ag astudiaethau technegol craidd.",
-                cv_skills_title: "Sgiliau Craidd ac Asedau Technegol",
-                cv_skills_tech: "Sgiliau Technegol: Sylfeini Meddalwedd Craidd, Llythrennedd Systemau Digidol, Cysyniadau Llif Data, Dadansoddi Rhesymeg Systemau.",
-                cv_skills_soft: "Arferion Rhyngbersonol: Cyfathrebu Tîm, Cydweithredu Ystwyth, Datrys Problemau'n Ddadansoddol, Cydlynu Cyfoedion Strwythuredig.",
-                cv_interests_title: "Archwiliadau Technegol Annibynnol a Meysydd Ffocws Personol",
-                cv_ref: "Mae geirdaon ffurfiol a chofnodion gwiriad academaidd ysgol ar gael ar gais.",
-                step1_text: "Cam 1 o 3: Gwybodaeth Gyswllt",
-                step2_text: "Cam 2 o 3: Bloc Astudiaethau Academaidd",
-                step3_text: "Cam 3 o 3: Matrics Gweithgareddau Allgyrsiol"
+                label_linkedin: "Proffil LinkedIn (Dewisol)",
+                label_school: "Enw'r Ysgol / Coleg Cyfredol",
+                label_focus: "Prif Faes Ffocws Academaidd",
+                label_grades: "Graddau Cyfredol / Rhagwelir",
+                label_hobby: "Tîm Chwaraeon, Arweinyddiaeth, neu Brif Hobi",
+                label_interests: "Diddordebau a Gwirfoddoli",
+                btn_generate: "Cynhyrchu Templeg a Gweld Matchys",
+                dash_title: "Eich Dangosfwrdd CVmatch",
+                dash_section_cv: "1. Eich Templeg CV Wedi'i Fformatio",
+                dash_section_matches: "2. Lleoliadau Profiad Gwaith wedi'u Teilwra",
+                btn_print: "🖨️ Argraffu / Cadw fel PDF",
+                btn_edit: "Golygu Manylion y Ffurflen",
+                btn_logout: "Allgofnodi",
+                alert_fill: "Llenwch bob maes yn gywir ar y cam hwn, os gwelwch yn dda.",
+                alert_created: "Cyfrif wedi'i greu yn llwyddiannus! Yn eich mewngofnodi...",
+                alert_welcome: "Croeso nôl i CVmatch!",
+                alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
+                alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
+                cv_prof_title: "Proffil Proffesiynol",
+                cv_prof_desc: "Myfyriwr gweithgar a disgybledig sydd â sylfaen academaidd gref a hanes o arweinyddiaeth a gwaith tîm trwy weithgareddau cystadleuol. Galluog i gydbwyso amserlenni astudio caeth gyda hymrwymiadau allgyrsiol. Meddu ar sgiliau cyfathrebu, rheoli amser a datrys problemau gwych, yn awyddus i ddod â moeseg gwaith ymroddedig i amgylchedd proffesiynol.",
+                cv_edu_title: "Addysg",
+                cv_edu_sub: "Diploma Ysgol Uwchradd / Astudiaethau Academaidd",
+                cv_edu_bullet1: "Modiwlau Perthnasol: Llwybrau ffocws uwch mewn ",
+                cv_edu_bullet2: "Prosiectau Allweddol: Datblygu dadansoddiad portffolio unigol a oedd yn cynnwys gwerthuso dwys, cyflwyno, a chydweithio grŵp.",
+                cv_ach_title: "Prif Gyflawniadau",
+                cv_ach_b1: "Cydnabyddiaeth o Ragoriaeth Academaidd: Clodfori'n gyson am sgorau modiwl lefel uchel.",
+                cv_ach_b2: "Gwobr Datblygu Sgiliau: Wedi cwblhau rhaglenni craidd heriol sy'n canolbwyntio ar ymgysylltu â'r gymuned.",
+                cv_ach_b3: "Cerrig Milltir Cyflwyno Cyhoeddus: Sicrhau safle canmoladwy iawn ar draws paneli gwerthuso prosiectau.",
+                cv_sports_title: "Chwaraeon ac Arweinyddiaeth",
+                cv_sports_sub: "Ymgysylltu Allgyrsiol",
+                cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol, a hwb i grwpiau tîm.",
+                cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus ochr yn ochr â thasgau academaidd llawn amser.",
+                cv_skills_title: "Sgiliau",
+                cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol, Templedi fformatio.",
+                cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser yn ddibynadwy; Cyfathrebu Clir.",
+                cv_interests_title: "Diddordebau",
+                cv_ref: "Geirdaon ar gael ar gais.",
+                step1_text: "Cam 1 o 3: Gwybodaeth Bersonol",
+                step2_text: "Cam 2 o 3: Ffocws Academaidd",
+                step3_text: "Cam 3 o 3: Gweithgareddau Allgyrsiol"
             }
         };
 
         const opportunityDb = {
             "IT & Computer Science": [
-                { title: "Software Engineer Apprenticeship", company: "Quantum Logic Infrastructure", desc: "Integrate with active engineering agile teams. Learn modular codebase updates, clean version control processes, and cloud services scaling blueprints alongside a designated technical mentor." },
-                { title: "Database & Applications Placement", company: "DataSync Systems UK", desc: "Assist with code testing automation protocols, monitor local backend tracking updates, and structure system schemas inside isolated test deployment servers." }
+                { title: "Software Engineering Shadowing Day", company: "TechStart Corp", desc: "Observe active agile development sprints and receive direct career advice from junior frontend developers." },
+                { title: "IT Support & Infrastructure Placement", company: "EduTech Solutions", desc: "Gain hands-on experience diagnostic testing and deploying tech hardware architectures within modern offices." }
             ],
             "Air Traffic Control & Logistics": [
-                { title: "Air Traffic Telemetry Assistant", company: "AeroControl Transit Node", desc: "Study system tracking dashboards, look over real-time communication routing panels, and evaluate radar simulation parameters under supervised guidance." },
-                { title: "Logistics Routing Systems Scheme", company: "Alpha Cargo Fleet Matrix", desc: "Review daily cargo route scheduling software configurations, verify constraint checks, and monitor data updates inside vehicle deployment platforms." }
+                { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts." },
+                { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks." }
             ],
             "Digital Forensics & Cyber Investigation": [
-                { title: "Cyber Security Analyst Intern", company: "Sentinel Digital Security", desc: "Review server access history files, learn the basics of tracking data integrity, and run system configurations inside a isolated laboratory testing suite." },
-                { title: "Network Integrity Compliance Assistant", company: "Vanguard Audit Partners", desc: "Review active network layout models, match equipment setup records to safety checklists, and track validation metrics across corporate networks." }
+                { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes." },
+                { title: "Digital Discovery & Investigations Day", company: "Apex Integrity Partners", desc: "An overview of analytical methodologies used to preserve digital proof footprints, trace network trails, and structure audit reviews." }
             ],
             "Aerospace & Aircraft Maintenance": [
-                { title: "Avionics Software Systems Trainee", company: "Horizon Propulsion Labs", desc: "Assist avionics teams with component calibration logs, diagnostic checks software runs, and updating technical system engineering manual catalogs." },
-                { title: "Aircraft Systems Log Associate", company: "Centurion Fleet Support", desc: "Organize mechanical maintenance history documents, track diagnostic parts database codes, and review preventative equipment checklist forms." }
+                { title: "Avionics Engineering Maintenance Shadowing", company: "Horizon Aviation Systems", desc: "Observe certified structural teams performing diagnostics, component calibrations, and scheduled hardware preventive maintenance routines." },
+                { title: "Precision Systems & Component Logistics Workshop", company: "Centurion Aero Tech", desc: "Gain insights into strict aerospace quality controls, supply chain asset distributions, and technical documentation audits." }
+            ],
+            "Mathematics & Sciences": [
+                { title: "Data Analyst Taster Day", company: "FinMetrics Group", desc: "A foundational look at interpreting business metrics, tracking performance graphs, and building spreadsheet structures." },
+                { title: "Laboratory Logistics Assistant", company: "Apex BioHealth Labs", desc: "An entry-level overview of health safety codes, asset inventory logs, and cleanroom operations." }
+            ],
+            "English Literature & Media": [
+                { title: "Copywriting & Digital Marketing Workshop", company: "The Chronicle Press", desc: "Learn how to draft commercial advertising copy and optimize weekly email newsletter communication frameworks." },
+                { title: "Social Media Outreach Coordinator", company: "Youth Sports Initiative", desc: "A highly flexible role managing communication threads, taking photos, and drafting engagement updates." }
+            ],
+            "Art & Creative Design": [
+                { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts." },
+                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design." }
+            ],
+            "General Studies": [
+                { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows." }
             ]
         };
 
@@ -1019,6 +867,7 @@
             } else if (type === 'signin') {
                 const email = document.getElementById('auth-email-signin').value.trim().toLowerCase();
                 const password = document.getElementById('auth-password-signin').value;
+                
                 const storedPassword = localStorage.getItem(`user_${email}`);
                 
                 if (storedPassword && storedPassword === password) {
@@ -1089,163 +938,81 @@
                 return;
             }
 
-            // Using textContent and strict extraction to prevent formatting strings from breaking characters
-            const first = document.getElementById('firstname').value;
-            const last = document.getElementById('surname').value;
-            const loc = document.getElementById('location').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value || "alex.morgan@domain.com";
-            const linkedin = document.getElementById('linkedin').value;
+            const first = document.getElementById('firstname').value || "FIRSTNAME";
+            const last = document.getElementById('surname').value || "SURNAME";
+            const loc = document.getElementById('location').value || "City, Country";
+            const phone = document.getElementById('phone').value || "+44 7123 456789";
+            const email = document.getElementById('email').value || "your.email@email.com";
+            const linkedin = document.getElementById('linkedin').value || "linkedin.com/in/yourprofile";
             
-            const school = document.getElementById('school').value;
+            const school = document.getElementById('school').value || "High School / College Name";
             const subject = document.getElementById('subject').value;
-            const grades = document.getElementById('grades').value;
-            const sports = document.getElementById('sports').value;
-            const interests = document.getElementById('interests').value;
+            const grades = document.getElementById('grades').value || "Straight As / High Passes";
+            const sports = document.getElementById('sports').value || "Sports Team / Club Member";
+            const interests = document.getElementById('interests').value || "Technology, Analysis, Volunteering";
 
             const t = i18n[currentLang];
             const cvTarget = document.getElementById('cv-document-target');
             
-            // Reconstructed with clean structural elements to avoid trailing quote errors
-            cvTarget.innerHTML = '';
-            
-            const nameHeader = document.createElement('div');
-            nameHeader.className = 'cv-name';
-            nameHeader.textContent = first + ' ' + last;
-            cvTarget.appendChild(nameHeader);
+            cvTarget.innerHTML = `
+                <div class="cv-name">${first} ${last}</div>
+                <div class="cv-contact">
+                    ${loc} | ${phone} | ${email} ${linkedin ? `| ${linkedin}` : ''}
+                </div>
 
-            const subHeader = document.createElement('div');
-            subHeader.className = 'cv-subtitle';
-            subHeader.textContent = 'Aspiring Software & Systems Engineering Apprentice';
-            cvTarget.appendChild(subHeader);
+                <div class="cv-section-title">${t.cv_prof_title}</div>
+                <p style="margin: 0 0 15px 0; text-align: justify; color: #1e293b;">${t.cv_prof_desc}</p>
 
-            const contactLine = document.createElement('div');
-            contactLine.className = 'cv-contact';
-            contactLine.innerHTML = `
-                <span class="cv-contact-item">${loc}</span>
-                <span class="cv-contact-item">${phone}</span>
-                <span class="cv-contact-item">${email}</span>
-                ${linkedin ? `<span class="cv-contact-item">${linkedin}</span>` : ''}
+                <div class="cv-section-title">${t.cv_edu_title}</div>
+                <div class="cv-split-header">
+                    <div>${school}</div>
+                    <div>${loc}</div>
+                </div>
+                <div class="cv-split-sub">
+                    <div>${t.cv_edu_sub}</div>
+                    <div>September 2024 – Present</div>
+                </div>
+                <ul class="cv-bullet-list">
+                    <li><strong>Grades:</strong> ${grades}</li>
+                    <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
+                    <li>${t.cv_edu_bullet2}</li>
+                </ul>
+
+                <div class="cv-section-title">${t.cv_ach_title}</div>
+                <ul class="cv-bullet-list">
+                    <li>${t.cv_ach_b1}</li>
+                    <li>${t.cv_ach_b2}</li>
+                    <li>${t.cv_ach_b3}</li>
+                </ul>
+
+                <div class="cv-section-title">${t.cv_sports_title}</div>
+                <div class="cv-split-header">
+                    <div>${sports}</div>
+                    <div>Active Contributor</div>
+                </div>
+                <div class="cv-split-sub">
+                    <div>${t.cv_sports_sub}</div>
+                    <div>September 2024 – Present</div>
+                </div>
+                <ul class="cv-bullet-list">
+                    <li>${t.cv_sports_b1}</li>
+                    <li>${t.cv_sports_b2}</li>
+                </ul>
+
+                <div class="cv-section-title">${t.cv_skills_title}</div>
+                <div style="margin-top: 5px; font-size: 0.95rem;">
+                    <strong>${t.cv_skills_tech}</strong><br>
+                    <strong>${t.cv_skills_soft}</strong>
+                </div>
+
+                <div class="cv-section-title">${t.cv_interests_title}</div>
+                <p style="margin: 0 0 15px 0;">${interests}</p>
+
+                <div style="text-align: center; font-style: italic; font-size: 0.9rem; color: #718096; margin-top: 20px;">
+                    ${t.cv_ref}
+                </div>
             `;
-            cvTarget.appendChild(contactLine);
 
-            // Statement Section
-            const sectionTitle1 = document.createElement('div');
-            sectionTitle1.className = 'cv-section-title';
-            sectionTitle1.textContent = t.cv_prof_title;
-            cvTarget.appendChild(sectionTitle1);
-
-            const descBox = document.createElement('div');
-            descBox.className = 'cv-personal-statement-box';
-            const descPara = document.createElement('p');
-            descPara.style.margin = '0';
-            descPara.textContent = t.cv_prof_desc;
-            descBox.appendChild(descPara);
-            cvTarget.appendChild(descBox);
-
-            // Education Section
-            const sectionTitle2 = document.createElement('div');
-            sectionTitle2.className = 'cv-section-title';
-            sectionTitle2.textContent = t.cv_edu_title;
-            cvTarget.appendChild(sectionTitle2);
-
-            const eduSplit = document.createElement('div');
-            eduSplit.className = 'cv-split-header';
-            eduSplit.innerHTML = `<div>${school}</div><div>${loc}</div>`;
-            cvTarget.appendChild(eduSplit);
-
-            const eduSub = document.createElement('div');
-            eduSub.className = 'cv-split-sub';
-            eduSub.innerHTML = `<div>${t.cv_edu_sub}</div><div>September 2024 – Present</div>`;
-            cvTarget.appendChild(eduSub);
-
-            const eduList = document.createElement('ul');
-            eduList.className = 'cv-bullet-list';
-            eduList.innerHTML = `
-                <li><strong>Reported Standing:</strong> Tracking evaluation of ${grades}.</li>
-                <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
-                <li>${t.cv_edu_bullet2}</li>
-            `;
-            cvTarget.appendChild(eduList);
-
-            // Achievements Section
-            const sectionTitle3 = document.createElement('div');
-            sectionTitle3.className = 'cv-section-title';
-            sectionTitle3.textContent = t.cv_ach_title;
-            cvTarget.appendChild(sectionTitle3);
-
-            const achList = document.createElement('ul');
-            achList.className = 'cv-bullet-list';
-            achList.innerHTML = `
-                <li>${t.cv_ach_b1}</li>
-                <li>${t.cv_ach_b2}</li>
-                <li>${t.cv_ach_b3}</li>
-            `;
-            cvTarget.appendChild(achList);
-
-            // Extra Activities Section
-            const sectionTitle4 = document.createElement('div');
-            sectionTitle4.className = 'cv-section-title';
-            sectionTitle4.textContent = t.cv_sports_title;
-            cvTarget.appendChild(sectionTitle4);
-
-            const sportSplit = document.createElement('div');
-            sportSplit.className = 'cv-split-header';
-            sportSplit.innerHTML = `<div>${sports}</div><div>Activities & Core Coordination</div>`;
-            cvTarget.appendChild(sportSplit);
-
-            const sportSub = document.createElement('div');
-            sportSub.className = 'cv-split-sub';
-            sportSub.innerHTML = `<div>${t.cv_sports_sub}</div><div>September 2024 – Present</div>`;
-            cvTarget.appendChild(sportSub);
-
-            const sportList = document.createElement('ul');
-            sportList.className = 'cv-bullet-list';
-            sportList.innerHTML = `
-                <li>${t.cv_sports_b1}</li>
-                <li>${t.cv_sports_b2}</li>
-            `;
-            cvTarget.appendChild(sportList);
-
-            // Skills Matrix
-            const sectionTitle5 = document.createElement('div');
-            sectionTitle5.className = 'cv-section-title';
-            sectionTitle5.textContent = t.cv_skills_title;
-            cvTarget.appendChild(sectionTitle5);
-
-            const skillsGrid = document.createElement('div');
-            skillsGrid.className = 'cv-skills-grid';
-            skillsGrid.innerHTML = `
-                <div class="cv-skills-row"><strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
-                <div class="cv-skills-row"><strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
-            `;
-            cvTarget.appendChild(skillsGrid);
-
-            // Personal Projects Footer Row
-            const sectionTitle6 = document.createElement('div');
-            sectionTitle6.className = 'cv-section-title';
-            sectionTitle6.textContent = t.cv_interests_title;
-            cvTarget.appendChild(sectionTitle6);
-
-            const interestPara = document.createElement('p');
-            interestPara.style.margin = '4px 0 15px 0';
-            interestPara.style.color = '#334155';
-            interestPara.style.fontSize = '0.9rem';
-            interestPara.textContent = interests;
-            cvTarget.appendChild(interestPara);
-
-            const footerRef = document.createElement('div');
-            footerRef.style.textAlign = 'center';
-            footerRef.style.fontStyle = 'italic';
-            footerRef.style.fontSize = '0.85rem';
-            footerRef.style.color = '#64748b';
-            footerRef.style.marginTop = '25px';
-            footerRef.style.borderTop = '2px solid #e2e8f0';
-            footerRef.style.paddingTop = '15px';
-            footerRef.textContent = t.cv_ref;
-            cvTarget.appendChild(footerRef);
-
-            // Handle Opportunities Matching Stack Generation
             const matches = opportunityDb[subject] || [];
             const resultsContainer = document.getElementById('match-results');
             resultsContainer.innerHTML = ''; 
@@ -1254,13 +1021,10 @@
                 const div = document.createElement('div');
                 div.className = 'match-item';
                 div.innerHTML = `
-                    <div class="match-title"></div>
-                    <div class="match-company"></div>
-                    <div class="match-desc" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-main);"></div>
+                    <div class="match-title">${item.title}</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; opacity: 0.8; color: var(--text-muted);">${item.company}</div>
+                    <div style="margin-top: 5px; font-size: 0.95rem; color: var(--text-main);">${item.desc}</div>
                 `;
-                div.querySelector('.match-title').textContent = item.title;
-                div.querySelector('.match-company').textContent = item.company;
-                div.querySelector('.match-desc').textContent = item.desc;
                 resultsContainer.appendChild(div);
             });
 
@@ -1277,7 +1041,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('auth-password-signup').addEventListener('input', checkPasswordStrength);
 
-            const monitoredInputs = ['firstname', 'surname', 'location', 'phone', 'linkedin', 'school', 'grades', 'sports', 'interests'];
+            const monitoredInputs = ['firstname', 'surname', 'location', 'phone', 'email', 'linkedin', 'school', 'grades', 'sports', 'interests'];
             
             monitoredInputs.forEach(id => {
                 const inputElement = document.getElementById(id);
@@ -1310,8 +1074,9 @@
             const strengthBar = document.getElementById('strength-bar-fill');
             
             let score = 0;
+            
             if (password.length === 0) {
-                strengthText.innerText = "Empty";
+                strengthText.innerText = "Strength: Empty";
                 strengthBar.style.width = "0%";
                 strengthBar.style.backgroundColor = "transparent";
                 return;
@@ -1323,17 +1088,17 @@
             if (/[A-Z]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
             
             if (score <= 1) {
-                strengthText.innerText = "Weak 🔴";
+                strengthText.innerText = "Strength: Weak 🔴";
                 strengthBar.style.width = "25%";
-                strengthBar.style.backgroundColor = "var(--error-accent)";
+                strengthBar.style.backgroundColor = "#ef4444";
             } else if (score === 2 || score === 3) {
-                strengthText.innerText = "Medium 🟡";
+                strengthText.innerText = "Strength: Medium 🟡";
                 strengthBar.style.width = "60%";
-                strengthBar.style.backgroundColor = "#eab308";
+                strengthBar.style.backgroundColor = "#f59e0b";
             } else if (score >= 4) {
-                strengthText.innerText = "Strong 🟢";
+                strengthText.innerText = "Strength: Strong 🟢";
                 strengthBar.style.width = "100%";
-                strengthBar.style.backgroundColor = "var(--success-accent)";
+                strengthBar.style.backgroundColor = "#10b981";
             }
         }
     </script>
