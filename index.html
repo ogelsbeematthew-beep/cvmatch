@@ -4,464 +4,564 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVmatch - Connect Talent to Opportunity</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Multi-Theme Framework */
-        body[data-theme="light"] {
-            --primary-blue: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-green: #10b981;
-            --dark-blue: #1e293b;
-            --light-bg: #0f172a;
-            --card-bg: #1e293b;
+        /* ==========================================================================
+           RADICAL BLUEPRINT REDESIGN (NEOBRUTALISM / TECH-PREMIUM HYBRID)
+           ========================================================================== */
+        :root {
+            --bg-main: #090d16;
+            --bg-card: #131926;
+            --bg-input: #1b2336;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border-color: #334155;
-            --progress-empty: #334155;
-            --error-color: #ef4444;
-            --danger-hover: #dc2626;
+            --text-accent: #38bdf8;
+            
+            --primary-accent: #6366f1; /* Neon Purple-Indigo */
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --success-accent: #10b981; /* Emerald */
+            --success-glow: rgba(16, 185, 129, 0.15);
+            --error-accent: #f43f5e; /* Rose */
+            
+            --border-primary: #242f47;
+            --border-focus: #6366f1;
+            
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        body[data-theme="dark"] {
-            --primary-blue: #38bdf8;
-            --primary-hover: #0284c7;
-            --primary-green: #34d399;
-            --dark-blue: #f8fafc;
-            --light-bg: #030712;
-            --card-bg: #111827;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border-color: #374151;
-            --progress-empty: #374151;
-            --error-color: #f87171;
-            --danger-hover: #dc2626;
+
+        /* Light Theme Override */
+        body[data-theme="light"] {
+            --bg-main: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-input: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-accent: #2563eb;
+            --primary-accent: #2563eb;
+            --primary-glow: rgba(37, 99, 235, 0.1);
+            --border-primary: #e2e8f0;
+            --border-focus: #2563eb;
         }
+
+        /* Cyber Slate Theme Override */
         body[data-theme="slate"] {
-            --primary-blue: #6366f1;
-            --primary-hover: #4f46e5;
-            --primary-green: #10b981;
-            --dark-blue: #0f172a;
-            --light-bg: #1e1e24;
-            --card-bg: #2a2a35;
-            --text-main: #f8fafc;
-            --text-muted: #a1a1aa;
-            --border-color: #3f3f46;
-            --progress-empty: #3f3f46;
-            --error-color: #ef4444;
-            --danger-hover: #dc2626;
+            --bg-main: #121318;
+            --bg-card: #1a1c23;
+            --bg-input: #232631;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-accent: #a855f7;
+            --primary-accent: #a855f7;
+            --primary-glow: rgba(168, 85, 247, 0.15);
+            --border-primary: #2d3142;
+            --border-focus: #a855f7;
+        }
+
+        /* Global Structural Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--light-bg);
-            margin: 0;
-            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
             color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
+            transition: var(--transition-smooth);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
+
+        /* Typography Adjustments */
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* App Navbar Container */
         header {
-            background-color: var(--card-bg);
-            padding: 15px 20px;
+            background-color: var(--bg-card);
+            border-bottom: 2px solid var(--border-primary);
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
-            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
         }
+
         .logo-container {
-            max-width: 160px;
-        }
-        .logo-container img {
-            width: 100%;
-            height: auto;
-        }
-        .controls-panel {
+            height: 40px;
             display: flex;
-            gap: 10px;
             align-items: center;
         }
-        .controls-panel select {
-            padding: 8px 12px;
-            font-size: 0.85rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--light-bg);
-            color: var(--text-main);
-            cursor: pointer;
-            margin-top: 0;
+
+        .logo-container img {
+            height: 100%;
             width: auto;
+            object-fit: contain;
         }
+
+        .controls-panel {
+            display: flex;
+            gap: 12px;
+        }
+
+        select {
+            background-color: var(--bg-input);
+            color: var(--text-main);
+            border: 2px solid var(--border-primary);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+
+        select:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+
+        /* Core Application Layout Frame */
         .container {
-            max-width: 900px;
+            max-width: 1300px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 30px;
         }
+
+        /* Card Panels Modernized */
         .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s;
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            padding: 45px;
+            box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Wizard Architecture Header Progress Metrics */
+        .progress-container {
+            margin-bottom: 40px;
+            background: var(--bg-input);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-primary);
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .progress-labels span:first-child {
+            color: var(--text-main);
+        }
+
+        .progress-bar-bg {
+            background-color: var(--border-primary);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary-accent), var(--text-accent));
+            height: 100%;
+            width: 33.33%;
+            border-radius: 6px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Unified Smart Form Infrastructure */
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 25px;
         }
+
         .full-width {
             grid-column: span 2;
         }
-        h2 {
-            color: var(--text-main);
-            margin-top: 0;
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-        h3 {
-            color: var(--text-main);
-            margin-top: 0;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
+
         label {
             display: block;
-            margin-top: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
+            font-weight: 700;
             font-size: 0.85rem;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-bottom: 8px;
         }
+
         .input-group {
             position: relative;
-            margin-bottom: 5px;
         }
-        input, textarea, select {
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        textarea,
+        select {
             width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-family: inherit;
-            background-color: var(--light-bg);
+            background-color: var(--bg-input);
             color: var(--text-main);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            border: 2px solid var(--border-primary);
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            box-sizing: border-box;
         }
+
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+            background-color: var(--bg-card);
         }
+
+        /* Realtime Validation System Matrix CSS states */
         input.touched:valid, textarea.touched:valid {
-            border-color: var(--primary-green);
+            border-color: var(--success-accent);
+            box-shadow: 0 0 0 4px var(--success-glow);
         }
+
         input.touched:invalid, textarea.touched:invalid {
-            border-color: var(--error-color);
+            border-color: var(--error-accent);
         }
+
         .counter-container {
             display: flex;
             justify-content: flex-end;
             font-size: 0.75rem;
+            font-weight: 600;
             color: var(--text-muted);
-            margin-top: 4px;
-        }
-        .counter-container.limit-reached {
-            color: var(--error-color);
-            font-weight: bold;
+            margin-top: 6px;
         }
 
-        /* Wizard Buttons Styling */
+        .counter-container.limit-reached {
+            color: var(--error-accent);
+            animation: shake 0.2s ease-in-out;
+        }
+
+        /* Action Controls Buttons Configuration */
         .wizard-buttons {
             display: flex;
-            gap: 12px;
-            margin-top: 32px;
-            background: transparent;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-top: 40px;
         }
-        .wizard-buttons button {
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 12px 24px;
-            border-radius: 8px;
-            border: 1px solid transparent;
+
+        button {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            border: none;
             cursor: pointer;
-            transition: all 0.2s ease-in-out;
+            transition: var(--transition-smooth);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: auto;
-            margin-top: 0;
+            gap: 8px;
         }
 
-        .wizard-buttons button[data-i18n="btn_generate"],
-        .wizard-buttons button:not([style*="background-color"]):not(.clear-btn) {
-            background-color: var(--primary-blue) !important;
-            color: #ffffff !important;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-            flex: 2;
+        button.primary-btn {
+            background-color: var(--primary-accent);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
         }
-        .wizard-buttons button[data-i18n="btn_generate"]:hover,
-        .wizard-buttons button:not([style*="background-color"]):not(.clear-btn):hover {
-            background-color: var(--primary-hover) !important;
-            transform: translateY(-1px);
+
+        button.primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            filter: brightness(1.1);
         }
-        .wizard-buttons button[onclick*="goToFormStep"][style*="background-color"] {
-            background-color: transparent !important;
-            border: 1px solid var(--border-color) !important;
-            color: var(--text-main) !important;
-            flex: 1;
+
+        button.secondary-btn {
+            background-color: transparent;
+            border: 2px solid var(--border-primary);
+            color: var(--text-main);
         }
-        .wizard-buttons button[onclick*="goToFormStep"][style*="background-color"]:hover {
-            background-color: var(--border-color) !important;
+
+        button.secondary-btn:hover {
+            background-color: var(--border-primary);
         }
-        .wizard-buttons .clear-btn {
-            background-color: transparent !important;
-            border: 1px solid var(--border-color) !important;
-            color: var(--text-muted) !important;
-            flex: 1;
+
+        button.clear-btn {
+            background-color: transparent;
+            border: 2px solid transparent;
+            color: var(--text-muted);
         }
-        .wizard-buttons .clear-btn:hover {
-            background-color: rgba(239, 68, 68, 0.1) !important;
-            border-color: var(--error-color) !important;
-            color: var(--error-color) !important;
+
+        button.clear-btn:hover {
+            color: var(--error-accent);
+            background-color: rgba(244, 63, 94, 0.08);
         }
 
         .hidden {
             display: none !important;
         }
+
+        /* Dynamic Realtime Feedback Modules */
+        .password-strength-row {
+            margin-top: 10px;
+        }
+
+        .strength-bar-bg {
+            background-color: var(--border-primary);
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        #strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: var(--transition-smooth);
+        }
+
+        /* Authentication Context Formatting Elements */
+        .auth-footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-primary);
+        }
+
         .auth-toggle-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary-blue);
+            color: var(--text-accent);
             text-decoration: none;
-            font-size: 0.9rem;
             font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
         }
+
         .auth-toggle-link:hover {
             text-decoration: underline;
         }
-        .match-item {
-            border-left: 4px solid var(--primary-green);
-            background: rgba(16, 185, 129, 0.08);
-            padding: 20px;
-            margin-top: 15px;
-            border-radius: 0 8px 8px 0;
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .match-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--text-main);
-        }
-        .progress-container {
-            margin-bottom: 30px;
-        }
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-        .progress-bar-bg {
-            background-color: var(--progress-empty);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            width: 100%;
-        }
-        .progress-bar-fill {
-            background-color: var(--primary-green);
-            height: 100%;
-            width: 33.33%;
-            transition: width 0.3s ease-in-out;
-        }
-        .form-step-panel {
-            display: none;
-        }
-        .form-step-panel.active {
-            display: block;
-        }
-        
-        /* RADICAL REDESIGN: Premium Split-Layout Matrix Dashboard */
+
+        /* ==========================================================================
+           STAGE 2 DESIGN OVERHAUL: Split-Layout Advanced Application Matrix Dashboard
+           ========================================================================== */
         .dashboard-layout-grid {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 30px;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
             align-items: start;
-            margin-top: 25px;
+            margin-top: 30px;
         }
-        
-        @media (max-width: 850px) {
+
+        @media (max-width: 1100px) {
             .dashboard-layout-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* High-End Clean Room Print-Ready CV Showcase Styles */
+        /* High-End Architecture Print-Engine Blueprint (The Interactive Document Canvas) */
         .cv-document {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 40px;
-            border-radius: 12px;
+            background-color: #ffffff;
             color: #0f172a;
-            line-height: 1.5;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            font-size: 0.9rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            padding: 50px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border: 1px solid #e2e8f0;
         }
+
         .cv-name {
-            font-size: 2.1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
             font-weight: 800;
             color: #1e3a8a;
-            text-align: left;
-            margin: 0;
-            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
+
         .cv-subtitle {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: #2563eb;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-top: 2px;
+            margin-bottom: 16px;
         }
+
         .cv-contact {
-            font-size: 0.8rem;
-            color: #475569;
-            text-align: left;
-            margin: 10px 0 20px 0;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 14px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 14px;
+            font-size: 0.85rem;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            font-weight: 500;
         }
-        .cv-contact-item {
-            display: inline-flex;
-            align-items: center;
-        }
+
         .cv-contact-item:not(:last-child)::after {
             content: "•";
-            margin-left: 10px;
+            margin-left: 14px;
             color: #cbd5e0;
         }
-        .cv-personal-statement-box {
-            background: #f8fafc;
-            border-left: 4px solid #2563eb;
-            padding: 16px 20px;
-            border-radius: 4px;
-            margin: 15px 0 25px 0;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
-        }
+
         .cv-section-title {
-            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #1e3a8a;
-            margin-top: 24px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 6px;
+            margin-top: 28px;
+            margin-bottom: 14px;
         }
+
+        .cv-personal-statement-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 18px 22px;
+            border-radius: 4px;
+        }
+
+        .cv-personal-statement-box p {
+            color: #334155;
+            text-align: justify;
+        }
+
         .cv-split-header {
             display: flex;
             justify-content: space-between;
             font-weight: 700;
             color: #0f172a;
-            margin-top: 8px;
+            font-size: 1.05rem;
         }
+
         .cv-split-sub {
             display: flex;
             justify-content: space-between;
-            color: #475569;
+            color: #64748b;
             font-style: italic;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
         }
+
         .cv-bullet-list {
-            margin: 4px 0 12px 0;
-            padding-left: 18px;
-            color: #334155;
+            padding-left: 20px;
+            margin-bottom: 16px;
         }
+
         .cv-bullet-list li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            color: #334155;
             text-align: justify;
         }
+
         .cv-skills-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 8px;
-            margin-top: 8px;
-            font-size: 0.85rem;
         }
+
         .cv-skills-row {
+            font-size: 0.9rem;
             color: #334155;
         }
-        
-        /* Sidebar Matches Column layout */
+
+        /* Sidebar Placement Framework Feed */
         .matches-sidebar-panel {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            position: sticky;
+            top: 110px;
         }
 
-        /* Real-time Dynamic Password Gauge Layout */
-        .password-strength-row {
-            margin-top: 8px;
-            font-size: 0.8rem;
+        .match-item {
+            background-color: var(--bg-input);
+            border: 2px solid var(--border-primary);
+            border-left: 5px solid var(--success-accent);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-top: 16px;
+            transition: var(--transition-smooth);
+        }
+
+        .match-item:hover {
+            transform: translateX(4px);
+            border-color: var(--success-accent);
+        }
+
+        .match-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .match-company {
+            font-size: 0.85rem;
             font-weight: 600;
-        }
-        .strength-bar-bg {
-            background-color: var(--progress-empty);
-            height: 5px;
-            border-radius: 3px;
-            margin-top: 6px;
-            width: 100%;
-            overflow: hidden;
-        }
-        #strength-bar-fill {
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease, background-color 0.3s ease;
+            color: var(--text-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
         }
 
-        #step-2 button {
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.2s;
+        /* Keyframes Animations */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
         }
-        #auth-card button {
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            font-weight: bold;
+
+        /* Form step components animation mechanics */
+        .form-step-panel {
+            display: none;
+        }
+
+        .form-step-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -469,87 +569,110 @@
 
     <header>
         <div class="logo-container">
-            <img src="image_adb067.png" alt="CVmatch Logo">
+            <!-- Tailored Fallback Logo Engine Component -->
+            <img src="image_adb067.png" alt="CVmatch System Branding" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:var(--text-main);font-family:\"Space Grotesk\" \'>CV<span style=\'color:var(--primary-accent)\'>match</span></h2>'">
         </div>
         <div class="controls-panel">
             <select id="lang-selector" onchange="changeLanguage(this.value)">
-                <option value="en">English</option>
+                <option value="en">English (UK)</option>
                 <option value="cy">Cymraeg (Welsh)</option>
             </select>
             <select id="theme-selector" onchange="changeTheme(this.value)">
-                <option value="dark">🌙 Dark Theme</option>
-                <option value="light">☀️ Light Theme</option>
-                <option value="slate">🔷 Slate Blue</option>
+                <option value="dark">⚡ Cyber Neon</option>
+                <option value="light">☀️ Minimal Stark</option>
+                <option value="slate">🔷 Deep Indigo Slate</option>
             </select>
         </div>
     </header>
 
     <div class="container">
         
+        <!-- ==========================================================================
+           STAGE 1A: USER SECURE SIGN-IN & ENROLLMENT PARADIGM
+           ========================================================================== */ -->
         <div id="auth-card" class="card">
             
             <div id="auth-signin-view">
-                <h2 data-i18n="signin_title">Welcome Back</h2>
-                <p data-i18n="signin_sub">Sign in to access your CV dashboard.</p>
+                <h2 data-i18n="signin_title" style="font-size: 2rem; margin-bottom: 8px;">Welcome Back</h2>
+                <p data-i18n="signin_sub" style="color: var(--text-muted); margin-bottom: 25px;">Sign in to access your CV matching terminal.</p>
+                
                 <form onsubmit="handleAuth(event, 'signin')">
-                    <label data-i18n="label_email" for="auth-email-signin">Email Address</label>
-                    <input type="email" id="auth-email-signin" placeholder="yourname@email.com" required>
-                    
-                    <label data-i18n="label_password" for="auth-password-signin">Password</label>
-                    <input type="password" id="auth-password-signin" placeholder="••••••••" required>
-                    
-                    <button type="submit" data-i18n="btn_signin">Sign In</button>
+                    <div class="input-group">
+                        <label data-i18n="label_email" for="auth-email-signin">Account Email</label>
+                        <input type="email" id="auth-email-signin" placeholder="alex.morgan@domain.com" required>
+                    </div>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <label data-i18n="label_password" for="auth-password-signin">Security Credentials</label>
+                        <input type="password" id="auth-password-signin" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signin">Sign In</button>
                 </form>
-                <div style="text-align: center; display: flex; justify-content: space-between; padding: 0 10px;">
-                    <a class="auth-toggle-link" onclick="switchAuthView('forgot')" data-i18n="link_forgot">Forgot Password?</a>
-                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create Account</a>
+                
+                <div class="auth-footer-links">
+                    <a class="auth-toggle-link" onclick="switchAuthView('forgot')" data-i18n="link_forgot">Recover Credentials</a>
+                    <a class="auth-toggle-link" onclick="switchAuthView('signup')" data-i18n="link_create">Create Fresh Account</a>
                 </div>
             </div>
 
             <div id="auth-signup-view" class="hidden">
-                <h2 data-i18n="signup_title">Create an Account</h2>
-                <p data-i18n="signup_sub">Sign up to start tailoring your CV and tracking experience placements.</p>
+                <h2 data-i18n="signup_title" style="font-size: 2rem; margin-bottom: 8px;">Create Access Account</h2>
+                <p data-i18n="signup_sub" style="color: var(--text-muted); margin-bottom: 25px;">Build tailored documentation and match with localized apprenticeships.</p>
+                
                 <form onsubmit="handleAuth(event, 'signup')">
-                    <label data-i18n="label_email" for="auth-email-signup">Email Address</label>
-                    <input type="email" id="auth-email-signup" placeholder="yourname@email.com" required>
-                    
-                    <label data-i18n="label_password" for="auth-password-signup">Password</label>
-                    <input type="password" id="auth-password-signup" placeholder="••••••••" required>
+                    <div class="input-group">
+                        <label data-i18n="label_email" for="auth-email-signup">Designated Email Address</label>
+                        <input type="email" id="auth-email-signup" placeholder="candidate@domain.com" required>
+                    </div>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <label data-i18n="label_password" for="auth-password-signup">Choose Complex Password</label>
+                        <input type="password" id="auth-password-signup" placeholder="••••••••" required>
+                    </div>
                     
                     <div class="password-strength-row">
-                        <span id="strength-text">Strength: Empty</span>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700;">
+                            <span style="color: var(--text-muted)">Complexity Gauge Matrix:</span>
+                            <span id="strength-text" style="color: var(--text-main)">Empty</span>
+                        </div>
                         <div class="strength-bar-bg"><div id="strength-bar-fill"></div></div>
                     </div>
                     
-                    <button type="submit" data-i18n="btn_signup">Sign Up</button>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_signup">Register & Initialize</button>
                 </form>
-                <div style="text-align: center;">
-                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Already have an account? Sign In</a>
+                
+                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-primary);">
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_have_account">Return to Account Sign In</a>
                 </div>
             </div>
 
             <div id="auth-forgot-view" class="hidden">
-                <h2 data-i18n="forgot_title">Reset Your Password</h2>
-                <p data-i18n="forgot_sub">Enter your registered email and a new password below to reset your credentials.</p>
+                <h2 data-i18n="forgot_title" style="font-size: 2rem; margin-bottom: 8px;">Reset Pipeline Access</h2>
+                <p data-i18n="forgot_sub" style="color: var(--text-muted); margin-bottom: 25px;">Enter configuration parameters to overwrite account access profiles.</p>
+                
                 <form onsubmit="handleAuth(event, 'forgot')">
-                    <label data-i18n="label_email" for="auth-email-forgot">Account Email Address</label>
-                    <input type="email" id="auth-email-forgot" placeholder="yourname@email.com" required>
-                    
-                    <label data-i18n="label_new_password" for="auth-password-forgot">Choose New Password</label>
-                    <input type="password" id="auth-password-forgot" placeholder="••••••••" required>
-                    
-                    <button type="submit" data-i18n="btn_reset">Update Password & Sign In</button>
+                    <div class="input-group">
+                        <label data-i18n="label_email" for="auth-email-forgot">Registered Target Email</label>
+                        <input type="email" id="auth-email-forgot" placeholder="yourname@email.com" required>
+                    </div>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <label data-i18n="label_new_password" for="auth-password-forgot">Establish New Password</label>
+                        <input type="password" id="auth-password-forgot" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 30px;" data-i18n="btn_reset">Override System Credentials</button>
                 </form>
-                <div style="text-align: center;">
-                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Back to Sign In</a>
+                
+                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-primary);">
+                    <a class="auth-toggle-link" onclick="switchAuthView('signin')" data-i18n="link_back_signin">Abort & Return to Log In</a>
                 </div>
             </div>
         </div>
 
+        <!-- ==========================================================================
+           STAGE 1B: SYSTEM SEQUENTIAL DATA CAPTURE STEPPER WIZARD
+           ========================================================================== */ -->
         <div id="step-1" class="card hidden">
             <div class="progress-container">
                 <div class="progress-labels">
-                    <span id="progress-text">Step 1 of 3: Personal Information</span>
+                    <span id="progress-text">Step 1 of 3: Core Contact Parameters</span>
                     <span id="progress-percent">33%</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -557,128 +680,132 @@
                 </div>
             </div>
             
-            <h2 data-i18n="form_title">Create Your Scannable CV</h2>
-            <p data-i18n="form_sub">Fill out your details below to generate a modern, professionally structured CV tailored for work experience.</p>
+            <h2 data-i18n="form_title" style="font-size: 2.2rem; margin-bottom: 8px;">Structured CV Generation Terminal</h2>
+            <p data-i18n="form_sub" style="color: var(--text-muted); max-width: 700px; margin-bottom: 30px;">Input configuration metrics below. All inputs undergo programmatic parser check validation for scannable compatibility rendering.</p>
             
+            <!-- STEPPER SECTOR 1: CORE BIOMETRIC / IDENTITY FIELDS -->
             <div id="form-panel-1" class="form-step-panel active">
                 <div class="form-grid">
                     <div class="input-group">
-                        <label data-i18n="label_firstname" for="firstname">First Name</label>
+                        <label data-i18n="label_firstname" for="firstname">Given First Name</label>
                         <input type="text" id="firstname" placeholder="Alex" maxlength="35" required>
                         <div class="counter-container"><span id="firstname-counter">0</span> / 35</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_surname" for="surname">Surname</label>
+                        <label data-i18n="label_surname" for="surname">Family Surname</label>
                         <input type="text" id="surname" placeholder="Morgan" maxlength="35" required>
                         <div class="counter-container"><span id="surname-counter">0</span> / 35</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_location" for="location">Location (City, Country)</label>
-                        <input type="text" id="location" placeholder="London, UK" maxlength="50" required>
+                        <label data-i18n="label_location" for="location">Geographic Node Location</label>
+                        <input type="text" id="location" placeholder="e.g., Gloucester, UK" maxlength="50" required>
                         <div class="counter-container"><span id="location-counter">0</span> / 50</div>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_phone" for="phone">Phone Number</label>
+                        <label data-i18n="label_phone" for="phone">Primary Comms Link (Phone)</label>
                         <input type="tel" id="phone" placeholder="+44 7123 456789" maxlength="20" required>
                         <div class="counter-container"><span id="phone-counter">0</span> / 20</div>
                     </div>
-                    <div class="input-group">
-                        <label data-i18n="label_email" for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="alex.morgan@email.com" maxlength="50" required>
-                        <div class="counter-container"><span id="email-counter">0</span> / 50</div>
-                    </div>
-                    <div class="input-group">
-                        <label data-i18n="label_linkedin" for="linkedin">LinkedIn Profile (Optional)</label>
-                        <input type="text" id="linkedin" placeholder="linkedin.com/in/yourprofile" maxlength="75">
+                    <div class="input-group full-width">
+                        <label data-i18n="label_linkedin" for="linkedin">Professional Repository Index Link (LinkedIn URL)</label>
+                        <input type="text" id="linkedin" placeholder="linkedin.com/in/profile-handle" maxlength="75">
                         <div class="counter-container"><span id="linkedin-counter">0</span> / 75</div>
                     </div>
+                    <!-- Hidden field to safely carry authenticated email matrix structure -->
+                    <input type="hidden" id="email">
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
-                    <button type="button" onclick="goToFormStep(2)">Next Step</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Flush Parameters</button>
+                    <button type="button" class="primary-btn" onclick="goToFormStep(2)">Proceed Next Step →</button>
                 </div>
             </div>
 
+            <!-- STEPPER SECTOR 2: ACADEMIC FRAMEWORK METRICS -->
             <div id="form-panel-2" class="form-step-panel">
                 <div class="form-grid">
                     <div class="full-width input-group">
-                        <label data-i18n="label_school" for="school">Current School / College Name</label>
-                        <input type="text" id="school" placeholder="Oakridge High School" maxlength="75" required>
+                        <label data-i18n="label_school" for="school">Active Education Facility Matrix / Institutional Node</label>
+                        <input type="text" id="school" placeholder="e.g., Cambridge Comprehensive College" maxlength="75" required>
                         <div class="counter-container"><span id="school-counter">0</span> / 75</div>
                     </div>
                     <div>
-                        <label data-i18n="label_focus" for="subject">Strongest Academic Focus Area</label>
+                        <label data-i18n="label_focus" for="subject">Specialized Core Functional Path</label>
                         <select id="subject">
-                            <option value="IT & Computer Science">IT & Computer Science</option>
-                            <option value="Air Traffic Control & Logistics">Air Traffic Control & Logistics</option>
-                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics & Cyber Investigation</option>
-                            <option value="Aerospace & Aircraft Maintenance">Aerospace & Aircraft Maintenance</option>
-                            <option value="Mathematics & Sciences">Mathematics & Sciences</option>
-                            <option value="English Literature & Media">English Literature & Media</option>
-                            <option value="Art & Creative Design">Art & Creative Design</option>
-                            <option value="General Studies">General Studies & Alternative Streams</option>
+                            <option value="IT & Computer Science">IT & Computer Science Systems Architecture</option>
+                            <option value="Air Traffic Control & Logistics">Air Traffic Control Tracking & Logistics Engineering</option>
+                            <option value="Digital Forensics & Cyber Investigation">Digital Forensics Cyber Incident Analysis</option>
+                            <option value="Aerospace & Aircraft Maintenance">Aerospace Flight Mechanics & Propulsion Avionics</option>
+                            <option value="Mathematics & Sciences">Advanced Statistical Mathematics & Quantitative Physics</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label_grades" for="grades">Current / Predicted Grades</label>
-                        <input type="text" id="grades" placeholder="e.g., Straight As / 3 A-Levels (A, A, B)" maxlength="60" required>
+                        <label data-i18n="label_grades" for="grades">Evaluated Verification Score (Predicted / Earned Grades)</label>
+                        <input type="text" id="grades" placeholder="e.g., GCSE 8 Grade Average / 3 A-Levels Tracking (A*, A, A)" maxlength="60" required>
                         <div class="counter-container"><span id="grades-counter">0</span> / 60</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" style="background-color: #718096;" onclick="goToFormStep(1)">Back</button>
-                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
-                    <button type="button" onclick="goToFormStep(3)">Next Step</button>
+                    <button type="button" class="secondary-btn" onclick="goToFormStep(1)">← Step Back</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Flush Parameters</button>
+                    <button type="button" class="primary-btn" onclick="goToFormStep(3)">Proceed Next Step →</button>
                 </div>
             </div>
 
+            <!-- STEPPER SECTOR 3: EXTRA FUNCTIONAL CAPABILITIES AND HOBBIES -->
             <div id="form-panel-3" class="form-step-panel">
                 <div class="form-grid">
                     <div class="full-width input-group">
-                        <label data-i18n="label_hobby" for="sports">Sports Team, Leadership, or Main Hobby</label>
-                        <input type="text" id="sports" placeholder="e.g., Captain of School Football Team / Coding Club Member" maxlength="100" required>
+                        <label data-i18n="label_hobby" for="sports">Dynamic Group Operational Profile (Extracurricular / Sports Matrix)</label>
+                        <input type="text" id="sports" placeholder="e.g., Vice Captain of Regional Football League / Lead Organizer Technical Coding Club" maxlength="100" required>
                         <div class="counter-container"><span id="sports-counter">0</span> / 100</div>
                     </div>
                     
                     <div class="full-width input-group">
-                        <label data-i18n="label_interests" for="interests">Interests & Volunteering</label>
-                        <textarea id="interests" placeholder="e.g., Aviation systems, Football tactics, Strategic PC gaming" maxlength="200" rows="3" required></textarea>
+                        <label data-i18n="label_interests" for="interests">Self-Directed Field Exploration & Ancillary Focus Areas</label>
+                        <textarea id="interests" placeholder="e.g., Advanced network infrastructure configurations, analytics modeling, tactical football strategies mapping" maxlength="200" rows="4" required></textarea>
                         <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
-                    <button type="button" style="background-color: #718096;" onclick="goToFormStep(2)">Back</button>
-                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
-                    <button type="button" onclick="processCV()" data-i18n="btn_generate">Generate Template & View Matches</button>
+                    <button type="button" class="secondary-btn" onclick="goToFormStep(2)">← Step Back</button>
+                    <button type="button" class="clear-btn" onclick="clearCurrentStep()">Flush Parameters</button>
+                    <button type="button" class="primary-btn" onclick="processCV()" data-i18n="btn_generate">Compile Matrix & Execute Matches ⚡</button>
                 </div>
             </div>
         </div>
 
-        <!-- STAGE 2 REDESIGNED: Split Screen High-Performance Application Interface -->
+        <!-- ==========================================================================
+           STAGE 2: SPLIT-SCREEN ADVANCED APPLICATION TERMINAL INTERFACE
+           ========================================================================== */ -->
         <div id="step-2" class="hidden">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
-                <div style="display: flex; gap: 10px;">
-                    <button onclick="window.print()" style="padding: 10px 16px; font-size: 0.85rem;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
-                    <button onclick="resetApp()" style="background-color: #4b5563; padding: 10px 16px; font-size: 0.85rem;" data-i18n="btn_edit">Edit Details</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid var(--border-primary); padding-bottom: 20px;">
+                <div>
+                    <h1 style="font-size: 2.2rem; color: var(--text-main); display: flex; align-items: center; gap: 10px;">
+                        <span>⚙️</span> <span data-i18n="dash_title">Application Lifecycle Control Terminal</span>
+                    </h1>
+                </div>
+                <div style="display: flex; gap: 14px;">
+                    <button onclick="window.print()" class="primary-btn" style="background: linear-gradient(135deg, var(--success-accent), #059669); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);" data-i18n="btn_print">🖨️ Print Blueprint / Save PDF</button>
+                    <button onclick="resetApp()" class="secondary-btn" data-i18n="btn_edit">Modify Parameters</button>
                 </div>
             </div>
 
             <div class="dashboard-layout-grid">
-                <!-- Left Column: The CV Document Area -->
+                <!-- LEFT TERMINAL NODE: PARSED COMPILATION SHOWCASE (CLEAN ROOM ARCHITECTURE STYLE) -->
                 <div>
-                    <h3 style="margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
+                    <h3 style="margin-bottom: 16px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-accent);" data-i18n="dash_section_cv">1. Validated Target Portfolio Frame</h3>
                     <div class="cv-document" id="cv-document-target"></div>
                 </div>
 
-                <!-- Right Column: Live Placements Feed Panel -->
+                <!-- RIGHT TERMINAL NODE: MATCHING ENGINE INTERACTIVE ENGINE STACK CONTAINER -->
                 <div class="matches-sidebar-panel">
-                    <h3 style="margin-bottom: 5px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="dash_section_matches">2. Tailored Placement Placements</h3>
-                    <p style="margin-top: 0; margin-bottom: 20px; font-size: 0.85rem;">Matching programs found instantly based on your target specialization stream:</p>
+                    <h3 style="margin-bottom: 6px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main);" data-i18n="dash_section_matches">2. Algorithmic System Placements</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;">Placements analyzed instantly based on compatibility vectors matching your chosen curriculum path specialization focus stream:</p>
+                    
                     <div id="match-results"></div>
                     
-                    <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px; text-align: right;">
-                        <button onclick="logout()" style="background-color: var(--error-color); width: auto; font-size: 0.85rem; padding: 10px 16px;" data-i18n="btn_logout">Log Out</button>
+                    <div style="margin-top: 40px; border-top: 2px solid var(--border-primary); padding-top: 25px; display: flex; justify-content: flex-end;">
+                        <button onclick="logout()" class="clear-btn" style="color: var(--error-accent);" data-i18n="btn_logout">Terminate Session & Disconnect</button>
                     </div>
                 </div>
             </div>
@@ -686,170 +813,161 @@
     </div>
 
     <script>
+        // System Data Structures and Orchestration Core Logic
         let currentLang = 'en';
 
         const i18n = {
             en: {
-                signin_title: "Welcome Back",
-                signin_sub: "Sign in to access your CV dashboard.",
-                signup_title: "Create an Account",
-                signup_sub: "Sign up to start tailoring your CV and tracking experience placements.",
-                forgot_title: "Reset Your Password",
-                forgot_sub: "Enter your registered email and a new password below to reset your credentials.",
-                label_email: "Email Address",
-                label_password: "Password",
-                label_new_password: "Choose New Password",
-                btn_signin: "Sign In",
-                btn_signup: "Sign Up",
-                btn_reset: "Update Password & Sign In",
-                link_forgot: "Forgot Password?",
-                link_create: "Create Account",
-                link_have_account: "Already have an account? Sign In",
-                link_back_signin: "Back to Sign In",
-                form_title: "Create Your Scannable CV",
-                form_sub: "Fill out your details below to generate a modern, professionally structured CV tailored for work experience.",
-                label_firstname: "First Name",
-                label_surname: "Surname",
-                label_location: "Location (City, Country)",
-                label_phone: "Phone Number",
-                label_linkedin: "LinkedIn Profile (Optional)",
-                label_school: "Current School / College Name",
-                label_focus: "Strongest Academic Focus Area",
-                label_grades: "Current / Predicted Grades",
-                label_hobby: "Sports Team, Leadership, or Main Hobby",
-                label_interests: "Interests & Volunteering",
-                btn_generate: "Generate Template & View Matches",
-                dash_title: "Your CVmatch Dashboard",
-                dash_section_cv: "1. Professional Document Matrix",
-                dash_section_matches: "2. Real-Time Opportunity Matches",
-                btn_print: "🖨️ Print / Save PDF",
-                btn_edit: "Edit Form Details",
-                btn_logout: "Log Out",
-                alert_fill: "Please fill out all fields correctly on this step.",
-                alert_created: "Account successfully created! Logging you in...",
-                alert_welcome: "Welcome back to CVmatch!",
-                alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
-                alert_reset: "Password updated successfully! Logging you in...",
-                cv_prof_title: "Personal Statement / Professional Profile",
+                signin_title: "System Sign In",
+                signin_sub: "Access configuration framework metrics through certified credentials.",
+                signup_title: "Initialize Candidate Register",
+                signup_sub: "Register unique identity mapping parameters to unlock the deployment dashboard.",
+                forgot_title: "Reset Terminal Encryption",
+                forgot_sub: "Verify target registration index vectors to patch system access parameters.",
+                label_email: "Account Network Gateway (Email Address)",
+                label_password: "Security Encryption Token (Password)",
+                label_new_password: "Assign Overwrite Token (New Password)",
+                btn_signin: "Authenticate Access",
+                btn_signup: "Register Profile Matrix",
+                btn_reset: "Push Account Overwrite",
+                link_forgot: "Recover Account",
+                link_create: "Initialize Profile",
+                link_have_account: "Return to Sign In Hub",
+                link_back_signin: "Abort Process Vector",
+                form_title: "Engine Data Capture",
+                form_sub: "Provide data points to configure an ATS-optimized, high-yield technical CV layout template.",
+                label_firstname: "Legal First Name",
+                label_surname: "Legal Family Surname",
+                label_location: "Geographic Location Hub",
+                label_phone: "Comms Destination Vector (Phone)",
+                label_linkedin: "Professional Profile Index (LinkedIn URL Link)",
+                label_school: "Educational Node Academy Name",
+                label_focus: "Target Core Specialization Path",
+                label_grades: "Verification Metrics Index (Grades Summary)",
+                label_hobby: "Group Operational Dynamic Profile (Main Leadership or Team Activity)",
+                label_interests: "Self-Directed System Interests & Voluntarism Profile",
+                btn_generate: "Execute Assembly Engine & Match",
+                dash_title: "Application Lifecycle Dashboard",
+                dash_section_cv: "1. Structured Engine Core Document Output",
+                dash_section_matches: "2. Real-Time Validated System Placements Feed",
+                btn_print: "🖨️ Export to System PDF / Print",
+                btn_edit: "Reconfigure Parameters",
+                btn_logout: "Disconnect Session",
+                alert_fill: "CRITICAL PARSING ERROR: System fields fail validator constraints. Correct highlighted structures to compile.",
+                alert_created: "Identity parameters recorded. Granting workspace initialization rights...",
+                alert_welcome: "Authentication confirmed. Reopening target pipeline environment...",
+                alert_invalid: "AUTHENTICATION TIMEOUT: Provided criteria matches no known cluster profile. Retry or register account.",
+                alert_reset: "Credential patch deployed successfully. Initializing access parameters...",
+                cv_prof_title: "Target Structural Objective / Personal Statement Matrix",
                 cv_prof_desc: "Highly disciplined, technically driven aspiring Software Engineer seeking to secure a collaborative Software Engineering Apprenticeship challenge. Combines an analytical academic foundation with self-directed programming competence across fundamental web languages and software design patterns. Adept at managing structured, logical engineering workflows, diagnosing core system anomalies, and parsing functional design parameters. Proven leadership capabilities and strong teamwork mechanics refined in high-stakes environments, balancing rigorous schedules alongside rigorous performance standards. Eager to contribute an unyielding work ethic, continuous programmatic curiosity, and an optimization-oriented mindset to a dynamic, forward-thinking enterprise agile engineering workspace.",
-                cv_edu_title: "Education & Qualifications",
-                cv_edu_sub: "Secondary Education & Advanced Academic Modules",
-                cv_edu_bullet1: "Relevant Specializations & Competency Pathways: Specialized training stream with focus tracks centering around ",
-                cv_edu_bullet2: "Core Technical Projects: Successfully executed structural analysis frameworks, interpreting metrics data, delivering systematic project reviews, and engaging in collaborative multi-peer validation panels.",
-                cv_ach_title: "Key Institutional Achievements",
-                cv_ach_b1: "Academic Distinction Recognition: Commended across successive terms for outstanding performance index scores within technical focus paths.",
-                cv_ach_b2: "Systems Development Milestone: Completed specialized core logic simulation challenges focusing on group operational continuity.",
-                cv_ach_b3: "Presentation Panel Commendation: Awarded distinction accolades for public technical concept presentations evaluated by external advisory boards.",
-                cv_sports_title: "Leadership Profiles & Extracurricular Alignment",
-                cv_sports_sub: "Competitive Team Dynamics & Strategic Group Alignment",
-                cv_sports_b1: "Team Operations: Actively co-coordinated schedules, cross-collaborated with peers under pressure, and fostered reliable operational patterns within structural programs.",
-                cv_sports_b2: "Time Management Execution: Consistently balanced complex strategic training modules alongside core academic study pipelines.",
-                cv_skills_title: "Skills Inventory & Core Frameworks",
-                cv_skills_tech: "Technical Capabilities: Modular Software Architecture Logic, Digital Literacy Matrix Schemes, Microsoft Office Ecosystem, Data Visualization Frameworks.",
-                cv_skills_soft: "Core Interpersonal Capabilities: Agile Team Collaboration Modalities, Iterative Project Planning, High-Clarity Peer Communication, Diagnostic Problem Solving.",
-                cv_interests_title: "Interests & Self-Directed Fields",
-                cv_ref: "Formal comprehensive professional references available immediately upon request.",
-                step1_text: "Step 1 of 3: Personal Information",
-                step2_text: "Step 2 of 3: Academic Focus",
-                step3_text: "Step 3 of 3: Extracurricular Activities"
+                cv_edu_title: "Academic Tracks & Core Verification Accreditations",
+                cv_edu_sub: "Secondary Institutional Tracking Block & Core Modules",
+                cv_edu_bullet1: "Curriculum Pathways Focus: Enrolled under an advanced, highly specialized track sequence directly profiling ",
+                cv_edu_bullet2: "Applied Technical Projects: Successfully executed programmatic analysis models, parsed metrics tracking frameworks, structured detailed code updates, and verified design paradigms within collaborative environments.",
+                cv_ach_title: "Institutional Milestones & System Highlights",
+                cv_ach_b1: "Performance Index Distinction: Earned top-tier performance index marks over consecutive cycles within advanced stem modules.",
+                cv_ach_b2: "Operational Architecture Challenge: Successfully navigated multi-agent simulation routines focusing on systems integrity.",
+                cv_ach_b3: "Technical Panel Commendation: Awarded structural presentation accolades following evaluation by external industry advisory boards.",
+                cv_sports_title: "Extracurricular Coordination & Collaborative Dynamics",
+                cv_sports_sub: "Strategic Team Operations & Peer Framework Logistics",
+                cv_sports_b1: "Functional Coordination Roles: Efficiently co-coordinated schedules, adapted to dynamic team tasks under constraint, and mapped reliable execution profiles.",
+                cv_sports_b2: "Time Optimization Discipline: Mastered strict schedule prioritization matrices to balance rigorous athletic training routines alongside core development work.",
+                cv_skills_title: "Technical Stack Matrix & Core Capabilities",
+                cv_skills_tech: "Technical Domain Matrix: Logical Software Engineering Frameworks, Advanced Digital Literacy Schemas, Data Modeling Modalities, Enterprise Systems Analysis.",
+                cv_skills_soft: "Human Interpersonal Integration: Iterative Lifecycle Methodologies, High-Fidelity Communication Interfaces, Diagnostic Logic Paradigms, Collaborative Peer Optimization.",
+                cv_interests_title: "Self-Directed Technical Fields & Focus Explorations",
+                cv_ref: "Formal comprehensive verification records and professional cross-references available on demand.",
+                step1_text: "Step 1 of 3: Core Contact Parameters",
+                step2_text: "Step 2 of 3: Academic Tracking Block",
+                step3_text: "Step 3 of 3: Extracurricular Dynamics Matrix"
             },
             cy: {
-                signin_title: "Croeso Nôl",
-                signin_sub: "Mewngofnodwch i weld eich dangosfwrdd CV.",
-                signup_title: "Creu Cyfrif",
-                signup_sub: "Cofrestrwch i ddechrau teilwra eich CV a dilyn lleoliadau profiad gwaith.",
-                forgot_title: "Ailosod Eich Cyfrinair",
-                forgot_sub: "Nodwch eich e-bost cofrestredig a chyfrinair newydd isod i ailosod eich manylion.",
-                label_email: "Cyfeiriad E-bost",
-                label_password: "Cyfrinair",
-                label_new_password: "Dewiswch Gyfrinair Newydd",
-                btn_signin: "Mewngofnodi",
-                btn_signup: "Cofrestru",
-                btn_reset: "Diweddaru Cyfrinair a Mewngofnodi",
-                link_forgot: "Wedi anghofio cyfrinair?",
-                link_create: "Creu Cyfrif",
-                link_have_account: "Oes gennych chi gyfrif eisoes? Mewngofnodwch",
-                link_back_signin: "Yn ôl i Mewngofnodi",
-                form_title: "Creu Eich CV Sganiadwy",
-                form_sub: "Llenwch eich manylion isod i gynhyrchu CV modern, strwythuredig sydd wedi'i deilwra ar gyfer profiad gwaith.",
-                label_firstname: "Enw Cyntaf",
-                label_surname: "Cyfenw",
-                label_location: "Lleoliad (Dinas, Gwlad)",
-                label_phone: "Rhif Ffôn",
-                label_linkedin: "Proffil LinkedIn (Dewisol)",
-                label_school: "Enw'r Ysgol / Coleg Cyfredol",
-                label_focus: "Prif Faes Ffocws Academaidd",
-                label_grades: "Graddau Cyfredol / Rhagwelir",
-                label_hobby: "Tîm Chwaraeon, Arweinyddiaeth, neu Brif Hobi",
-                label_interests: "Diddordebau a Gwirfoddoli",
-                btn_generate: "Cynhyrchu Templeg a Gweld Matchys",
-                dash_title: "Eich Dangosfwrdd CVmatch",
-                dash_section_cv: "1. Templeg Dogfen Broffesiynol",
+                signin_title: "Mewngofnodi i'r System",
+                signin_sub: "Cyrchwch y fframwaith cyfluniad gan ddefnyddio manylion dilys.",
+                signup_title: "Cofrestru Cyfrif Newydd",
+                signup_sub: "Cofrestrwch baramedrau hunaniaeth unigryw i ddatgloi'r dangosfwrdd.",
+                forgot_title: "Ailosod Tocyn Diogelwch",
+                forgot_sub: "Gwirio e-bost i ddiweddaru a phatshio paramedrau mynediad.",
+                label_email: "Porth Rhwydwaith (Cyfeiriad E-bost)",
+                label_password: "Tocyn Encryption Diogelwch (Cyfrinair)",
+                label_new_password: "Tocyn Newydd (Cyfrinair Newydd)",
+                btn_signin: "Dilysu Mynediad",
+                btn_signup: "Cofrestru Proffil Matrix",
+                btn_reset: "Diweddaru Diogelwch",
+                link_forgot: "Adfer Cyfrif",
+                link_create: "Dechrau Proffil",
+                link_have_account: "Yn ôl i Mewngofnodi",
+                link_back_signin: "Atal y Broses",
+                form_title: "Cipio Data Peiriant",
+                form_sub: "Darparwch ddata i ffurfweddu templeg CV technegol sydd wedi'i optimeiddio ar gyfer systemau ATS.",
+                label_firstname: "Enw Cyntaf Cyfreithiol",
+                label_surname: "Cyfenw Cyfreithiol",
+                label_location: "Lleoliad Daearyddol",
+                label_phone: "Rhif Ffôn Cyswllt Cyntaf",
+                label_linkedin: "Proffil Proffesiynol (Dolen LinkedIn)",
+                label_school: "Enw'r Sefydliad Academaidd",
+                label_focus: "Prif Faes Arbenigo",
+                label_grades: "Mynegai Graddau (Crynodeb o Ddiffiniadau)",
+                label_hobby: "Proffil Dynamig Tîm (Prif Weithgaredd Arwain neu Chwaraeon)",
+                label_interests: "Diddordebau System Allgyrsiol a Gwirfoddoli",
+                btn_generate: "Gweithredu'r Peiriant a Chwilio am Matchys",
+                dash_title: "Dangosfwrdd Rheoli Prosiect",
+                dash_section_cv: "1. Allbwn Strwythuredig Dogfen Beiriant",
                 dash_section_matches: "2. Lleoliadau Cyfatebol Amser Real",
-                btn_print: "🖨️ Argraffu / Cadw fel PDF",
-                btn_edit: "Golygu Manylion y Ffurflen",
-                btn_logout: "Allgofnodi",
-                alert_fill: "Llenwch bob maes yn gywir ar y cam hwn, os gwelwch yn dda.",
-                alert_created: "Cyfrif wedi'i greu yn llwyddiannus! Yn eich mewngofnodi...",
-                alert_welcome: "Croeso nôl i CVmatch!",
-                alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
-                alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
-                cv_prof_title: "Datganiad Personol / Proffil Proffesiynol",
+                btn_print: "🖨️ Allforio i PDF System / Argraffu",
+                btn_edit: "Ailgyflunio Paramedrau",
+                btn_logout: "Terfynu Sesiwn",
+                alert_fill: "GWALL PARSIO: Mae meysydd yn methu dilysu rheolau dylunio. Cywirwch i barhau.",
+                alert_created: "Paramedrau wedi'u nodi. Yn cychwyn y gweithle...",
+                alert_welcome: "Dilysiad wedi'i gadarnhau. Yn ailagor y biblinell...",
+                alert_invalid: "DIAMSERU DILYSIAD: Manylion heb gael eu canfod. Rhowch gynnig arall arni.",
+                alert_reset: "Wedi diweddaru manylion yn llwyddiannus. Yn cychwyn...",
+                cv_prof_title: "Amcan Strwythuredig / Datganiad Personol Matrix",
                 cv_prof_desc: "Darpar Beiriannydd Meddalwedd hynod ysgogol a phenderfynol sy'n ceisio sicrhau Brentisiaeth Peirianneg Meddalwedd gydweithredol. Yn cyfuno sylfaen academaidd ddadansoddol â chymhwysedd rhaglennu hunangyfeiriedig ar draws ieithoedd gwe craidd a phatrymau dylunio meddalwedd. Sgiliau arwain profedig a gwaith tîm cryf wedi'u mireinio mewn amgylcheddau heriol, gan gydbwyso amserlenni tynn ochr yn ochr â safonau perfformiad uchel. Yn eiddgar i gyfrannu moeseg gwaith diflino, chwilfrydedd rhaglennu parhaus, a meddylfryd optimeiddio i weithle peirianneg ystwyth a blaengar.",
-                cv_edu_title: "Addysg a Chymwysterau",
-                cv_edu_sub: "Addysg Uwchradd a Modiwlau Academaidd Uwch",
-                cv_edu_bullet1: "Llwybrau Ffocws a Chymwyseddau Perthnasol: Ffrwd hyfforddi arbenigol sy'n canolbwyntio ar rannau allweddol o ",
-                cv_edu_bullet2: "Prosiectau Technegol Craidd: Gweithredu fframweithiau dadansoddi strwythuredig yn llwyddiannus, dehongli metrigau, a chymryd rhan mewn paneli gwerthuso grŵp.",
-                cv_ach_title: "Prif Gyflawniadau Sefydliadol",
-                cv_ach_b1: "Cydnabyddiaeth Ragoriaeth: Cymeradwywyd dros dermau olynol am sgorau perfformiad eithriadol o fewn llwybrau technegol.",
-                cv_ach_b2: "Cerrig Milltir Systemau: Cwblhawyd heriau efelychu rhesymeg craidd arbenigol yn canolbwyntio ar barhad gweithredol grŵp.",
-                cv_ach_b3: "Canmoliaeth Panel Cyflwyno: Dyfarnwyd anrhydeddau am gyflwyniadau cysyniad technegol cyhoeddus a werthuswyd gan fwrdd allanol.",
-                cv_sports_title: "Proffiliau Arweinyddiaeth ac Aliniad Allgyrsiol",
-                cv_sports_sub: "Dynameg Tîm Cystadleuol ac Aliniad Strategol",
-                cv_sports_b1: "Gweithrediadau Tîm: Cyd-drefnu amserlenni dros amser, cydweithio â chyfoedion o dan bwysau, a meithrin patrymau dibynadwy.",
-                cv_sports_b2: "Rheoli Amser yn Effeithiol: Cydbwyso modiwlau hyfforddi cymhleth ochr yn ochr â phiblinellau astudio academaidd craidd yn gyson.",
-                cv_skills_title: "Rhestr Sgiliau a Fframweithiau",
-                cv_skills_tech: "Sgiliau Technegol: Rhesymeg Pensaernïaeth Meddalwedd, Llwybrau Llythrennedd Digidol, Ecosystem Microsoft Office, Delweddu Data.",
-                cv_skills_soft: "Sgiliau Rhyngbersonol: Cydweithrediad Tîm Ystwyth, Cynllunio Prosiectau Iteratfol, Cyfathrebu Clir, Datrys Problemau Diagnostig.",
-                cv_interests_title: "Diddordebau a Meysydd Hunangyfeiriedig",
-                cv_ref: "Geirdaon proffesiynol ffurfiol cynhwysfawr ar gael ar unwaith ar gais.",
-                step1_text: "Cam 1 o 3: Gwybodaeth Bersonol",
-                step2_text: "Cam 2 o 3: Ffocws Academaidd",
-                step3_text: "Cam 3 o 3: Gweithgareddau Allgyrsiol"
+                cv_edu_title: "Traciau Academaidd a Gwirfoddoli Cadarnhaol",
+                cv_edu_sub: "Bloc Tracio Sefydliad Uwchradd a Modiwlau Craidd",
+                cv_edu_bullet1: "Ffocws Llwybrau Cwricwlwm: Wedi cofrestru ar sequence arbenigol sy'n canolbwyntio ar ",
+                cv_edu_bullet2: "Prosiectau Technegol Cymhwysol: Cynllunio modiwlau dadansoddi rhaglennu, metrigau olrhain, strwythuro diweddariadau cod, a gwerthuso dyluniadau mewn timau.",
+                cv_ach_title: "Cerrig Milltir Sefydliadol a High-Lights",
+                cv_ach_b1: "Rhagoriaeth Fynegai Perfformiad: Enillwyd marciau uchaf dros gyfnodau olynol mewn modiwlau STEM uwch.",
+                cv_ach_b2: "Her Bensaernïaeth Weithredol: Llwyddwyd mewn heriau efelychu systemau cymhleth ar gyfer cywirdeb data.",
+                cv_ach_b3: "Canmoliaeth Panel Technegol: Dyfarnwyd anrhydeddau cyflwyniad strwythuredig gan baneli arbenigol allanol.",
+                cv_sports_title: "Cydlynu Allgyrsiol a Dynameg Cydweithredol",
+                cv_sports_sub: "Gweithrediadau Tîm Strategol a Logisteg Cyfoedion",
+                cv_sports_b1: "Rolau Cydlynu Gweithredol: Cyd-drefnu amserlenni'n effeithlon, addasu i dasgau grŵp dindan bwysau, a mapio proffiliau perfformiad.",
+                cv_sports_b2: "Disgyblaeth Optimeiddio Amser: Rheoli amserlenni hyfforddiant chwaraeon llym ochr yn ochr â gwaith academaidd craidd.",
+                cv_skills_title: "Matrix Sgiliau Technegol a Chymwyseddau",
+                cv_skills_tech: "Sgiliau Technegol Domain: Fframweithiau rhesymeg meddalwedd, llythrennedd digidol uwch, modelu data, dadansoddi systemau menter.",
+                cv_skills_soft: "Integreiddio Rhyngbersonol: Methodolegau gwaith ystwyth, rhyngwynebau cyfathrebu clir, rhesymeg ddiagnostig, optimeiddio cyfoedion.",
+                cv_interests_title: "Meysydd Technegol Hunangyfeiriedig ac Archwiliadau",
+                cv_ref: "Mae cofnodion dilysu ffurfiol a geirdaon proffesiynol ar gael ar gais ar unwaith.",
+                step1_text: "Cam 1 o 3: Paramedrau Cyswllt Craidd",
+                step2_text: "Cam 2 o 3: Bloc Tracio Academaidd",
+                step3_text: "Cam 3 o 3: Matrix Dynameg Allgyrsiol"
             }
         };
 
+        // Complete Local Simulated Database Cluster
         const opportunityDb = {
             "IT & Computer Science": [
-                { title: "Software Engineering Shadowing Day", company: "TechStart Corp", desc: "Observe active agile development sprints and receive direct career advice from junior frontend developers." },
-                { title: "IT Support & Infrastructure Placement", company: "EduTech Solutions", desc: "Gain hands-on experience diagnostic testing and deploying tech hardware architectures within modern offices." }
+                { title: "Junior Software Engineer Apprentice Pipeline", company: "Quantum Logic Infrastructure", desc: "Gain deep integration with active agile sprints. Learn structural system refactoring and cloud architecture patterns under senior mentoring engineers." },
+                { title: "Enterprise Database Optimization Assistant", company: "DataSync Systems UK", desc: "Validate system schemas, map pipeline metrics arrays, and deploy testing automation protocols inside staging nodes." }
             ],
             "Air Traffic Control & Logistics": [
-                { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts." },
-                { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks." }
+                { title: "Mission Control Traffic System Shadowing", company: "AeroControl Transit Node", desc: "Analyze telemetry coordination matrices, flight pattern sequence grids, and dynamic spatial mapping architectures under strict live constraints." },
+                { title: "Logistics Optimization Systems Assistant", company: "Alpha Cargo Fleet Matrix", desc: "Track system capacity routing patterns, schedule constraints compliance windows, and resource routing matrix engines." }
             ],
             "Digital Forensics & Cyber Investigation": [
-                { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes." },
-                { title: "Digital Discovery & Investigations Day", company: "Apex Integrity Partners", desc: "An overview of analytical methodologies used to preserve digital proof footprints, trace network trails, and structure audit reviews." }
+                { title: "Cyber Forensic Intrusion Discovery Intern", company: "Sentinel Digital Security", desc: "Parse event sequence logs, trace digital proof pathways, and analyze security perimeter bypass vectors in simulated diagnostics environments." },
+                { title: "Network Integrity Auditing Placement", company: "Vanguard Audit Partners", desc: "Audit active server communication footprints, configure verification checklists, and verify infrastructure compliance indices." }
             ],
             "Aerospace & Aircraft Maintenance": [
-                { title: "Avionics Engineering Maintenance Shadowing", company: "Horizon Aviation Systems", desc: "Observe certified structural teams performing diagnostics, component calibrations, and scheduled hardware preventive maintenance routines." },
-                { title: "Precision Systems & Component Logistics Workshop", company: "Centurion Aero Tech", desc: "Gain insights into strict aerospace quality controls, supply chain asset distributions, and technical documentation audits." }
+                { title: "Propulsion Avionics Systems Engineering Trainee", company: "Horizon Propulsion Labs", desc: "Shadow aerospace maintenance teams executing calibration metrics tests, hardware component diagnostic routines, and technical blueprint tracking." },
+                { title: "Avionics Structural Maintenance Scheme", company: "Centurion Fleet Support", desc: "Audit mechanical safety documentation, learn parts diagnostic processing schemas, and track preventive asset checks." }
             ],
             "Mathematics & Sciences": [
-                { title: "Data Analyst Taster Day", company: "FinMetrics Group", desc: "A foundational look at interpreting business metrics, tracking performance graphs, and building spreadsheet structures." },
-                { title: "Laboratory Logistics Assistant", company: "Apex BioHealth Labs", desc: "An entry-level overview of health safety codes, asset inventory logs, and cleanroom operations." }
-            ],
-            "English Literature & Media": [
-                { title: "Copywriting & Digital Marketing Workshop", company: "The Chronicle Press", desc: "Learn how to draft commercial advertising copy and optimize weekly email newsletter communication frameworks." },
-                { title: "Social Media Outreach Coordinator", company: "Youth Sports Initiative", desc: "A highly flexible role managing communication threads, taking photos, and drafting engagement updates." }
-            ],
-            "Art & Creative Design": [
-                { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts." },
-                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design." }
-            ],
-            "General Studies": [
-                { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows." }
+                { title: "Quantitative Risk Analytics Scheme", company: "Apex Capital Analytics", desc: "Model statistical predictive charts, track regression indices, and process big data spreadsheets utilizing corporate analytics engines." },
+                { title: "Laboratory Logistics Protocol Assistant", company: "BioHealth Diagnostics Node", desc: "Track laboratory asset configurations, configure safety compliance logs, and handle micro-matrix equipment logistics." }
             ]
         };
 
@@ -1009,25 +1127,25 @@
                 return;
             }
 
-            const first = document.getElementById('firstname').value || "FIRSTNAME";
-            const last = document.getElementById('surname').value || "SURNAME";
-            const loc = document.getElementById('location').value || "City, Country";
+            const first = document.getElementById('firstname').value || "ALEX";
+            const last = document.getElementById('surname').value || "MORGAN";
+            const loc = document.getElementById('location').value || "Gloucester, UK";
             const phone = document.getElementById('phone').value || "+44 7123 456789";
-            const email = document.getElementById('email').value || "your.email@email.com";
-            const linkedin = document.getElementById('linkedin').value || "linkedin.com/in/yourprofile";
+            const email = document.getElementById('email').value || "alex.morgan@domain.com";
+            const linkedin = document.getElementById('linkedin').value || "linkedin.com/in/profile";
             
-            const school = document.getElementById('school').value || "High School / College Name";
+            const school = document.getElementById('school').value || "Cambridge Comprehensive College";
             const subject = document.getElementById('subject').value;
-            const grades = document.getElementById('grades').value || "Straight As / High Passes";
-            const sports = document.getElementById('sports').value || "Sports Team / Club Member";
-            const interests = document.getElementById('interests').value || "Technology, Analysis, Volunteering";
+            const grades = document.getElementById('grades').value || "GCSE Grade 8 Average";
+            const sports = document.getElementById('sports').value || "School Football Captain";
+            const interests = document.getElementById('interests').value || "Network configurations, analytics tracking";
 
             const t = i18n[currentLang];
             const cvTarget = document.getElementById('cv-document-target');
             
             cvTarget.innerHTML = `
                 <div class="cv-name">${first} ${last}</div>
-                <div class="cv-subtitle">Aspiring Systems & Software Apprentice</div>
+                <div class="cv-subtitle">Aspiring Software & Systems Engineering Apprentice</div>
                 <div class="cv-contact">
                     <span class="cv-contact-item">${loc}</span>
                     <span class="cv-contact-item">${phone}</span>
@@ -1037,7 +1155,7 @@
 
                 <div class="cv-section-title">${t.cv_prof_title}</div>
                 <div class="cv-personal-statement-box">
-                    <p style="margin: 0; text-align: justify; color: #1e293b; font-size: 0.9rem; font-weight: 500; line-height: 1.6;">${t.cv_prof_desc}</p>
+                    <p style="margin: 0;">${t.cv_prof_desc}</p>
                 </div>
 
                 <div class="cv-section-title">${t.cv_edu_title}</div>
@@ -1050,7 +1168,7 @@
                     <div>September 2024 – Present</div>
                 </div>
                 <ul class="cv-bullet-list">
-                    <li><strong>Academic Record Standards:</strong> Currently tracking at ${grades}.</li>
+                    <li><strong>Verified Metric Evaluation:</strong> Currently maintaining tracking baseline of ${grades}.</li>
                     <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
                     <li>${t.cv_edu_bullet2}</li>
                 </ul>
@@ -1065,7 +1183,7 @@
                 <div class="cv-section-title">${t.cv_sports_title}</div>
                 <div class="cv-split-header">
                     <div>${sports}</div>
-                    <div>Active Core Contributor</div>
+                    <div>Operational Framework Alignment</div>
                 </div>
                 <div class="cv-split-sub">
                     <div>${t.cv_sports_sub}</div>
@@ -1083,7 +1201,7 @@
                 </div>
 
                 <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 4px 0 15px 0; color: #334155; font-size: 0.85rem;">${interests}</p>
+                <p style="margin: 4px 0 15px 0; color: #334155; font-size: 0.9rem;">${interests}</p>
 
                 <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 25px; border-top: 2px solid #e2e8f0; padding-top: 15px;">
                     ${t.cv_ref}
@@ -1099,8 +1217,8 @@
                 div.className = 'match-item';
                 div.innerHTML = `
                     <div class="match-title">${item.title}</div>
-                    <div style="font-size: 0.85rem; font-weight: 600; opacity: 0.8; color: var(--text-muted);">${item.company}</div>
-                    <div style="margin-top: 5px; font-size: 0.95rem; color: var(--text-main);">${item.desc}</div>
+                    <div class="match-company">${item.company}</div>
+                    <div style="font-size: 0.9rem; line-height: 1.5; color: var(--text-main);">${item.desc}</div>
                 `;
                 resultsContainer.appendChild(div);
             });
@@ -1118,7 +1236,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('auth-password-signup').addEventListener('input', checkPasswordStrength);
 
-            const monitoredInputs = ['firstname', 'surname', 'location', 'phone', 'email', 'linkedin', 'school', 'grades', 'sports', 'interests'];
+            const monitoredInputs = ['firstname', 'surname', 'location', 'phone', 'linkedin', 'school', 'grades', 'sports', 'interests'];
             
             monitoredInputs.forEach(id => {
                 const inputElement = document.getElementById(id);
@@ -1153,7 +1271,7 @@
             let score = 0;
             
             if (password.length === 0) {
-                strengthText.innerText = "Strength: Empty";
+                strengthText.innerText = "Empty";
                 strengthBar.style.width = "0%";
                 strengthBar.style.backgroundColor = "transparent";
                 return;
@@ -1165,17 +1283,17 @@
             if (/[A-Z]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
             
             if (score <= 1) {
-                strengthText.innerText = "Strength: Weak 🔴";
+                strengthText.innerText = "Vulnerable (Weak) 🔴";
                 strengthBar.style.width = "25%";
-                strengthBar.style.backgroundColor = "#ef4444";
+                strengthBar.style.backgroundColor = "var(--error-accent)";
             } else if (score === 2 || score === 3) {
-                strengthText.innerText = "Strength: Medium 🟡";
+                strengthText.innerText = "Optimal (Medium) 🟡";
                 strengthBar.style.width = "60%";
-                strengthBar.style.backgroundColor = "#f59e0b";
+                strengthBar.style.backgroundColor = "#eab308";
             } else if (score >= 4) {
-                strengthText.innerText = "Strength: Strong 🟢";
+                strengthText.innerText = "Encrypted (Strong) 🟢";
                 strengthBar.style.width = "100%";
-                strengthBar.style.backgroundColor = "#10b981";
+                strengthBar.style.backgroundColor = "var(--success-accent)";
             }
         }
     </script>
