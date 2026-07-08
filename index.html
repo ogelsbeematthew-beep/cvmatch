@@ -267,21 +267,6 @@
         .auth-toggle-link:hover {
             text-decoration: underline;
         }
-        .match-item {
-            border-left: 4px solid var(--primary-green);
-            background: rgba(132, 204, 22, 0.06);
-            padding: 20px;
-            margin-top: 15px;
-            border-radius: 0 8px 8px 0;
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .match-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--text-main);
-        }
         .progress-container {
             margin-bottom: 30px;
         }
@@ -313,6 +298,242 @@
             display: block;
         }
         
+        /* Dashboard styling (Step 2) */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+        .dashboard-title-wrap {
+            flex: 1;
+        }
+        .dashboard-sub {
+            margin: 6px 0 0 0;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.45;
+        }
+        .dashboard-actions {
+            flex: 0 0 auto;
+        }
+        .dashboard-section {
+            margin-top: 18px;
+        }
+        .dashboard-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 28px 0;
+        }
+        .dashboard-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .dashboard-footer {
+            margin-top: 26px;
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .btn-secondary {
+            background-color: #718096;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: transform 0.15s ease, background-color 0.2s ease;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            background-color: #64748b;
+        }
+        .btn-danger {
+            background-color: var(--error-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 18px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: transform 0.15s ease, background-color 0.2s ease;
+        }
+        .btn-danger:hover {
+            transform: translateY(-1px);
+            background-color: var(--danger-hover);
+        }
+        .match-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        @media (max-width: 640px) {
+            .match-grid { grid-template-columns: 1fr; }
+            .dashboard-header { flex-direction: column; }
+            .dashboard-footer { flex-direction: column; align-items: stretch; }
+            .dashboard-stats { flex-direction: column; }
+        }
+
+        /* Dashboard summary stat strip */
+        .dashboard-stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .stat-chip {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--light-bg);
+        }
+        .stat-chip .stat-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        .stat-chip .stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin: 0 0 2px 0;
+        }
+        .stat-chip .stat-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .match-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            padding: 18px 18px 16px 18px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .match-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-green);
+        }
+        .match-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        .match-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .match-card-title {
+            font-weight: 800;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+        .match-card-company {
+            font-size: 0.86rem;
+            font-weight: 700;
+            opacity: 0.85;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .match-score-badge {
+            flex: 0 0 auto;
+            background: rgba(132,204,22,0.14);
+            color: var(--primary-green);
+            border: 1px solid rgba(132,204,22,0.35);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 9px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .match-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .match-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .match-card-desc {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.5;
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+        .match-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            margin-top: auto;
+        }
+        .match-deadline {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .match-apply-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: var(--primary-blue);
+            padding: 8px 14px;
+            border-radius: 7px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+        .match-apply-link:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+        #match-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
         /* Premium CV Template styling rules */
         .cv-document {
             background: #ffffff;
@@ -611,23 +832,42 @@
         </div>
 
         <div id="step-2" class="card hidden">
-            <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <h3 style="margin: 0;" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
-                <button onclick="window.print()" style="margin: 0; width: auto; padding: 8px 15px; font-size: 0.85rem;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
+            <div class="dashboard-header">
+                <div class="dashboard-title-wrap">
+                    <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
+                    <p class="dashboard-sub" data-i18n="dash_sub">Review your formatted CV and the tailored placements below.</p>
+                </div>
+
+                <div class="dashboard-actions">
+                    <button onclick="window.print()" class="btn-secondary" data-i18n="btn_print">🖨️ Print / Save PDF</button>
+                </div>
             </div>
-            
-            <div class="cv-document" id="cv-document-target"></div>
 
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 35px 0;">
+            <div class="dashboard-stats" id="dashboard-stats"></div>
 
-            <h3 data-i18n="dash_section_matches">2. Tailored Placement Placements</h3>
-            <div id="match-results"></div>
+            <div class="dashboard-divider" role="separator" aria-hidden="true"></div>
 
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <button onclick="resetApp()" style="background-color: #718096; margin-top: 0;" data-i18n="btn_edit">Edit Form Details</button>
-                <button onclick="logout()" style="background-color: var(--error-color); margin-top: 0; max-width: 150px;" data-i18n="btn_logout">Log Out</button>
+            <section class="dashboard-section">
+                <div class="dashboard-section-header">
+                    <h3 data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
+                </div>
+                <div class="cv-document" id="cv-document-target"></div>
+            </section>
+
+            <div class="dashboard-divider" role="separator" aria-hidden="true"></div>
+
+            <section class="dashboard-section">
+                <div class="dashboard-section-header">
+                    <h3 data-i18n="dash_section_matches">2. Tailored Placements</h3>
+                    <div class="match-meta" id="match-meta" aria-live="polite"></div>
+                </div>
+
+                <div class="match-grid" id="match-results"></div>
+            </section>
+
+            <div class="dashboard-footer">
+                <button onclick="resetApp()" class="btn-secondary" data-i18n="btn_edit">Edit Form Details</button>
+                <button onclick="logout()" class="btn-danger" data-i18n="btn_logout">Log Out</button>
             </div>
         </div>
     </div>
@@ -667,11 +907,22 @@
                 label_interests: "Interests & Volunteering",
                 btn_generate: "Generate Template & View Matches",
                 dash_title: "Your CVmatch Dashboard",
+                dash_sub: "Review your formatted CV and the tailored placements below.",
                 dash_section_cv: "1. Your Formatted CV Template",
                 dash_section_matches: "2. Tailored Placements",
                 btn_print: "🖨️ Print / Save PDF",
                 btn_edit: "Edit Form Details",
                 btn_logout: "Log Out",
+                stat_subject_label: "Focus Area",
+                stat_cv_label: "CV Status",
+                stat_cv_value: "Ready to send",
+                stat_matches_label: "Placements Found",
+                match_meta_template: "{count} placements matched to {subject}",
+                label_loc: "Location",
+                label_duration: "Duration",
+                label_deadline: "Apply by",
+                btn_apply: "View & Apply",
+                match_score_label: "match",
                 alert_fill: "Please fill out all fields correctly on this step.",
                 alert_created: "Account successfully created! Logging you in...",
                 alert_welcome: "Welcome back to CVmatch!",
@@ -736,6 +987,16 @@
                 btn_print: "🖨️ Argraffu / Cadw fel PDF",
                 btn_edit: "Golygu Manylion y Ffurflen",
                 btn_logout: "Allgofnodi",
+                stat_subject_label: "Maes Ffocws",
+                stat_cv_label: "Statws CV",
+                stat_cv_value: "Barod i'w anfon",
+                stat_matches_label: "Lleoliadau wedi'u Canfod",
+                match_meta_template: "{count} lleoliad wedi'u teilwra i {subject}",
+                label_loc: "Lleoliad",
+                label_duration: "Hyd",
+                label_deadline: "Cyflwyno erbyn",
+                btn_apply: "Gweld a Gwneud Cais",
+                match_score_label: "cydweddiad",
                 alert_fill: "Llenwch bob maes yn gywir ar y cam hwn, os gwelwch yn dda.",
                 alert_created: "Cyfrif wedi'i greu yn llwyddiannus! Yn eich mewngofnodi...",
                 alert_welcome: "Croeso nôl i CVmatch!",
@@ -768,35 +1029,44 @@
 
         const opportunityDb = {
             "IT & Computer Science": [
-                { title: "Software Engineering Shadowing Day", company: "TechStart Corp", desc: "Observe active agile development sprints and receive direct career advice from junior frontend developers." },
-                { title: "IT Support & Infrastructure Placement", company: "EduTech Solutions", desc: "Gain hands-on experience diagnostic testing and deploying tech hardware architectures within modern offices." }
+                { title: "Software Engineering Shadowing Day", company: "TechStart Corp", desc: "Observe active agile development sprints and receive direct career advice from junior frontend developers.", location: "London", duration: "1 Day", deadline: "15 Aug 2026", link: "https://careers.techstartcorp.example/placements/software-shadowing-day" },
+                { title: "IT Support & Infrastructure Placement", company: "EduTech Solutions", desc: "Gain hands-on experience diagnostic testing and deploying tech hardware architectures within modern offices.", location: "Manchester", duration: "1 Week", deadline: "22 Aug 2026", link: "https://careers.edutechsolutions.example/placements/it-support-infrastructure" },
+                { title: "Junior QA & Test Automation Clinic", company: "NorthBridge QA", desc: "Learn how teams plan test cases, validate releases, and automate checks using lightweight scripts and structured reporting.", location: "Leeds", duration: "3 Days", deadline: "5 Sep 2026", link: "https://careers.northbridgeqa.example/placements/qa-test-automation-clinic" },
+                { title: "Data-Driven Systems Workshop", company: "Helio Analytics Lab", desc: "Explore how metrics are collected, interpreted, and transformed into actionable dashboards for engineering stakeholders.", location: "Bristol", duration: "2 Days", deadline: "29 Aug 2026", link: "https://careers.helioanalyticslab.example/placements/data-systems-workshop" },
+                { title: "Security Basics & Access Control Session", company: "VantaByte Security", desc: "Get hands-on exposure to permissions, credential hygiene, and the fundamentals of threat modeling in day-to-day systems.", location: "Reading", duration: "Half Day", deadline: "12 Aug 2026", link: "https://careers.vantabytesecurity.example/placements/security-basics-session" }
             ],
             "Air Traffic Control & Logistics": [
-                { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts." },
-                { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks." }
+                { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts.", location: "Birmingham", duration: "1 Week", deadline: "10 Sep 2026", link: "https://careers.aerotransithubs.example/placements/operations-logistics-insight" },
+                { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks.", location: "Glasgow", duration: "3 Days", deadline: "3 Sep 2026", link: "https://careers.nexustransitgroup.example/placements/simulation-planning-scheme" },
+                { title: "Dispatch Coordination & Live Monitoring Session", company: "SkyFlow Operations", desc: "Follow real-time handovers, incident escalation paths, and route optimization checks in a controlled training environment.", location: "Edinburgh", duration: "1 Day", deadline: "18 Aug 2026", link: "https://careers.skyflowoperations.example/placements/dispatch-monitoring-session" },
+                { title: "Safety-First Communications Drill", company: "Aether Command Center", desc: "Practice structured messaging, reporting cadence, and clarity standards used when working under time pressure.", location: "Newcastle", duration: "Half Day", deadline: "25 Aug 2026", link: "https://careers.aethercommandcenter.example/placements/comms-safety-drill" },
+                { title: "Logistics Systems & Inventory Triage Workshop", company: "PortLine Solutions", desc: "Learn how inventory levels influence throughput, and how teams prioritize shipments using simple decision matrices.", location: "Southampton", duration: "2 Days", deadline: "1 Sep 2026", link: "https://careers.portlinesolutions.example/placements/inventory-triage-workshop" }
             ],
             "Digital Forensics & Cyber Investigation": [
-                { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes." },
-                { title: "Digital Discovery & Investigations Day", company: "Apex Integrity Partners", desc: "An overview of analytical methodologies used to preserve digital proof footprints, trace network trails, and structure audit reviews." }
+                { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes.", location: "London", duration: "1 Week", deadline: "20 Sep 2026", link: "https://careers.vanguardcyberanalytics.example/placements/forensic-diagnostics-placement" },
+                { title: "Digital Discovery & Investigations Day", company: "Apex Integrity Partners", desc: "An overview of analytical methodologies used to preserve digital proof footprints, trace network trails, and structure audit reviews.", location: "Cambridge", duration: "1 Day", deadline: "28 Aug 2026", link: "https://careers.apexintegritypartners.example/placements/digital-discovery-day" }
             ],
             "Aerospace & Aircraft Maintenance": [
-                { title: "Avionics Engineering Maintenance Shadowing", company: "Horizon Aviation Systems", desc: "Observe certified structural teams performing diagnostics, component calibrations, and scheduled hardware preventive maintenance routines." },
-                { title: "Precision Systems & Component Logistics Workshop", company: "Centurion Aero Tech", desc: "Gain insights into strict aerospace quality controls, supply chain asset distributions, and technical documentation audits." }
+                { title: "Avionics Engineering Maintenance Shadowing", company: "Horizon Aviation Systems", desc: "Observe certified structural teams performing diagnostics, component calibrations, and scheduled hardware preventive maintenance routines.", location: "Bristol", duration: "3 Days", deadline: "4 Sep 2026", link: "https://careers.horizonaviationsystems.example/placements/avionics-maintenance-shadowing" },
+                { title: "Precision Systems & Component Logistics Workshop", company: "Centurion Aero Tech", desc: "Gain insights into strict aerospace quality controls, supply chain asset distributions, and technical documentation audits.", location: "Derby", duration: "2 Days", deadline: "11 Sep 2026", link: "https://careers.centurionaerotech.example/placements/component-logistics-workshop" }
             ],
             "Mathematics & Sciences": [
-                { title: "Data Analyst Taster Day", company: "FinMetrics Group", desc: "A foundational look at interpreting business metrics, tracking performance graphs, and building spreadsheet structures." },
-                { title: "Laboratory Logistics Assistant", company: "Apex BioHealth Labs", desc: "An entry-level overview of health safety codes, asset inventory logs, and cleanroom operations." }
+                { title: "Data Analyst Taster Day", company: "FinMetrics Group", desc: "A foundational look at interpreting business metrics, tracking performance graphs, and building spreadsheet structures.", location: "London", duration: "1 Day", deadline: "14 Aug 2026", link: "https://careers.finmetricsgroup.example/placements/data-analyst-taster-day" },
+                { title: "Laboratory Logistics Assistant", company: "Apex BioHealth Labs", desc: "An entry-level overview of health safety codes, asset inventory logs, and cleanroom operations.", location: "Oxford", duration: "1 Week", deadline: "21 Aug 2026", link: "https://careers.apexbiohealthlabs.example/placements/lab-logistics-assistant" }
             ],
             "English Literature & Media": [
-                { title: "Copywriting & Digital Marketing Workshop", company: "The Chronicle Press", desc: "Learn how to draft commercial advertising copy and optimize weekly email newsletter communication frameworks." },
-                { title: "Social Media Outreach Coordinator", company: "Youth Sports Initiative", desc: "A highly flexible role managing communication threads, taking photos, and drafting engagement updates." }
+                { title: "Copywriting & Digital Marketing Workshop", company: "The Chronicle Press", desc: "Learn how to draft commercial advertising copy and optimize weekly email newsletter communication frameworks.", location: "Manchester", duration: "2 Days", deadline: "30 Aug 2026", link: "https://careers.thechroniclepress.example/placements/copywriting-marketing-workshop" },
+                { title: "Social Media Outreach Coordinator", company: "Youth Sports Initiative", desc: "A highly flexible role managing communication threads, taking photos, and drafting engagement updates.", location: "Cardiff", duration: "Weekend (Flexible)", deadline: "7 Sep 2026", link: "https://careers.youthsportsinitiative.example/placements/social-media-outreach-coordinator" }
             ],
             "Art & Creative Design": [
-                { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts." },
-                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design." }
+                { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts.", location: "London", duration: "3 Days", deadline: "17 Aug 2026", link: "https://careers.pixelmediaagency.example/placements/graphic-design-insight-week" },
+                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design.", location: "Swansea", duration: "Weekend (Flexible)", deadline: "24 Aug 2026", link: "https://careers.localcommunityhub.example/placements/content-creator-assistant" },
+                { title: "Brand Identity & Layout Iteration Sprint", company: "CedarGrid Studio", desc: "Work on iterative mockups, typography selections, and layout consistency checks for small campaigns.", location: "Nottingham", duration: "2 Days", deadline: "31 Aug 2026", link: "https://careers.cedargridstudio.example/placements/brand-identity-sprint" },
+                { title: "Photo-to-Poster Conversion Session", company: "LensForge Collective", desc: "Turn raw images into polished posters, learning crop rules, contrast improvements, and export best practices.", location: "Liverpool", duration: "1 Day", deadline: "6 Sep 2026", link: "https://careers.lensforgecollective.example/placements/photo-poster-session" },
+                { title: "Content Scheduling & Creative Feedback Loop", company: "Orbit Youth Media", desc: "Observe review meetings and learn how teams turn feedback into improved posts on a weekly cadence.", location: "Belfast", duration: "1 Week", deadline: "13 Sep 2026", link: "https://careers.orbityouthmedia.example/placements/content-scheduling-feedback-loop" }
             ],
             "General Studies": [
-                { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows." }
+                { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows.", location: "London", duration: "3 Days", deadline: "27 Aug 2026", link: "https://careers.unifiedcorepartners.example/placements/business-operations-explorer" }
             ]
         };
 
@@ -1033,18 +1303,66 @@
 
             const matches = opportunityDb[subject] || [];
             const resultsContainer = document.getElementById('match-results');
-            resultsContainer.innerHTML = ''; 
+            resultsContainer.innerHTML = '';
 
-            matches.forEach(item => {
+            matches.forEach((item, idx) => {
                 const div = document.createElement('div');
-                div.className = 'match-item';
+                div.className = 'match-card';
+                const matchScore = 96 - (idx * 4);
                 div.innerHTML = `
-                    <div class="match-title">${item.title}</div>
-                    <div style="font-size: 0.85rem; font-weight: 600; opacity: 0.8; color: var(--text-muted);">${item.company}</div>
-                    <div style="margin-top: 5px; font-size: 0.95rem; color: var(--text-main);">${item.desc}</div>
+                    <div class="match-card-header">
+                        <div>
+                            <div class="match-card-title">${item.title}</div>
+                            <div class="match-card-company">${item.company}</div>
+                        </div>
+                        <span class="match-score-badge">${matchScore}% ${t.match_score_label || 'match'}</span>
+                    </div>
+                    <div class="match-card-tags">
+                        <span class="match-tag">📍 ${item.location}</span>
+                        <span class="match-tag">⏱️ ${item.duration}</span>
+                    </div>
+                    <div class="match-card-desc">${item.desc}</div>
+                    <div class="match-card-footer">
+                        <span class="match-deadline">${t.label_deadline}: ${item.deadline}</span>
+                        <a class="match-apply-link" href="${item.link}" target="_blank" rel="noopener noreferrer">${t.btn_apply} →</a>
+                    </div>
                 `;
                 resultsContainer.appendChild(div);
             });
+
+            const metaEl = document.getElementById('match-meta');
+            if (metaEl) {
+                metaEl.innerText = t.match_meta_template
+                    .replace('{count}', matches.length)
+                    .replace('{subject}', subject);
+            }
+
+            const statsEl = document.getElementById('dashboard-stats');
+            if (statsEl) {
+                statsEl.innerHTML = `
+                    <div class="stat-chip">
+                        <span class="stat-icon">🎯</span>
+                        <div>
+                            <div class="stat-label">${t.stat_subject_label}</div>
+                            <div class="stat-value">${subject}</div>
+                        </div>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-icon">📄</span>
+                        <div>
+                            <div class="stat-label">${t.stat_cv_label}</div>
+                            <div class="stat-value">${t.stat_cv_value}</div>
+                        </div>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-icon">🔗</span>
+                        <div>
+                            <div class="stat-label">${t.stat_matches_label}</div>
+                            <div class="stat-value">${matches.length}</div>
+                        </div>
+                    </div>
+                `;
+            }
 
             document.getElementById('step-1').classList.add('hidden');
             document.getElementById('step-2').classList.remove('hidden');
