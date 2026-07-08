@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVmatch - Connect Talent to Opportunity</title>
     <style>
-        /* Modern CSS Custom Property Framework for Multi-Theme Architecture */
+        /* Multi-Theme Framework */
         body[data-theme="light"] {
             --primary-blue: #2563eb;
             --primary-hover: #1d4ed8;
@@ -91,7 +91,7 @@
             width: auto;
         }
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -177,7 +177,7 @@
             font-weight: bold;
         }
 
-        /* Modernized Wizard Buttons Styling Matrix */
+        /* Wizard Buttons Styling */
         .wizard-buttons {
             display: flex;
             gap: 12px;
@@ -200,7 +200,6 @@
             margin-top: 0;
         }
 
-        /* Button Roles Rules */
         .wizard-buttons button[data-i18n="btn_generate"],
         .wizard-buttons button:not([style*="background-color"]):not(.clear-btn) {
             background-color: var(--primary-blue) !important;
@@ -295,78 +294,133 @@
             display: block;
         }
         
-        /* Premium CV Template styling rules */
+        /* RADICAL REDESIGN: Premium Split-Layout Matrix Dashboard */
+        .dashboard-layout-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+            align-items: start;
+            margin-top: 25px;
+        }
+        
+        @media (max-width: 850px) {
+            .dashboard-layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* High-End Clean Room Print-Ready CV Showcase Styles */
         .cv-document {
             background: #ffffff;
-            border: 1px solid #cbd5e0;
-            padding: 45px;
-            border-radius: 8px;
-            color: #1e293b;
-            line-height: 1.6;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            font-size: 0.95rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+            border: 1px solid #e2e8f0;
+            padding: 40px;
+            border-radius: 12px;
+            color: #0f172a;
+            line-height: 1.5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            font-size: 0.9rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
         .cv-name {
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: 800;
-            color: #0f172a;
-            text-align: center;
+            color: #1e3a8a;
+            text-align: left;
             margin: 0;
+            letter-spacing: -0.03em;
+        }
+        .cv-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2563eb;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
         }
         .cv-contact {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #475569;
-            text-align: center;
-            margin: 8px 0 20px 0;
-            border-bottom: 2px solid #0f172a;
-            padding-bottom: 16px;
-            font-weight: 500;
+            text-align: left;
+            margin: 10px 0 20px 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .cv-contact-item {
+            display: inline-flex;
+            align-items: center;
+        }
+        .cv-contact-item:not(:last-child)::after {
+            content: "•";
+            margin-left: 10px;
+            color: #cbd5e0;
         }
         .cv-personal-statement-box {
             background: #f8fafc;
-            border-left: 4px solid #1e3a8a;
-            padding: 15px 20px;
-            border-radius: 0 6px 6px 0;
-            margin-bottom: 20px;
+            border-left: 4px solid #2563eb;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 15px 0 25px 0;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
         }
         .cv-section-title {
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #1e3a8a;
-            margin-top: 28px;
+            margin-top: 24px;
             margin-bottom: 10px;
-            border-bottom: 1px solid #cbd5e0;
-            padding-bottom: 4px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
         }
         .cv-split-header {
             display: flex;
             justify-content: space-between;
             font-weight: 700;
             color: #0f172a;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .cv-split-sub {
             display: flex;
             justify-content: space-between;
             color: #475569;
             font-style: italic;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
         }
         .cv-bullet-list {
-            margin: 4px 0 14px 0;
-            padding-left: 20px;
+            margin: 4px 0 12px 0;
+            padding-left: 18px;
+            color: #334155;
         }
         .cv-bullet-list li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+        .cv-skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+        .cv-skills-row {
+            color: #334155;
         }
         
-        /* Real-time Dynamic Password Gauge Styling Layout */
+        /* Sidebar Matches Column layout */
+        .matches-sidebar-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        /* Real-time Dynamic Password Gauge Layout */
         .password-strength-row {
             margin-top: 8px;
             font-size: 0.8rem;
@@ -600,24 +654,33 @@
             </div>
         </div>
 
-        <div id="step-2" class="card hidden">
-            <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3 style="margin: 0;" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
-                <button onclick="window.print()" style="margin: 0; width: auto; padding: 10px 18px; font-size: 0.85rem; border-radius: 6px;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
+        <!-- STAGE 2 REDESIGNED: Split Screen High-Performance Application Interface -->
+        <div id="step-2" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h2>✨ <span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="window.print()" style="padding: 10px 16px; font-size: 0.85rem;" data-i18n="btn_print">🖨️ Print / Save PDF</button>
+                    <button onclick="resetApp()" style="background-color: #4b5563; padding: 10px 16px; font-size: 0.85rem;" data-i18n="btn_edit">Edit Details</button>
+                </div>
             </div>
-            
-            <div class="cv-document" id="cv-document-target"></div>
 
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 35px 0;">
+            <div class="dashboard-layout-grid">
+                <!-- Left Column: The CV Document Area -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);" data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
+                    <div class="cv-document" id="cv-document-target"></div>
+                </div>
 
-            <h3 data-i18n="dash_section_matches">2. Tailored Placement Placements</h3>
-            <div id="match-results"></div>
-
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <button onclick="resetApp()" style="background-color: #718096; margin-top: 0;" data-i18n="btn_edit">Edit Form Details</button>
-                <button onclick="logout()" style="background-color: var(--error-color); margin-top: 0; max-width: 150px;" data-i18n="btn_logout">Log Out</button>
+                <!-- Right Column: Live Placements Feed Panel -->
+                <div class="matches-sidebar-panel">
+                    <h3 style="margin-bottom: 5px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="dash_section_matches">2. Tailored Placement Placements</h3>
+                    <p style="margin-top: 0; margin-bottom: 20px; font-size: 0.85rem;">Matching programs found instantly based on your target specialization stream:</p>
+                    <div id="match-results"></div>
+                    
+                    <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px; text-align: right;">
+                        <button onclick="logout()" style="background-color: var(--error-color); width: auto; font-size: 0.85rem; padding: 10px 16px;" data-i18n="btn_logout">Log Out</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -657,8 +720,8 @@
                 label_interests: "Interests & Volunteering",
                 btn_generate: "Generate Template & View Matches",
                 dash_title: "Your CVmatch Dashboard",
-                dash_section_cv: "1. Your Formatted CV Template",
-                dash_section_matches: "2. Tailored Placements",
+                dash_section_cv: "1. Professional Document Matrix",
+                dash_section_matches: "2. Real-Time Opportunity Matches",
                 btn_print: "🖨️ Print / Save PDF",
                 btn_edit: "Edit Form Details",
                 btn_logout: "Log Out",
@@ -667,25 +730,25 @@
                 alert_welcome: "Welcome back to CVmatch!",
                 alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
                 alert_reset: "Password updated successfully! Logging you in...",
-                cv_prof_title: "Professional Summary",
-                cv_prof_desc: "A highly motivated, technically minded aspiring Software Engineer with a solid foundational understanding of programming principles, application development, and computational problem-solving. Driven by a passion for clean architecture and practical software creation, supported by hands-on engineering projects and active self-directed learning modules. Possesses sharp analytical thinking, excellent collaborative skills refined through team leadership, and a disciplined approach to managing technical workflows alongside academic deadlines. Eager to contribute a dedicated work ethic and a continuous optimization mindset to a high-performing engineering crew while rapidly accelerating professional technical competencies through a structured apprenticeship framework.",
+                cv_prof_title: "Personal Statement / Professional Profile",
+                cv_prof_desc: "Highly disciplined, technically driven aspiring Software Engineer seeking to secure a collaborative Software Engineering Apprenticeship challenge. Combines an analytical academic foundation with self-directed programming competence across fundamental web languages and software design patterns. Adept at managing structured, logical engineering workflows, diagnosing core system anomalies, and parsing functional design parameters. Proven leadership capabilities and strong teamwork mechanics refined in high-stakes environments, balancing rigorous schedules alongside rigorous performance standards. Eager to contribute an unyielding work ethic, continuous programmatic curiosity, and an optimization-oriented mindset to a dynamic, forward-thinking enterprise agile engineering workspace.",
                 cv_edu_title: "Education & Qualifications",
-                cv_edu_sub: "High School Diploma / Academic Studies",
-                cv_edu_bullet1: "Relevant Modules: Advanced focus paths in ",
-                cv_edu_bullet2: "Key Projects: Developed individual portfolio analysis which involved intensive evaluation, presentation delivery, and group collaboration.",
-                cv_ach_title: "Key Achievements",
-                cv_ach_b1: "Academic Excellence Recognition: Consistently commended for high-level module scores.",
-                cv_ach_b2: "Skills Development Award: Completed demanding core programs focusing on community engagement.",
-                cv_ach_b3: "Public Presentation Milestone: Secured highly commended positioning across evaluation panels.",
-                cv_sports_title: "Sports & Leadership",
-                cv_sports_sub: "Extracurricular Engagement",
-                cv_sports_b1: "Leadership: Collaborated with peers, co-organized weekly sessions, and motivated teams.",
-                cv_sports_b2: "Discipline: Successfully balanced regular training alongside full-time academic tasks.",
-                cv_skills_title: "Skills Inventory",
-                cv_skills_tech: "Technical Skills: Microsoft Office Suite, Digital Literacy paths, Asset formatting templates.",
-                cv_skills_soft: "Soft Skills: Teamwork built via group tasks; Reliable Time Management; Clear Communication.",
-                cv_interests_title: "Interests",
-                cv_ref: "References available upon request.",
+                cv_edu_sub: "Secondary Education & Advanced Academic Modules",
+                cv_edu_bullet1: "Relevant Specializations & Competency Pathways: Specialized training stream with focus tracks centering around ",
+                cv_edu_bullet2: "Core Technical Projects: Successfully executed structural analysis frameworks, interpreting metrics data, delivering systematic project reviews, and engaging in collaborative multi-peer validation panels.",
+                cv_ach_title: "Key Institutional Achievements",
+                cv_ach_b1: "Academic Distinction Recognition: Commended across successive terms for outstanding performance index scores within technical focus paths.",
+                cv_ach_b2: "Systems Development Milestone: Completed specialized core logic simulation challenges focusing on group operational continuity.",
+                cv_ach_b3: "Presentation Panel Commendation: Awarded distinction accolades for public technical concept presentations evaluated by external advisory boards.",
+                cv_sports_title: "Leadership Profiles & Extracurricular Alignment",
+                cv_sports_sub: "Competitive Team Dynamics & Strategic Group Alignment",
+                cv_sports_b1: "Team Operations: Actively co-coordinated schedules, cross-collaborated with peers under pressure, and fostered reliable operational patterns within structural programs.",
+                cv_sports_b2: "Time Management Execution: Consistently balanced complex strategic training modules alongside core academic study pipelines.",
+                cv_skills_title: "Skills Inventory & Core Frameworks",
+                cv_skills_tech: "Technical Capabilities: Modular Software Architecture Logic, Digital Literacy Matrix Schemes, Microsoft Office Ecosystem, Data Visualization Frameworks.",
+                cv_skills_soft: "Core Interpersonal Capabilities: Agile Team Collaboration Modalities, Iterative Project Planning, High-Clarity Peer Communication, Diagnostic Problem Solving.",
+                cv_interests_title: "Interests & Self-Directed Fields",
+                cv_ref: "Formal comprehensive professional references available immediately upon request.",
                 step1_text: "Step 1 of 3: Personal Information",
                 step2_text: "Step 2 of 3: Academic Focus",
                 step3_text: "Step 3 of 3: Extracurricular Activities"
@@ -721,8 +784,8 @@
                 label_interests: "Diddordebau a Gwirfoddoli",
                 btn_generate: "Cynhyrchu Templeg a Gweld Matchys",
                 dash_title: "Eich Dangosfwrdd CVmatch",
-                dash_section_cv: "1. Eich Templeg CV Wedi'i Fformatio",
-                dash_section_matches: "2. Lleoliadau Profiad Gwaith wedi'u Teilwra",
+                dash_section_cv: "1. Templeg Dogfen Broffesiynol",
+                dash_section_matches: "2. Lleoliadau Cyfatebol Amser Real",
                 btn_print: "🖨️ Argraffu / Cadw fel PDF",
                 btn_edit: "Golygu Manylion y Ffurflen",
                 btn_logout: "Allgofnodi",
@@ -731,25 +794,25 @@
                 alert_welcome: "Croeso nôl i CVmatch!",
                 alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
                 alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
-                cv_prof_title: "Proffil Proffesiynol",
-                cv_prof_desc: "Darpar Beiriannydd Meddalwedd llawn cymhelliant sydd â dealltwriaeth gadarn o egwyddorion rhaglennu a datblygu cymwysiadau. Gyda mwynhad mawr o adeiladu systemau ac adeiladwaith digidol ymarferol, wedi'i gefnogi gan brosiectau codio ymarferol a dysgu annibynnol parhaus. Yn meddu ar feddwl dadansoddol craff, sgiliau cydweithredu gwych, a dull disgybledig o reoli llwythi gwaith technegol ochr yn ochr â thasgau academaidd. Yn eiddgar i ddod â moeseg gwaith ymroddedig a meddylfryd optimeiddio parhaus i dîm peirianneg perfformiad uchel tra'n cyflymu cymwyseddau technegol proffesiynol trwy brentisiaeth strwythuredig.",
+                cv_prof_title: "Datganiad Personol / Proffil Proffesiynol",
+                cv_prof_desc: "Darpar Beiriannydd Meddalwedd hynod ysgogol a phenderfynol sy'n ceisio sicrhau Brentisiaeth Peirianneg Meddalwedd gydweithredol. Yn cyfuno sylfaen academaidd ddadansoddol â chymhwysedd rhaglennu hunangyfeiriedig ar draws ieithoedd gwe craidd a phatrymau dylunio meddalwedd. Sgiliau arwain profedig a gwaith tîm cryf wedi'u mireinio mewn amgylcheddau heriol, gan gydbwyso amserlenni tynn ochr yn ochr â safonau perfformiad uchel. Yn eiddgar i gyfrannu moeseg gwaith diflino, chwilfrydedd rhaglennu parhaus, a meddylfryd optimeiddio i weithle peirianneg ystwyth a blaengar.",
                 cv_edu_title: "Addysg a Chymwysterau",
-                cv_edu_sub: "Diploma Ysgol Uwchradd / Astudiaethau Academaidd",
-                cv_edu_bullet1: "Modiwlau Perthnasol: Llwybrau ffocws uwch mewn ",
-                cv_edu_bullet2: "Prosiectau Allweddol: Datblygu dadansoddiad portffolio unigol a oedd yn cynnwys gwerthuso dwys, cyflwyno, a chydweithio grŵp.",
-                cv_ach_title: "Prif Gyflawniadau",
-                cv_ach_b1: "Cydnabyddiaeth o Ragoriaeth Academaidd: Clodfori'n gyson am sgorau modiwl lefel uchel.",
-                cv_ach_b2: "Gwobr Datblygu Sgiliau: Wedi cwblhau rhaglenni craidd heriol sy'n canolbwyntio ar ymgysylltu â'r gymuned.",
-                cv_ach_b3: "Cerrig Milltir Cyflwyno Cyhoeddus: Sicrhau safle canmoladwy iawn ar draws paneli gwerthuso prosiectau.",
-                cv_sports_title: "Chwaraeon ac Arweinyddiaeth",
-                cv_sports_sub: "Ymgysylltu Allgyrsiol",
-                cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol, a hwb i grwpiau tîm.",
-                cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus ochr yn ochr â thasgau academaidd llawn amser.",
-                cv_skills_title: "Sgiliau Allweddol",
-                cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol, Templedi fformatio.",
-                cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser yn ddibynadwy; Cyfathrebu Clir.",
-                cv_interests_title: "Diddordebau",
-                cv_ref: "Geirdaon ar gael ar gais.",
+                cv_edu_sub: "Addysg Uwchradd a Modiwlau Academaidd Uwch",
+                cv_edu_bullet1: "Llwybrau Ffocws a Chymwyseddau Perthnasol: Ffrwd hyfforddi arbenigol sy'n canolbwyntio ar rannau allweddol o ",
+                cv_edu_bullet2: "Prosiectau Technegol Craidd: Gweithredu fframweithiau dadansoddi strwythuredig yn llwyddiannus, dehongli metrigau, a chymryd rhan mewn paneli gwerthuso grŵp.",
+                cv_ach_title: "Prif Gyflawniadau Sefydliadol",
+                cv_ach_b1: "Cydnabyddiaeth Ragoriaeth: Cymeradwywyd dros dermau olynol am sgorau perfformiad eithriadol o fewn llwybrau technegol.",
+                cv_ach_b2: "Cerrig Milltir Systemau: Cwblhawyd heriau efelychu rhesymeg craidd arbenigol yn canolbwyntio ar barhad gweithredol grŵp.",
+                cv_ach_b3: "Canmoliaeth Panel Cyflwyno: Dyfarnwyd anrhydeddau am gyflwyniadau cysyniad technegol cyhoeddus a werthuswyd gan fwrdd allanol.",
+                cv_sports_title: "Proffiliau Arweinyddiaeth ac Aliniad Allgyrsiol",
+                cv_sports_sub: "Dynameg Tîm Cystadleuol ac Aliniad Strategol",
+                cv_sports_b1: "Gweithrediadau Tîm: Cyd-drefnu amserlenni dros amser, cydweithio â chyfoedion o dan bwysau, a meithrin patrymau dibynadwy.",
+                cv_sports_b2: "Rheoli Amser yn Effeithiol: Cydbwyso modiwlau hyfforddi cymhleth ochr yn ochr â phiblinellau astudio academaidd craidd yn gyson.",
+                cv_skills_title: "Rhestr Sgiliau a Fframweithiau",
+                cv_skills_tech: "Sgiliau Technegol: Rhesymeg Pensaernïaeth Meddalwedd, Llwybrau Llythrennedd Digidol, Ecosystem Microsoft Office, Delweddu Data.",
+                cv_skills_soft: "Sgiliau Rhyngbersonol: Cydweithrediad Tîm Ystwyth, Cynllunio Prosiectau Iteratfol, Cyfathrebu Clir, Datrys Problemau Diagnostig.",
+                cv_interests_title: "Diddordebau a Meysydd Hunangyfeiriedig",
+                cv_ref: "Geirdaon proffesiynol ffurfiol cynhwysfawr ar gael ar unwaith ar gais.",
                 step1_text: "Cam 1 o 3: Gwybodaeth Bersonol",
                 step2_text: "Cam 2 o 3: Ffocws Academaidd",
                 step3_text: "Cam 3 o 3: Gweithgareddau Allgyrsiol"
@@ -964,13 +1027,17 @@
             
             cvTarget.innerHTML = `
                 <div class="cv-name">${first} ${last}</div>
+                <div class="cv-subtitle">Aspiring Systems & Software Apprentice</div>
                 <div class="cv-contact">
-                    ${loc} | ${phone} | ${email} ${linkedin ? `| ${linkedin}` : ''}
+                    <span class="cv-contact-item">${loc}</span>
+                    <span class="cv-contact-item">${phone}</span>
+                    <span class="cv-contact-item">${email}</span>
+                    ${linkedin ? `<span class="cv-contact-item">${linkedin}</span>` : ''}
                 </div>
 
                 <div class="cv-section-title">${t.cv_prof_title}</div>
                 <div class="cv-personal-statement-box">
-                    <p style="margin: 0; text-align: justify; color: #334155; font-size: 0.95rem;">${t.cv_prof_desc}</p>
+                    <p style="margin: 0; text-align: justify; color: #1e293b; font-size: 0.9rem; font-weight: 500; line-height: 1.6;">${t.cv_prof_desc}</p>
                 </div>
 
                 <div class="cv-section-title">${t.cv_edu_title}</div>
@@ -983,7 +1050,7 @@
                     <div>September 2024 – Present</div>
                 </div>
                 <ul class="cv-bullet-list">
-                    <li><strong>Grades:</strong> ${grades}</li>
+                    <li><strong>Academic Record Standards:</strong> Currently tracking at ${grades}.</li>
                     <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
                     <li>${t.cv_edu_bullet2}</li>
                 </ul>
@@ -998,7 +1065,7 @@
                 <div class="cv-section-title">${t.cv_sports_title}</div>
                 <div class="cv-split-header">
                     <div>${sports}</div>
-                    <div>Active Contributor</div>
+                    <div>Active Core Contributor</div>
                 </div>
                 <div class="cv-split-sub">
                     <div>${t.cv_sports_sub}</div>
@@ -1010,15 +1077,15 @@
                 </ul>
 
                 <div class="cv-section-title">${t.cv_skills_title}</div>
-                <div style="margin-top: 5px; font-size: 0.95rem; color: #1e293b;">
-                    <strong>${t.cv_skills_tech}</strong><br>
-                    <strong style="display: block; margin-top: 4px;">${t.cv_skills_soft}</strong>
+                <div class="cv-skills-grid">
+                    <div class="cv-skills-row"><strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
+                    <div class="cv-skills-row"><strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
                 </div>
 
                 <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 0 0 15px 0; color: #1e293b;">${interests}</p>
+                <p style="margin: 4px 0 15px 0; color: #334155; font-size: 0.85rem;">${interests}</p>
 
-                <div style="text-align: center; font-style: italic; font-size: 0.9rem; color: #64748b; margin-top: 25px; border-top: 1px dashed #cbd5e0; padding-top: 15px;">
+                <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 25px; border-top: 2px solid #e2e8f0; padding-top: 15px;">
                     ${t.cv_ref}
                 </div>
             `;
