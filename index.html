@@ -6,46 +6,49 @@
     <title>CVmatch - Connect Talent to Opportunity</title>
     <style>
         /* Modern CSS Custom Property Framework for Multi-Theme Architecture */
+        /* Monochrome professional palette: neutral greys/blacks for brand & UI chrome,
+           with a small desaturated green/red reserved for meaningful status signals
+           (form validation, password strength, match results). */
         body[data-theme="light"] {
-            --primary-blue: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-green: #10b981;
-            --dark-blue: #0f172a;
-            --light-bg: #f8fafc;        /* FIXED: True light background */
-            --card-bg: #ffffff;          /* FIXED: Clean white card background */
-            --text-main: #0f172a;        /* FIXED: Dark readable text */
-            --text-muted: #64748b;       /* FIXED: Balanced muted text */
-            --border-color: #e2e8f0;     /* FIXED: Light border styling */
-            --progress-empty: #e2e8f0;   /* FIXED: Clear progress channel */
-            --error-color: #ef4444;
-            --danger-hover: #dc2626;
+            --primary-blue: #18181b;
+            --primary-hover: #000000;
+            --primary-green: #3f6212;
+            --dark-blue: #09090b;
+            --light-bg: #f4f4f5;
+            --card-bg: #ffffff;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --border-color: #e4e4e7;
+            --progress-empty: #e4e4e7;
+            --error-color: #b91c1c;
+            --danger-hover: #7f1d1d;
         }
         body[data-theme="dark"] {
-            --primary-blue: #38bdf8;
-            --primary-hover: #0284c7;
-            --primary-green: #34d399;
-            --dark-blue: #f8fafc;
-            --light-bg: #030712;
-            --card-bg: #111827;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border-color: #374151;
-            --progress-empty: #374151;
+            --primary-blue: #52525b;
+            --primary-hover: #71717a;
+            --primary-green: #84cc16;
+            --dark-blue: #fafafa;
+            --light-bg: #09090b;
+            --card-bg: #18181b;
+            --text-main: #fafafa;
+            --text-muted: #a1a1aa;
+            --border-color: #27272a;
+            --progress-empty: #27272a;
             --error-color: #f87171;
             --danger-hover: #dc2626;
         }
         body[data-theme="slate"] {
-            --primary-blue: #6366f1;
-            --primary-hover: #4f46e5;
-            --primary-green: #10b981;
-            --dark-blue: #0f172a;
-            --light-bg: #1e1e24;
-            --card-bg: #2a2a35;
-            --text-main: #f8fafc;
+            --primary-blue: #3f3f46;
+            --primary-hover: #27272a;
+            --primary-green: #65a30d;
+            --dark-blue: #f4f4f5;
+            --light-bg: #1c1c1f;
+            --card-bg: #29292e;
+            --text-main: #f4f4f5;
             --text-muted: #a1a1aa;
             --border-color: #3f3f46;
             --progress-empty: #3f3f46;
-            --error-color: #ef4444;
+            --error-color: #f87171;
             --danger-hover: #dc2626;
         }
 
@@ -67,12 +70,27 @@
             transition: background-color 0.3s;
             border-bottom: 1px solid var(--border-color);
         }
-        .logo-container {
-            max-width: 160px;
+        .logo-wordmark {
+            display: flex;
+            align-items: baseline;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            user-select: none;
         }
-        .logo-container img {
-            width: 100%;
-            height: auto;
+        .logo-wordmark .logo-mark {
+            color: var(--card-bg);
+            background: var(--text-main);
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 1.05rem;
+            margin-right: 8px;
+            line-height: 1;
+        }
+        .logo-wordmark .logo-rest {
+            color: var(--text-main);
+            font-weight: 600;
         }
         .controls-panel {
             display: flex;
@@ -157,7 +175,7 @@
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.25);
         }
         input.touched:valid, textarea.touched:valid {
             border-color: var(--primary-green);
@@ -205,7 +223,7 @@
         .wizard-buttons button:not([style*="background-color"]):not(.clear-btn) {
             background-color: var(--primary-blue) !important;
             color: #ffffff !important;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
             flex: 2;
         }
         .wizard-buttons button[data-i18n="btn_generate"]:hover,
@@ -251,7 +269,7 @@
         }
         .match-item {
             border-left: 4px solid var(--primary-green);
-            background: rgba(16, 185, 129, 0.08);
+            background: rgba(132, 204, 22, 0.06);
             padding: 20px;
             margin-top: 15px;
             border-radius: 0 8px 8px 0;
@@ -403,22 +421,21 @@
         }
     </style>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
 
     <header>
-         <div style="display: flex; align-items: center; gap: 12px;">
-         <img src="logo.png" alt="CVmatch Logo" style="height: 40px; border-radius: 4px;">
-        <span style="font-size: 24px; font-weight: bold; color: #ffffff; font-family: sans-serif;">CVmatch</span>
-</div>
+        <div class="logo-wordmark">
+            <span class="logo-mark">CV</span><span class="logo-rest">match</span>
+        </div>
         <div class="controls-panel">
             <select id="lang-selector" onchange="changeLanguage(this.value)">
                 <option value="en">English</option>
                 <option value="cy">Cymraeg (Welsh)</option>
             </select>
             <select id="theme-selector" onchange="changeTheme(this.value)">
-                <option value="dark">🌙 Dark Theme</option>
-                <option value="light">☀️ Light Theme</option>
-                <option value="slate">🔷 Slate Blue</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="slate">Charcoal</option>
             </select>
         </div>
     </header>
