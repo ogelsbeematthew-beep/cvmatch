@@ -374,7 +374,7 @@
             .dashboard-header { flex-direction: column; }
             .dashboard-footer { flex-direction: column; align-items: stretch; }
             .dashboard-stats { flex-direction: column; }
-            .cv-document { padding: 20px !important; }
+            .cv-document { padding: 30px 25px !important; }
         }
 
         .dashboard-stats {
@@ -529,55 +529,57 @@
         }
 
         /* -------------------------------------------------------------
-           PREMIUM DYNAMIC CV DOCUMENT TYPOGRAPHY & LAYOUT UPGRADES
+           PREMIUM DYNAMIC CV DOCUMENT EDITORIAL TYPOGRAPHY OVERHAUL
         ------------------------------------------------------------- */
         .cv-document {
             background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 45px 50px;
-            border-radius: 8px;
-            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            padding: 50px 55px;
+            border-radius: 12px;
+            color: #334155;
             line-height: 1.6;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             font-size: 0.92rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
             letter-spacing: -0.01em;
         }
         .cv-name {
-            font-size: 2.25rem;
-            font-weight: 800;
+            font-size: 2.5rem;
+            font-weight: 900;
             color: #0f172a;
             text-align: center;
             margin: 0;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
+            text-transform: tracking;
         }
         .cv-contact {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: #64748b;
             text-align: center;
-            margin: 6px 0 24px 0;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 16px;
-            font-weight: 500;
+            margin: 8px 0 32px 0;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
         }
         .cv-section-title {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 0.85rem;
+            font-weight: 800;
             color: #0f172a;
-            margin-top: 24px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #0f172a;
-            padding-bottom: 3px;
+            margin-top: 32px;
+            margin-bottom: 14px;
+            padding-left: 12px;
+            border-left: 3px solid #0f172a;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.1em;
         }
         .cv-split-header {
             display: flex;
             justify-content: space-between;
             font-weight: 700;
             color: #0f172a;
-            margin-top: 10px;
-            font-size: 0.96rem;
+            margin-top: 14px;
+            font-size: 0.98rem;
         }
         .cv-split-sub {
             display: flex;
@@ -589,21 +591,27 @@
             margin-bottom: 8px;
         }
         .cv-bullet-list {
-            margin: 6px 0 14px 0;
-            padding-left: 18px;
+            margin: 8px 0 16px 0;
+            padding-left: 16px;
         }
         .cv-bullet-list li {
-            margin-bottom: 5px;
-            color: #334155;
+            margin-bottom: 6px;
+            color: #475569;
+            list-style-type: square;
         }
         .cv-bullet-list li strong {
             color: #0f172a;
+            font-weight: 600;
         }
         .cv-skills-grid {
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 0.92rem;
-            color: #334155;
-            line-height: 1.5;
+            color: #475569;
+            line-height: 1.6;
+            background: #f8fafc;
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
         }
         
         .password-strength-row {
@@ -1251,7 +1259,7 @@
                 </div>
 
                 <div class="cv-section-title">${t.cv_prof_title}</div>
-                <p style="margin: 0 0 16px 0; text-align: justify; color: #334155;">${t.cv_prof_desc}</p>
+                <p style="margin: 0 0 16px 0; text-align: justify; color: #475569;">${t.cv_prof_desc}</p>
 
                 <div class="cv-section-title">${t.cv_edu_title}</div>
                 <div class="cv-split-header">
@@ -1292,13 +1300,13 @@
                 <div class="cv-section-title">${t.cv_skills_title}</div>
                 <div class="cv-skills-grid">
                     <div>• <strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
-                    <div style="margin-top: 4px;">• <strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
+                    <div style="margin-top: 6px;">• <strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
                 </div>
 
                 <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 0 0 16px 0; color: #334155;">${interests}</p>
+                <p style="margin: 0 0 16px 0; color: #475569;">${interests}</p>
 
-                <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 30px; border-top: 1px dashed #e2e8f0; padding-top: 15px;">
+                <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 35px; border-top: 1px dashed #cbd5e1; padding-top: 20px;">
                     ${t.cv_ref}
                 </div>
             `;
