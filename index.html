@@ -918,7 +918,42 @@
             </div>
         </div>
     </div>
+<script>
+// Password Strength Meter
+(function() {
+    const passwordInput = document.getElementById('auth-password-signup');
+    const strengthBar = document.getElementById('strength-bar-fill');
+    const strengthText = document.getElementById('strength-text');
 
+    if (passwordInput && strengthBar && strengthText) {
+        passwordInput.addEventListener('input', function() {
+            const val = this.value;
+            let width = "0%";
+            let color = "transparent";
+            let label = "Strength: Empty";
+
+            if (val.length > 0) {
+                if (val.length < 6) {
+                    width = "30%";
+                    color = "red";
+                    label = "Strength: Weak";
+                } else if (val.length < 10) {
+                    width = "60%";
+                    color = "orange";
+                    label = "Strength: Fair";
+                } else {
+                    width = "100%";
+                    color = "green";
+                    label = "Strength: Strong";
+                }
+            }
+            strengthBar.style.width = width;
+            strengthBar.style.backgroundColor = color;
+            strengthText.textContent = label;
+        });
+    }
+})();
+</script>
    <script>
         let currentLang = 'en';
         const i18n = {
@@ -1272,6 +1307,7 @@
             if (counterSpan) {
                 input.addEventListener('input', () => {
                     counterSpan.textContent = input.value.length;
+                    
                 });
             }
         });
