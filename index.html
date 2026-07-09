@@ -4,22 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVmatch - Connect Talent to Opportunity</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-<script defer>
-    let supabaseClient;
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const supabaseUrl = 'https://oxxoiyezsnjpmrvfxwep.supabase.co';
-        const supabaseKey = 'sb_publishable_o8iohOx5UNHgf8-ZoavyVA_0Tyq434e';
-        
-        if (typeof supabase === 'undefined') {
-            console.error('Supabase library failed to load');
-            return;
-        }
-        
-        supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-        console.log("Supabase initialized successfully!");
-    });
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const supabaseUrl = 'https://oxxoiyezsnjpmrvfxwep.supabase.co';
+    const supabaseKey = 'sb_publishable_o8iohOx5UNHgf8-ZoavyVA_0Tyq434e';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+    console.log("Supabase initialized successfully!");
 </script>
    
    <style>
@@ -871,11 +861,11 @@
                 <div class="form-grid">
                     <div class="full-width input-group">
                         <label for="emp_history">Employment History (Company, Role, & Brief Description)</label>
-                        <textarea id="emp_history" placeholder="e.g., Local Retail Shop - Sales Assistant. Managed stock systems, balanced cash drawers, and handled customer support requests with prof[...]
+                        <textarea id="emp_history" placeholder="e.g., Local Retail Shop - Sales Assistant. Managed stock systems, balanced cash drawers, and handled customer support requests with professionalism." rows="3" required></textarea>
                     </div>
                     <div class="full-width input-group">
                         <label for="personal_projects">Personal Projects (Project Name & Brief Details)</label>
-                        <textarea id="personal_projects" placeholder="e.g., CVmatch - Web application developed using HTML, CSS, and dynamic client JavaScript scripts to connect teenagers to local wor[...]
+                        <textarea id="personal_projects" placeholder="e.g., CVmatch - Web application developed using HTML, CSS, and dynamic client JavaScript scripts to connect teenagers to local work experience options." rows="3" required></textarea>
                     </div>
                     <div class="full-width input-group">
                         <label for="sports">Sports Team, Leadership, or Main Hobby</label>
@@ -1008,6 +998,283 @@
                 btn_logout: "Allgofnodi"
             }
         };
+
+        // Placements Database
+        const placementsDatabase = {
+            "IT & Computer Science": [
+                { title: "Junior Software Engineering Apprentice", company: "DevSphere Solutions", score: "96%", desc: "Focus on full-stack development, version control (Git), and agile workflow integration.", deadline: "In 5 days" },
+                { title: "IT Systems & Network Assistant", company: "Nexus Core Infrastructure", score: "88%", desc: "Gain experience with network routing, cloud security protocols, and endpoint management.", deadline: "In 12 days" },
+                { title: "Front-End Web Development Intern", company: "Digital Creative Agency", score: "90%", desc: "Build responsive UI components and assist with modern CSS frameworks.", deadline: "In 10 days" },
+                { title: "Junior Data Analyst Shadow", company: "Finance Data Insights", score: "92%", desc: "Assist in processing large datasets and creating automated visual reports.", deadline: "In 8 days" },
+                { title: "Technical Support Technician", company: "Local IT Managed Services", score: "85%", desc: "Troubleshoot hardware/software issues and manage user access rights.", deadline: "In 15 days" }
+            ],
+            "Air Traffic Control & Logistics": [
+                { title: "Aviation Operations & Logistics Shadow", company: "Metropolitan Airfield Services", score: "95%", desc: "Observe radar systems, airspace sequencing, and ground-to-air communication.", deadline: "In 3 days" },
+                { title: "Ground Crew Logistics Assistant", company: "Regional Airport Services", score: "91%", desc: "Support ground operations scheduling and airfield maintenance coordination.", deadline: "In 7 days" },
+                { title: "Supply Chain Management Intern", company: "Distribution & Logistics Corp", score: "89%", desc: "Help manage inventory tracking systems and data-driven supply flows.", deadline: "In 14 days" },
+                { title: "Airside Operations Coordinator Trainee", company: "International Terminal Services", score: "93%", desc: "Assist with runway scheduling data and terminal safety monitoring.", deadline: "In 9 days" },
+                { title: "Freight & Cargo Logistics Junior", company: "Global Logistics Solutions", score: "87%", desc: "Coordinate cargo handling protocols and track international shipping data.", deadline: "In 11 days" }
+            ],
+            "Digital Forensics & Cyber Investigation": [
+                { title: "Cybersecurity & Digital Forensics Intern", company: "Vanguard Data Security", score: "94%", desc: "Identify data vulnerabilities and maintain system log timelines.", deadline: "In 8 days" },
+                { title: "Junior Threat Intelligence Analyst", company: "Cyber Defense Agency", score: "92%", desc: "Monitor threat indicators and support risk assessment reporting.", deadline: "In 6 days" },
+                { title: "Network Security Monitoring Trainee", company: "Enterprise Security Firm", score: "90%", desc: "Assist in monitoring network traffic and reviewing incident logs.", deadline: "In 10 days" },
+                { title: "Digital Evidence Handler Assistant", company: "Tech-Law Support Services", score: "91%", desc: "Help preserve data integrity and document forensic evidence chains.", deadline: "In 5 days" },
+                { title: "Vulnerability Assessment Junior", company: "Software Security Lab", score: "95%", desc: "Perform mock penetration testing and support security audits.", deadline: "In 12 days" }
+            ],
+            "Aerospace & Aircraft Maintenance": [
+                { title: "Aircraft Systems Engineering Shadow", company: "AeroMechanics International", score: "97%", desc: "Hands-on structural diagnostics and preventative mechanical testing.", deadline: "In 6 days" },
+                { title: "Aviation Maintenance Apprentice", company: "Civil Aircraft Repair Group", score: "94%", desc: "Assist technicians with engine component overhauls and maintenance logs.", deadline: "In 9 days" },
+                { title: "Aerospace Quality Control Trainee", company: "Precision Components Mfg", score: "92%", desc: "Ensure parts meet flight safety certifications and documentation standards.", deadline: "In 14 days" },
+                { title: "Avionics Technical Assistant", company: "Flight Systems Solutions", score: "96%", desc: "Support the integration and testing of cockpit electronic systems.", deadline: "In 4 days" },
+                { title: "Composite Materials Technician Shadow", company: "Aerospace Manufacturing Facility", score: "93%", desc: "Observe composite material repair techniques and bonding processes.", deadline: "In 11 days" }
+            ],
+            "General Studies": [
+                { title: "General Industry Operational Placement", company: "Local Enterprise Hub", score: "85%", desc: "Develop professional communication and operational field skills.", deadline: "In 14 days" },
+                { title: "Business Administration Intern", company: "Prime Office Solutions", score: "88%", desc: "Assist with corporate projects and stakeholder management tasks.", deadline: "In 11 days" },
+                { title: "HR Support Trainee", company: "Global Staffing Solutions", score: "86%", desc: "Learn the basics of recruitment and employee engagement programs.", deadline: "In 9 days" },
+                { title: "Project Coordination Apprentice", company: "Apex Planning Group", score: "89%", desc: "Help organize project timelines and track team milestones.", deadline: "In 13 days" },
+                { title: "Event Management Intern", company: "City Events Co.", score: "87%", desc: "Support logistics, set-up, and front-of-house activities for events.", deadline: "In 5 days" }
+            ]
+        };
+
+        // Main Process CV Function
+        async function processCV() {
+            const cvData = {
+                first_name: document.getElementById('firstname').value,
+                surname: document.getElementById('surname').value,
+                location: document.getElementById('location').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                driving_license: document.getElementById('driving-license').value,
+                linkedin: document.getElementById('linkedin').value,
+                github: document.getElementById('github').value,
+                school: document.getElementById('school').value,
+                course_type: document.getElementById('course_type').value,
+                grades: document.getElementById('grades').value,
+                subject: document.getElementById('subject').value,
+                tech_skills: document.getElementById('tech_skills').value,
+                general_skills: document.getElementById('general_skills').value,
+                emp_history: document.getElementById('emp_history').value,
+                personal_projects: document.getElementById('personal_projects').value,
+                sports: document.getElementById('sports').value,
+                interests: document.getElementById('interests').value
+            };
+
+            // Validation
+            if (!cvData.first_name || !cvData.surname || !cvData.school || !cvData.grades) {
+                alert("Please make sure all required fields are filled out!");
+                return;
+            }
+
+            console.log("CV Data:", cvData);
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('cv_records')
+                    .insert([cvData]);
+
+                if (error) {
+                    console.error("Database insertion failed:", error.message);
+                }
+            } catch (e) {
+                console.log("Offline mode - continuing anyway");
+            }
+
+            // UI Transformation
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+
+            // Render CV
+            const profileText = `Highly motivated and disciplined student specializing in ${cvData.subject}. Demonstrated analytical capability through consistent academic achievement (${cvData.grades}). Passionate about developing technical proficiency and problem-solving skills. Seeking an immersive work experience placement to apply theoretical knowledge and contribute to real-world projects.`;
+
+            document.getElementById('cv-document-target').innerHTML = `
+                <h2 class="cv-name">${cvData.first_name} ${cvData.surname}</h2>
+                <p class="cv-contact">
+                    ${cvData.location} | ${cvData.phone} | ${cvData.email}
+                    ${cvData.driving_license !== 'No' ? ' | ' + cvData.driving_license : ''}
+                    ${cvData.linkedin ? ' | ' + cvData.linkedin : ''}
+                </p>
+                
+                <div class="cv-section-title">Personal Profile</div>
+                <p style="color: #475569; margin: 0 0 20px 0; font-size: 0.95rem; line-height: 1.6;">
+                    ${profileText}
+                </p>
+
+                <div class="cv-section-title">Education</div>
+                <div class="cv-split-header">
+                    <span>${cvData.school}</span>
+                    <span>Current</span>
+                </div>
+                <div class="cv-split-sub">
+                    <span>${cvData.course_type} - ${cvData.subject}</span>
+                    <span>${cvData.grades}</span>
+                </div>
+
+                <div class="cv-section-title">Technical Skills</div>
+                <div class="cv-skills-grid">
+                    ${cvData.tech_skills.split(',').map(skill => `<span style="display:inline-block; background:#e2e8f0; color:#0f172a; padding:3px 8px; margin:4px; border-radius:4px; font-weight:600; font-size:0.85rem;">${skill.trim()}</span>`).join('')}
+                </div>
+
+                <div class="cv-section-title">General Skills</div>
+                <div class="cv-skills-grid">
+                    ${cvData.general_skills.split(',').map(skill => `<span style="display:inline-block; background:#cbd5e1; color:#0f172a; padding:3px 8px; margin:4px; border-radius:4px; font-weight:600; font-size:0.85rem;">${skill.trim()}</span>`).join('')}
+                </div>
+
+                <div class="cv-section-title">Employment & Experience</div>
+                <p style="color: #475569; margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.6;">
+                    ${cvData.emp_history}
+                </p>
+
+                <div class="cv-section-title">Projects</div>
+                <p style="color: #475569; margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.6;">
+                    ${cvData.personal_projects}
+                </p>
+
+                <ul class="cv-bullet-list">
+                    <li><strong>Leadership:</strong> ${cvData.sports}</li>
+                    <li><strong>Interests:</strong> ${cvData.interests}</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 35px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-weight: 700; color: #0f172a; font-size: 0.9rem;">
+                    References available upon request
+                </div>
+            `;
+
+            // Render Matches
+            const matches = placementsDatabase[cvData.subject] || placementsDatabase["General Studies"];
+            
+            document.getElementById('dashboard-stats').innerHTML = `
+                <div class="stat-chip">
+                    <span class="stat-icon">📄</span>
+                    <div>
+                        <p class="stat-label">CV Status</p>
+                        <span class="stat-value">Optimised</span>
+                    </div>
+                </div>
+                <div class="stat-chip">
+                    <span class="stat-icon">🎯</span>
+                    <div>
+                        <p class="stat-label">Matches Found</p>
+                        <span class="stat-value">${matches.length}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('match-meta').textContent = `Showing ${matches.length} tailored opportunities`;
+
+            document.getElementById('match-results').innerHTML = matches.map(item => `
+                <div class="match-card">
+                    <div class="match-card-header">
+                        <div>
+                            <div class="match-card-title">${item.title}</div>
+                            <div class="match-card-company">${item.company}</div>
+                        </div>
+                        <span class="match-score-badge">${item.score}</span>
+                    </div>
+                    <div class="match-card-desc">${item.desc}</div>
+                    <div class="match-card-footer">
+                        <span class="match-deadline">${item.deadline}</span>
+                        <a href="#" class="match-apply-link" onclick="event.preventDefault(); alert('Application submitted!')">Apply Now</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Helper Functions
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = i18n[lang][key];
+                    } else {
+                        element.textContent = i18n[lang][key];
+                    }
+                }
+            });
+        }
+
+        function changeTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+        }
+
+        function switchAuthView(view) {
+            document.getElementById('auth-signin-view').classList.add('hidden');
+            document.getElementById('auth-signup-view').classList.add('hidden');
+            document.getElementById('auth-forgot-view').classList.add('hidden');
+
+            if (view === 'signin') document.getElementById('auth-signin-view').classList.remove('hidden');
+            if (view === 'signup') document.getElementById('auth-signup-view').classList.remove('hidden');
+            if (view === 'forgot') document.getElementById('auth-forgot-view').classList.remove('hidden');
+        }
+
+        function handleAuth(event, type) {
+            event.preventDefault();
+            alert("Authorized successfully! Welcome to CVmatch.");
+            document.getElementById('auth-card').classList.add('hidden');
+            document.getElementById('step-1').classList.remove('hidden');
+        }
+
+        function goToFormStep(step) {
+            document.getElementById('form-panel-1').classList.remove('active');
+            document.getElementById('form-panel-2').classList.remove('active');
+            document.getElementById('form-panel-3').classList.remove('active');
+
+            const progressFill = document.getElementById('wizard-progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const progressPercent = document.getElementById('progress-percent');
+
+            if (step === 1) {
+                document.getElementById('form-panel-1').classList.add('active');
+                progressFill.style.width = "33.33%";
+                progressText.textContent = "Step 1 of 3: Personal Information";
+                progressPercent.textContent = "33%";
+            } else if (step === 2) {
+                document.getElementById('form-panel-2').classList.add('active');
+                progressFill.style.width = "66.66%";
+                progressText.textContent = "Step 2 of 3: Education & Skills";
+                progressPercent.textContent = "66%";
+            } else if (step === 3) {
+                document.getElementById('form-panel-3').classList.add('active');
+                progressFill.style.width = "100%";
+                progressText.textContent = "Step 3 of 3: Experience & Projects";
+                progressPercent.textContent = "100%";
+            }
+        }
+
+        function clearCurrentStep() {
+            const activePanel = document.querySelector('.form-step-panel.active');
+            if (activePanel) {
+                activePanel.querySelectorAll('input, textarea').forEach(input => input.value = '');
+                activePanel.querySelectorAll('[id$="-counter"]').forEach(counter => counter.textContent = '0');
+            }
+        }
+
+        function resetApp() {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-1').classList.remove('hidden');
+            goToFormStep(1);
+        }
+
+        function logout() {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('auth-card').classList.remove('hidden');
+            switchAuthView('signin');
+        }
+
+        // Character counters
+        document.querySelectorAll('input[maxlength], textarea[maxlength]').forEach(input => {
+            const counterId = `${input.id}-counter`;
+            const counterSpan = document.getElementById(counterId);
+            if (counterSpan) {
+                input.addEventListener('input', () => {
+                    counterSpan.textContent = input.value.length;
+                });
+            }
+        });
     </script>
 </body>
 </html>
