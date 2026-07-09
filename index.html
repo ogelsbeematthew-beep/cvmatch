@@ -962,21 +962,93 @@
             }
         };
 
+       // 1. Expanded Database for more tailored placements
         const placementsDatabase = {
             "IT & Computer Science": [
-                { title: "Junior Software Engineering Apprentice", company: "DevSphere Solutions", score: "96%", desc: "Shadow full-stack developers, assist with version control configuration, and debug web application frontends.", deadline: "In 5 days" },
-                { title: "IT Systems & Network Assistant", company: "Nexus Core Infrastructure", score: "88%", desc: "Gain hands-on experience tracking hardware routing protocols, administering relational databases, and configuring endpoints.", deadline: "In 12 days" }
+                { title: "Junior Software Engineering Apprentice", company: "DevSphere Solutions", score: "96%", desc: "Focus on full-stack development, version control (Git), and agile workflow integration.", deadline: "In 5 days" },
+                { title: "IT Systems & Infrastructure Assistant", company: "Nexus Core", score: "88%", desc: "Gain experience with network routing, cloud security protocols, and endpoint management.", deadline: "In 12 days" },
+                { title: "Data Analyst Junior Intern", company: "Insight Metrics", score: "92%", desc: "Assist in processing large datasets, SQL querying, and creating automated visual reports.", deadline: "In 8 days" }
             ],
             "Air Traffic Control & Logistics": [
-                { title: "Aviation Operations & Logistics Shadow", company: "Metropolitan Airfield Services", score: "95%", desc: "Observe simulated radar operations, airspace layout management, and coordinate data streams with senior controllers.", deadline: "In 3 days" }
+                { title: "Aviation Operations Shadow", company: "Metropolitan Airfield", score: "95%", desc: "Observe radar systems, airspace sequencing, and ground-to-air communication logistics.", deadline: "In 3 days" },
+                { title: "Logistics & Supply Chain Trainee", company: "Global Freight Systems", score: "90%", desc: "Coordinate warehouse data flows, inventory tracking systems, and international shipping protocols.", deadline: "In 10 days" }
             ],
             "Digital Forensics & Cyber Investigation": [
-                { title: "Cybersecurity & Digital Forensics Intern", company: "Vanguard Data Security", score: "94%", desc: "Learn to identify data vulnerabilities, preserve system log timelines, and trace mock digital entry points cleanly.", deadline: "In 8 days" }
+                { title: "Cybersecurity Analyst Intern", company: "Vanguard Security", score: "94%", desc: "Learn to identify system vulnerabilities, monitor firewalls, and maintain digital audit logs.", deadline: "In 8 days" },
+                { title: "Digital Forensics Lab Assistant", company: "SecureData Labs", score: "97%", desc: "Assist in imaging hard drives, recovering deleted files, and documenting forensic evidence chains.", deadline: "In 6 days" }
             ],
             "Aerospace & Aircraft Maintenance": [
-                { title: "Aircraft Systems Engineering Shadow", company: "AeroMechanics International", score: "97%", desc: "Assist avionics technicians with structural diagnostics, engine component overhauls, and preventative mechanical testing.", deadline: "In 6 days" }
+                { title: "Avionics Systems Apprentice", company: "AeroMechanics International", score: "97%", desc: "Hands-on structural diagnostics, engine component maintenance, and flight safety testing.", deadline: "In 6 days" }
             ]
         };
+
+        // 2. The Enhanced Process Function
+        async function processCV() {
+            const cvData = {
+                first_name: document.getElementById('firstname').value,
+                surname: document.getElementById('surname').value,
+                location: document.getElementById('location').value,
+                phone: document.getElementById('phone').value,
+                linkedin: document.getElementById('linkedin').value,
+                school: document.getElementById('school').value,
+                subject: document.getElementById('subject').value,
+                grades: document.getElementById('grades').value,
+                sports: document.getElementById('sports').value,
+                interests: document.getElementById('interests').value,
+                email: document.getElementById('email') ? document.getElementById('email').value : ''
+            };
+
+            // Enhanced Personal Statement Generator
+            const personalStatement = `Highly motivated and disciplined student specializing in <strong>${cvData.subject}</strong>. 
+            Demonstrated analytical capability through a consistent academic track record (${cvData.grades}) and active leadership roles in 
+            <strong>${cvData.sports}</strong>. Passionate about <strong>${cvData.interests}</strong>, with a commitment to 
+            developing technical proficiency and problem-solving skills. Seeking an immersive work experience placement to apply 
+            theoretical knowledge in a professional environment, contribute to real-world projects, and further develop professional 
+            industry standards.`;
+
+            // UI Transformation
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+
+            // Render detailed CV
+            document.getElementById('cv-document-target').innerHTML = `
+                <h2 class="cv-name">${cvData.first_name} ${cvData.surname}</h2>
+                <p class="cv-contact">${cvData.location} | ${cvData.phone} | ${cvData.email} ${cvData.linkedin ? ' | ' + cvData.linkedin : ''}</p>
+                
+                <div class="cv-section-title">Education & Academic Record</div>
+                <div class="cv-split-header"><span>${cvData.school}</span><span>Present</span></div>
+                <div class="cv-split-sub"><span>Focus Area: ${cvData.subject}</span><span>Performance: ${cvData.grades}</span></div>
+
+                <div class="cv-section-title">Leadership & Extracurriculars</div>
+                <ul class="cv-bullet-list">
+                    <li><strong>Key Activity:</strong> ${cvData.sports}</li>
+                    <li><strong>Demonstrated Skills:</strong> High levels of reliability, teamwork, and proactive communication.</li>
+                    <li><strong>Extracurricular Focus:</strong> Dedicated pursuit of knowledge in ${cvData.interests}.</li>
+                </ul>
+
+                <div class="cv-section-title">Professional Profile</div>
+                <p style="color: #475569; margin: 0; font-size: 0.95rem; line-height: 1.6;">${personalStatement}</p>
+            `;
+
+            // Render expanded matches
+            const matches = placementsDatabase[cvData.subject] || [];
+            document.getElementById('match-results').innerHTML = matches.length > 0 ? matches.map(item => `
+                <div class="match-card">
+                    <div class="match-card-header">
+                        <div>
+                            <div class="match-card-title">${item.title}</div>
+                            <div class="match-card-company">${item.company}</div>
+                        </div>
+                        <span class="match-score-badge">${item.score} Match</span>
+                    </div>
+                    <div class="match-card-desc">${item.desc}</div>
+                    <div class="match-card-footer">
+                        <span class="match-deadline">Apply ${item.deadline}</span>
+                        <a href="#" class="match-apply-link" onclick="event.preventDefault(); alert('Application sent to ${item.company}!')">Apply Now</a>
+                    </div>
+                </div>
+            `).join('') : '<p>No specific matches currently available for this subject.</p>';
+        }
 
         function changeLanguage(lang) {
             currentLang = lang;
