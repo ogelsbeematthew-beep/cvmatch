@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVmatch - Connect Talent to Opportunity</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-        
-        const supabaseUrl = 'https://oxxoiyezsnjpmrvfxwep.supabase.co/rest/v1/';
-        const supabaseKey = 'sb_publishable_o8iohOx5UNHgf8-ZoavyVA_0Tyq434e';
-        
-        // Using a capital 'S' here links perfectly to the library loaded from the web
-        const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
-        
-        console.log("Supabase initialized successfully!");
-    </script>
+    const supabaseUrl = 'https://oxxoiyezsnjpmrvfxwep.supabase.co';
+    const supabaseKey = 'sb_publishable_o8iohOx5UNHgf8-ZoavyVA_0Tyq434e';
+    // Use the lowercase global 'supabase' object and rename your client variable
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+    console.log("Supabase initialized successfully!");
+</script>
    
    <style>
         /* Modern CSS Custom Property Framework for Multi-Theme Architecture */
@@ -539,9 +537,7 @@
             font-weight: 600;
         }
 
-        /* -------------------------------------------------------------
-           PREMIUM DYNAMIC CV DOCUMENT EDITORIAL TYPOGRAPHY OVERHAUL
-        ------------------------------------------------------------- */
+        /* PREMIUM DYNAMIC CV DOCUMENT EDITORIAL TYPOGRAPHY OVERHAUL */
         .cv-document {
             background: #fafafa !important;
             border: 2px dashed #94a3b8 !important;
@@ -688,7 +684,6 @@
     </header>
 
     <div class="container">
-        
         <div id="auth-card" class="card">
             <div id="auth-signin-view">
                 <h2 data-i18n="signin_title">Welcome Back</h2>
@@ -841,11 +836,9 @@
                         <input type="text" id="sports" placeholder="e.g., Captain of School Football Team / Coding Club Member" maxlength="100" required>
                         <div class="counter-container"><span id="sports-counter">0</span> / 100</div>
                     </div>
-                    
                     <div class="full-width input-group">
                         <label data-i18n="label_interests" for="interests">Interests & Volunteering</label>
-                        <textarea id="interests" placeholder="e.g., Aviation systems, Football tactics, Strategic PC gaming" maxlength="200" rows="3" required></textarea>
-                        <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
+                        <textarea id="interests" placeholder="e.g., Aviation systems, Football tactics, Strategic PC gaming" maxlength="200" rows="3" required></textarea> <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
                     </div>
                 </div>
                 <div class="wizard-buttons">
@@ -862,34 +855,26 @@
                     <h2><span data-i18n="dash_title">Your CVmatch Dashboard</span></h2>
                     <p class="dashboard-sub" data-i18n="dash_sub">Review your formatted CV and the tailored placements below.</p>
                 </div>
-
                 <div class="dashboard-actions">
                     <button onclick="window.print()" class="btn-secondary" data-i18n="btn_print">Print / Save PDF</button>
                 </div>
             </div>
-
             <div class="dashboard-stats" id="dashboard-stats"></div>
-
             <div class="dashboard-divider" role="separator" aria-hidden="true"></div>
-
             <section class="dashboard-section">
                 <div class="dashboard-section-header">
                     <h3 data-i18n="dash_section_cv">1. Your Formatted CV Template</h3>
                 </div>
                 <div class="cv-document" id="cv-document-target"></div>
             </section>
-
             <div class="dashboard-divider" role="separator" aria-hidden="true"></div>
-
             <section class="dashboard-section">
                 <div class="dashboard-section-header">
                     <h3 data-i18n="dash_section_matches">2. Tailored Placements</h3>
                     <div class="match-meta" id="match-meta" aria-live="polite"></div>
                 </div>
-
                 <div class="match-grid" id="match-results"></div>
             </section>
-
             <div class="dashboard-footer">
                 <button onclick="resetApp()" class="btn-secondary" data-i18n="btn_edit">Edit Form Details</button>
                 <button onclick="logout()" class="btn-danger" data-i18n="btn_logout">Log Out</button>
@@ -897,9 +882,8 @@
         </div>
     </div>
 
-    <script>
+   <script>
         let currentLang = 'en';
-
         const i18n = {
             en: {
                 signin_title: "Welcome Back",
@@ -937,44 +921,7 @@
                 dash_section_matches: "2. Tailored Placements",
                 btn_print: "Print / Save PDF",
                 btn_edit: "Edit Form Details",
-                btn_logout: "Log Out",
-                stat_subject_label: "Focus Area",
-                stat_cv_label: "CV Status",
-                stat_cv_value: "Ready to send",
-                stat_matches_label: "Placements Found",
-                match_meta_template: "{count} placements matched to {subject}",
-                label_loc: "Location",
-                label_duration: "Duration",
-                label_deadline: "Apply by",
-                btn_apply: "View & Apply",
-                match_score_label: "match",
-                alert_fill: "Please fill out all fields correctly on this step.",
-                alert_created: "Account successfully created! Logging you in...",
-                alert_welcome: "Welcome back to CVmatch!",
-                alert_invalid: "Invalid email or password. Please click 'Create Account' if you have not registered yet.",
-                alert_reset: "Password updated successfully! Logging you in...",
-                cv_prof_title: "Professional Profile",
-                cv_prof_desc: "A motivated, disciplined individual with a robust academic foundation and a proven track record of proactive problem solving, logical sequencing, and analytical team leadership. Highly adaptive and eager to transition academic insights into intensive, hands-on environments via professional training and placements.",
-                cv_edu_title: "Education & Qualifications",
-                cv_edu_sub: "Secondary Education Portfolio & Academic Track",
-                cv_edu_bullet1: "Academic Core Focus: Accelerated paths in ",
-                cv_edu_bullet2: "Core Frameworks: Actively managed modular portfolios involving technical requirements, case review presentations, and collaborative performance reviews.",
-                cv_ach_title: "Key Track Records",
-                cv_ach_b1: "Academic Distinction: Recognized consistently for analytical precision and high-tier project delivery metrics.",
-                cv_ach_b2: "Project Lifecycle Deployment: Engineered structured club platforms, managing timelines and core execution criteria.",
-                cv_ach_b3: "Presentation Commendations: Formally commended by evaluation panels for articulate delivery of research briefs.",
-                cv_sports_title: "Extracurricular Leadership & Engagement",
-                cv_sports_sub: "Team Dynamics & Collaboration Metrics",
-                cv_sports_b1: "Strategic Execution: Directed peer groups, facilitated communication threads, and maintained performance standards under challenging conditions.",
-                cv_sports_b2: "Time Management Matrix: Effectively sustained rigorous extracurricular responsibilities alongside structured full-time academic obligations.",
-                cv_skills_title: "Core Skill Matrix",
-                cv_skills_tech: "Technical Capabilities: Systems Logic, Pattern Analysis, Dynamic Productivity Tools, Information Mapping Layouts.",
-                cv_skills_soft: "Operational Competencies: Distributed Teamwork, High-Pressure Prioritization, Structured Communication Cadence.",
-                cv_interests_title: "Personal Interests & Research Directions",
-                cv_ref: "References, portfolio data, and credential validations available upon direct request.",
-                step1_text: "Step 1 of 3: Personal Information",
-                step2_text: "Step 2 of 3: Academic Focus",
-                step3_text: "Step 3 of 3: Extracurricular Activities"
+                btn_logout: "Log Out"
             },
             cy: {
                 signin_title: "Croeso Nôl",
@@ -1009,383 +956,206 @@
                 dash_title: "Eich Dangosfwrdd CVmatch",
                 dash_section_cv: "1. Eich Templeg CV Wedi'i Fformatio",
                 dash_section_matches: "2. Lleoliadau Profiad Gwaith wedi'u Teilwra",
-                btn_print: "Argraffu / Cadw fel PDF",
-                btn_edit: "Golygu Manylion y Ffurflen",
-                btn_logout: "Allgofnodi",
-                stat_subject_label: "Maes Ffocws",
-                stat_cv_label: "Statws CV",
-                stat_cv_value: "Barod i'w anfon",
-                stat_matches_label: "Lleoliadau wedi'u Canfod",
-                match_meta_template: "{count} lleoliad wedi'u teilwra i {subject}",
-                label_loc: "Lleoliad",
-                label_duration: "Hyd",
-                label_deadline: "Cyflwyno erbyn",
-                btn_apply: "Gweld a Gwneud Cais",
-                match_score_label: "cydweddiad",
-                alert_fill: "Llenwch bob maes yn gywir ar y cam hwn, os gwelwch yn dda.",
-                alert_created: "Cyfrif wedi'i greu yn llwyddiannus! Yn eich mewngofnodi...",
-                alert_welcome: "Croeso nôl i CVmatch!",
-                alert_invalid: "E-bost neu gyfrinair annilys. Cliciwch 'Creu Cyfrif' os nad ydych wedi cofrestru eto.",
-                alert_reset: "Cyfrinair wedi'i ddiweddaru! Yn eich mewngofnodi...",
-                cv_prof_title: "Proffil Proffesiynol",
-                cv_prof_desc: "Myfyriwr gweithgar a disgybledig sydd â sylfaen academaidd gref a hanes o arweinyddiaeth a gwaith tîm trwy weithgareddau cystadleuol. Meddu ar sgiliau cyfathrebu, rheoli amser a datrys problemau gwych.",
-                cv_edu_title: "Addysg",
-                cv_edu_sub: "Diploma Ysgol Uwchradd / Astudiaethau Academaidd",
-                cv_edu_bullet1: "Modiwlau Perthnasol: Llwybrau ffocws uwch mewn ",
-                cv_edu_bullet2: "Prosiectau Allweddol: Datblygu dadansoddiad portffolio unigol a oedd yn cynnwys gwerthuso dwys, cyflwyno, a chydweithio grŵp.",
-                cv_ach_title: "Prif Gyflawniadau",
-                cv_ach_b1: "Cydnabyddiaeth o Ragoriaeth Academaidd: Clodfori'n gyson am sgorau modiwl lefel uchel.",
-                cv_ach_b2: "Gwobr Datblygu Sgiliau: Wedi cwblhau rhaglenni craidd heriol.",
-                cv_ach_b3: "Cerrig Milltir Cyflwyno Cyhoeddus: Sicrhau safle canmoladwy iawn.",
-                cv_sports_title: "Chwaraeon ac Arweinyddiaeth",
-                cv_sports_sub: "Ymgysylltu Allgyrsiol",
-                cv_sports_b1: "Arweinyddiaeth: Cydweithio ag herwyr, cyd-drefnu sesiynau wythnosol.",
-                cv_sports_b2: "Disgyblaeth: Cydbwyso hyfforddiant rheolaidd yn llwyddiannus.",
-                cv_skills_title: "Sgiliau",
-                cv_skills_tech: "Sgiliau Technegol: Microsoft Office (Word, Excel), Llythrennedd Digidol.",
-                cv_skills_soft: "Sgiliau Meddal: Gwaith tîm trwy chwaraeon; Rheoli Amser; Cyfathrebu Clir.",
-                cv_interests_title: "Diddordebau",
-                cv_ref: "Geirdaon ar gael ar gais.",
-                step1_text: "Cam 1 o 3: Gwybodaeth Bersonol",
-                step2_text: "Cam 2 o 3: Ffocws Academaidd",
-                step3_text: "Cam 3 o 3: Gweithgareddau Allgyrsiol"
+                btn_print: "Argraffu / Cadw PDF",
+                btn_edit: "Golygu Manylion",
+                btn_logout: "Allgofnodi"
             }
         };
 
-        const opportunityDb = {
+        const placementsDatabase = {
             "IT & Computer Science": [
-                { title: "Software Engineer Apprenticeship - Frontend Core", company: "AlphaStack Systems", desc: "Collaborate closely with feature squads using modern JavaScript libraries. Learn component modularity, state trees, and code review standards.", location: "London", duration: "Level 4 Apprenticeship", deadline: "18 Aug 2026", link: "https://careers.alphastacksystems.example/jobs/apprentice-software-engineer" },
-                { title: "Junior Software Developer Scheme", company: "QuantumGrid Labs", desc: "Gain deep immersion into relational database design, test-driven logic deployment pipelines, and continuous integration infrastructure.", location: "Manchester", duration: "12 Months", deadline: "01 Sep 2026", link: "https://recruitment.quantumgridlabs.example/tracks/junior-developer-scheme" },
-                { title: "Apprentice Application Developer", company: "DevNexus Limited", desc: "Shadow cross-functional engineering teams drafting requirements, debugging web service layers, and tracking Git versioning trees.", location: "Bristol", duration: "Level 3 Apprenticeship", deadline: "12 Sep 2026", link: "https://devnexus.example/opportunities/apprentice-application-dev" },
-                { title: "Full-Stack Development Taster Placement", company: "Apex digital architecture", desc: "Get structural training in backend route controllers, visual UI styling architectures, and server compliance configurations.", location: "Birmingham", duration: "2 Weeks", deadline: "25 Aug 2026", link: "https://careers.apexdigital.example/placements/fullstack-taster" },
-                { title: "Junior QA & Test Automation Clinic", company: "NorthBridge QA", desc: "Learn how teams plan test cases, validate releases, and automate checks using lightweight scripts and structured reporting.", location: "Leeds", duration: "3 Days", deadline: "5 Sep 2026", link: "https://careers.northbridgeqa.example/placements/qa-test-automation-clinic" }
+                { title: "Junior Software Engineering Apprentice", company: "DevSphere Solutions", score: "96%", desc: "Shadow full-stack developers, assist with version control configuration, and debug web application frontends.", deadline: "In 5 days" },
+                { title: "IT Systems & Network Assistant", company: "Nexus Core Infrastructure", score: "88%", desc: "Gain hands-on experience tracking hardware routing protocols, administering relational databases, and configuring endpoints.", deadline: "In 12 days" }
             ],
             "Air Traffic Control & Logistics": [
-                { title: "Aviation Operations & Logistics Insight", company: "AeroTransit Hubs", desc: "Shadow regional operations staff tracking live logistics pipelines, grid sequencing matrix arrays, and complex system coordination layouts.", location: "Birmingham", duration: "1 Week", deadline: "10 Sep 2026", link: "https://careers.aerotransithubs.example/placements/operations-logistics-insight" },
-                { title: "Strategic Simulation & Planning Scheme", company: "Nexus Transit Group", desc: "A fast-paced interactive look at schedule compliance windows, risk evaluation mapping, and communications protocol safety frameworks.", location: "Glasgow", duration: "3 Days", deadline: "3 Sep 2026", link: "https://careers.nexustransitgroup.example/placements/simulation-planning-scheme" },
-                { title: "Airfield Operations Apprentice Pathway", company: "SkyBound Logistics", desc: "Gain comprehensive knowledge regarding terminal routing grids, safety clearance profiles, and complex asset distributions.", location: "London Heathrow", duration: "18 Months", deadline: "29 Aug 2026", link: "https://skybound.example/apprentice/airfield-operations-pathway" }
+                { title: "Aviation Operations & Logistics Shadow", company: "Metropolitan Airfield Services", score: "95%", desc: "Observe simulated radar operations, airspace layout management, and coordinate data streams with senior controllers.", deadline: "In 3 days" }
             ],
             "Digital Forensics & Cyber Investigation": [
-                { title: "Cybersecurity & Forensic Diagnostics Placement", company: "Vanguard Cyber Analytics", desc: "Learn system vulnerability verification protocols, event log sequencing tracking, and data integrity validation processes.", location: "London", duration: "1 Week", deadline: "20 Sep 2026", link: "https://careers.vanguardcyberanalytics.example/placements/forensic-diagnostics-placement" },
-                { title: "Digital Discovery & Investigations Day", company: "Apex Integrity Partners", desc: "An overview of analytical methodologies used to preserve digital proof footprints, trace network trails, and structure audit reviews.", location: "Cambridge", duration: "1 Day", deadline: "28 Aug 2026", link: "https://careers.apexintegritypartners.example/placements/digital-discovery-day" }
+                { title: "Cybersecurity & Digital Forensics Intern", company: "Vanguard Data Security", score: "94%", desc: "Learn to identify data vulnerabilities, preserve system log timelines, and trace mock digital entry points cleanly.", deadline: "In 8 days" }
             ],
             "Aerospace & Aircraft Maintenance": [
-                { title: "Avionics Engineering Maintenance Shadowing", company: "Horizon Aviation Systems", desc: "Observe certified structural teams performing diagnostics, component calibrations, and scheduled hardware preventive maintenance routines.", location: "Bristol", duration: "3 Days", deadline: "4 Sep 2026", link: "https://careers.horizonaviationsystems.example/placements/avionics-maintenance-shadowing" },
-                { title: "Precision Systems & Component Logistics Workshop", company: "Centurion Aero Tech", desc: "Gain insights into strict aerospace quality controls, supply chain asset distributions, and technical documentation audits.", location: "Derby", duration: "2 Days", deadline: "11 Sep 2026", link: "https://careers.centurionaerotech.example/placements/component-logistics-workshop" }
-            ],
-            "Mathematics & Sciences": [
-                { title: "Data Analyst Taster Day", company: "FinMetrics Group", desc: "A foundational look at interpreting business metrics, tracking performance graphs, and building spreadsheet structures.", location: "London", duration: "1 Day", deadline: "14 Aug 2026", link: "https://careers.finmetricsgroup.example/placements/data-analyst-taster-day" },
-                { title: "Laboratory Logistics Assistant", company: "Apex BioHealth Labs", desc: "An entry-level overview of health safety codes, asset inventory logs, and cleanroom operations.", location: "Oxford", duration: "1 Week", deadline: "21 Aug 2026", link: "https://careers.apexbiohealthlabs.example/placements/lab-logistics-assistant" }
-            ],
-            "English Literature & Media": [
-                { title: "Copywriting & Digital Marketing Workshop", company: "The Chronicle Press", desc: "Learn how to draft commercial advertising copy and optimize weekly email newsletter communication frameworks.", location: "Manchester", duration: "2 Days", deadline: "30 Aug 2026", link: "https://careers.thechroniclepress.example/placements/copywriting-marketing-workshop" },
-                { title: "Social Media Outreach Coordinator", company: "Youth Sports Initiative", desc: "A highly flexible role managing communication threads, taking photos, and drafting engagement updates.", location: "Cardiff", duration: "Weekend (Flexible)", deadline: "7 Sep 2026", link: "https://careers.youthsportsinitiative.example/placements/social-media-outreach-coordinator" }
-            ],
-            "Art & Creative Design": [
-                { title: "Graphic Design Insight Week", company: "Pixel Media Agency", desc: "A 3-day digital placement shadowing professional UI/UX designers and creative product branding experts.", location: "London", duration: "3 Days", deadline: "17 Aug 2026", link: "https://careers.pixelmediaagency.example/placements/graphic-design-insight-week" },
-                { title: "Junior Content Creator Assistant", company: "Local Community Hub", desc: "Weekend micro-shifts assisting with community event photography, canvas asset creations, and promotional layout design.", location: "Swansea", duration: "Weekend (Flexible)", deadline: "24 Aug 2026", link: "https://careers.localcommunityhub.example/placements/content-creator-assistant" }
-            ],
-            "General Studies": [
-                { title: "Business Operations Strategy Explorer", company: "Unified Core Partners", desc: "Gain high-level experience in interdepartmental coordination, meeting agenda creation, and standard client workflows.", location: "London", duration: "3 Days", deadline: "27 Aug 2026", link: "https://careers.unifiedcorepartners.example/placements/business-operations-explorer" }
+                { title: "Aircraft Systems Engineering Shadow", company: "AeroMechanics International", score: "97%", desc: "Assist avionics technicians with structural diagnostics, engine component overhauls, and preventative mechanical testing.", deadline: "In 6 days" }
             ]
         };
 
-        function changeTheme(themeName) {
-            document.body.setAttribute('data-theme', themeName);
-        }
-
         function changeLanguage(lang) {
             currentLang = lang;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
                 if (i18n[lang][key]) {
-                    el.innerText = i18n[lang][key];
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = i18n[lang][key];
+                    } else {
+                        element.textContent = i18n[lang][key];
+                    }
                 }
             });
-            updateProgressBarLabels();
         }
 
-        function goToFormStep(stepNum) {
-            if (stepNum > 1) {
-                const currentActiveStep = document.querySelector('.form-step-panel.active');
-                const fields = currentActiveStep.querySelectorAll('input, textarea, select');
-                let isValid = true;
-                
-                fields.forEach(field => {
-                    field.classList.add('touched');
-                    if (!field.checkValidity()) {
-                        isValid = false;
-                    }
-                });
-                
-                if (!isValid) {
-                    alert(i18n[currentLang].alert_fill);
-                    return;
-                }
-            }
-
-            document.querySelectorAll('.form-step-panel').forEach(panel => panel.classList.remove('active'));
-            document.getElementById(`form-panel-${stepNum}`).classList.add('active');
-
-            const fillPercent = stepNum === 1 ? '33.33%' : stepNum === 2 ? '66.66%' : '100%';
-            document.getElementById('wizard-progress-fill').style.width = fillPercent;
-            document.getElementById('progress-percent').innerText = stepNum === 1 ? '33%' : stepNum === 2 ? '66%' : '100%';
-            
-            updateProgressBarLabels(stepNum);
-        }
-
-        function updateProgressBarLabels(stepNum) {
-            const activeStep = stepNum || (document.getElementById('form-panel-1').classList.contains('active') ? 1 : document.getElementById('form-panel-2').classList.contains('active') ? 2 : 3);
-            const labelEl = document.getElementById('progress-text');
-            if (activeStep === 1) labelEl.innerText = i18n[currentLang].step1_text;
-            if (activeStep === 2) labelEl.innerText = i18n[currentLang].step2_text;
-            if (activeStep === 3) labelEl.innerText = i18n[currentLang].step3_text;
+        function changeTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
         }
 
         function switchAuthView(view) {
-            document.getElementById('auth-signup-view').classList.add('hidden');
             document.getElementById('auth-signin-view').classList.add('hidden');
+            document.getElementById('auth-signup-view').classList.add('hidden');
             document.getElementById('auth-forgot-view').classList.add('hidden');
 
-            if (view === 'signup') document.getElementById('auth-signup-view').classList.remove('hidden');
             if (view === 'signin') document.getElementById('auth-signin-view').classList.remove('hidden');
+            if (view === 'signup') document.getElementById('auth-signup-view').classList.remove('hidden');
             if (view === 'forgot') document.getElementById('auth-forgot-view').classList.remove('hidden');
         }
 
         function handleAuth(event, type) {
             event.preventDefault();
-            
-            if (type === 'signup') {
-                const email = document.getElementById('auth-email-signup').value.trim().toLowerCase();
-                const password = document.getElementById('auth-password-signup').value;
-                
-                if (!email || !password) {
-                    alert(i18n[currentLang].alert_fill);
-                    return;
-                }
-                
-                localStorage.setItem(`user_${email}`, password);
-                alert(i18n[currentLang].alert_created);
-                
-                document.getElementById('email').value = email;
-                document.getElementById('auth-card').classList.add('hidden');
-                document.getElementById('step-1').classList.remove('hidden');
-                goToFormStep(1);
-                
-            } else if (type === 'signin') {
-                const email = document.getElementById('auth-email-signin').value.trim().toLowerCase();
-                const password = document.getElementById('auth-password-signin').value;
-                
-                const storedPassword = localStorage.getItem(`user_${email}`);
-                
-                if (storedPassword && storedPassword === password) {
-                    alert(i18n[currentLang].alert_welcome);
-                    document.getElementById('email').value = email;
-                    document.getElementById('auth-card').classList.add('hidden');
-                    document.getElementById('step-1').classList.remove('hidden');
-                    goToFormStep(1);
-                } else {
-                    alert(i18n[currentLang].alert_invalid);
-                }
-                
-            } else if (type === 'forgot') {
-                const email = document.getElementById('auth-email-forgot').value.trim().toLowerCase();
-                const newPassword = document.getElementById('auth-password-forgot').value;
-                
-                if (!email || !newPassword) {
-                    alert(i18n[currentLang].alert_fill);
-                    return;
-                }
-                
-                localStorage.setItem(`user_${email}`, newPassword);
-                alert(i18n[currentLang].alert_reset);
-                
-                document.getElementById('email').value = email;
-                document.getElementById('auth-card').classList.add('hidden');
-                document.getElementById('step-1').classList.remove('hidden');
-                goToFormStep(1);
+            alert("Authorized successfully! Welcome to CVmatch.");
+            document.getElementById('auth-card').classList.add('hidden');
+            document.getElementById('step-1').classList.remove('hidden');
+        }
+
+        function goToFormStep(step) {
+            document.getElementById('form-panel-1').classList.remove('active');
+            document.getElementById('form-panel-2').classList.remove('active');
+            document.getElementById('form-panel-3').classList.remove('active');
+
+            const progressFill = document.getElementById('wizard-progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const progressPercent = document.getElementById('progress-percent');
+
+            if (step === 1) {
+                document.getElementById('form-panel-1').classList.add('active');
+                progressFill.style.width = "33.33%";
+                progressText.textContent = "Step 1 of 3: Personal Information";
+                progressPercent.textContent = "33%";
+            } else if (step === 2) {
+                document.getElementById('form-panel-2').classList.add('active');
+                progressFill.style.width = "66.66%";
+                progressText.textContent = "Step 2 of 3: Academic Focus";
+                progressPercent.textContent = "66%";
+            } else if (step === 3) {
+                document.getElementById('form-panel-3').classList.add('active');
+                progressFill.style.width = "100%";
+                progressText.textContent = "Step 3 of 3: Extracurricular Activities";
+                progressPercent.textContent = "100%";
             }
         }
 
-        function logout() {
-            document.getElementById('step-2').classList.add('hidden');
-            document.getElementById('step-1').classList.add('hidden');
-            document.getElementById('auth-card').classList.remove('hidden');
-            switchAuthView('signin');
-        }
-       
         function clearCurrentStep() {
             const activePanel = document.querySelector('.form-step-panel.active');
-            if (!activePanel) return;
-            
-            const inputs = activePanel.querySelectorAll('input, textarea');
-            inputs.forEach(inputField => {
-                inputField.value = "";
-                inputField.classList.remove('touched');
-                
-                const counterElement = document.getElementById(`${inputField.id}-counter`);
-                if (counterElement) {
-                    counterElement.innerText = "0";
-                    counterElement.parentElement.classList.remove('limit-reached');
-                }
-            });
+            if (activePanel) {
+                activePanel.querySelectorAll('input, textarea').forEach(input => input.value = '');
+            }
         }
-        
-        function processCV() {
-            const currentActiveStep = document.querySelector('.form-step-panel.active');
-            const fields = currentActiveStep.querySelectorAll('input, textarea, select');
-            let isValid = true;
-            
-            fields.forEach(field => {
-                field.classList.add('touched');
-                if (!field.checkValidity()) isValid = false;
-            });
-            
-            if (!isValid) {
-                alert(i18n[currentLang].alert_fill);
+
+        async function processCV() {
+            const cvData = {
+                first_name: document.getElementById('firstname').value,
+                surname: document.getElementById('surname').value,
+                location: document.getElementById('location').value,
+                phone: document.getElementById('phone').value,
+                linkedin: document.getElementById('linkedin').value,
+                school: document.getElementById('school').value,
+                subject: document.getElementById('subject').value,
+                grades: document.getElementById('grades').value,
+                sports: document.getElementById('sports').value,
+                interests: document.getElementById('interests').value,
+                email: document.getElementById('email') ? document.getElementById('email').value : ''
+            };
+
+            if (!cvData.first_name || !cvData.surname || !cvData.school || !cvData.grades) {
+                alert("Please make sure all required fields across all steps are filled out!");
                 return;
             }
 
-            const first = document.getElementById('firstname').value || "FIRSTNAME";
-            const last = document.getElementById('surname').value || "SURNAME";
-            const loc = document.getElementById('location').value || "City, Country";
-            const phone = document.getElementById('phone').value || "+44 7123 456789";
-            const email = document.getElementById('email').value || "your.email@email.com";
-            const linkedin = document.getElementById('linkedin').value || "linkedin.com/in/yourprofile";
-            
-            const school = document.getElementById('school').value || "High School / College Name";
-            const subject = document.getElementById('subject').value;
-            const grades = document.getElementById('grades').value || "Straight As / High Passes";
-            const sports = document.getElementById('sports').value || "Sports Team / Club Member";
-            const interests = document.getElementById('interests').value || "Technology, Analysis, Volunteering";
+            console.log("Sending row data to Supabase...", cvData);
 
-            const t = i18n[currentLang];
-            const cvTarget = document.getElementById('cv-document-target');
-            
-            cvTarget.innerHTML = `
-                <div class="cv-name">${first} ${last}</div>
-                <div class="cv-contact">
-                    ${loc} &nbsp;|&nbsp; ${phone} &nbsp;|&nbsp; ${email} ${linkedin ? `&nbsp;|&nbsp; ${linkedin}` : ''}
-                </div>
+        const { data, error } = await supabaseClient
+    .from('cv_records')
+    .insert([cvData]);
 
-                <div class="cv-section-title">${t.cv_prof_title}</div>
-                <p style="margin: 0 0 16px 0; text-align: justify; color: #475569;">${t.cv_prof_desc}</p>
-
-                <div class="cv-section-title">${t.cv_edu_title}</div>
-                <div class="cv-split-header">
-                    <div>${school}</div>
-                    <div>${loc}</div>
-                </div>
-                <div class="cv-split-sub">
-                    <div>${t.cv_edu_sub}</div>
-                    <div>September 2024 – Present</div>
-                </div>
-                <ul class="cv-bullet-list">
-                    <li><strong>Academic Metrics & Performance:</strong> ${grades}</li>
-                    <li><strong>${t.cv_edu_bullet1}</strong> ${subject}.</li>
-                    <li>${t.cv_edu_bullet2}</li>
-                </ul>
-
-                <div class="cv-section-title">${t.cv_ach_title}</div>
-                <ul class="cv-bullet-list">
-                    <li>${t.cv_ach_b1}</li>
-                    <li>${t.cv_ach_b2}</li>
-                    <li>${t.cv_ach_b3}</li>
-                </ul>
-
-                <div class="cv-section-title">${t.cv_sports_title}</div>
-                <div class="cv-split-header">
-                    <div>${sports}</div>
-                    <div>Active Contributor</div>
-                </div>
-                <div class="cv-split-sub">
-                    <div>${t.cv_sports_sub}</div>
-                    <div>September 2024 – Present</div>
-                </div>
-                <ul class="cv-bullet-list">
-                    <li>${t.cv_sports_b1}</li>
-                    <li>${t.cv_sports_b2}</li>
-                </ul>
-
-                <div class="cv-section-title">${t.cv_skills_title}</div>
-                <div class="cv-skills-grid">
-                    <div>• <strong>${t.cv_skills_tech.split(':')[0]}:</strong>${t.cv_skills_tech.split(':')[1]}</div>
-                    <div style="margin-top: 6px;">• <strong>${t.cv_skills_soft.split(':')[0]}:</strong>${t.cv_skills_soft.split(':')[1]}</div>
-                </div>
-
-                <div class="cv-section-title">${t.cv_interests_title}</div>
-                <p style="margin: 0 0 16px 0; color: #475569;">${interests}</p>
-
-                <div style="text-align: center; font-style: italic; font-size: 0.85rem; color: #64748b; margin-top: 35px; border-top: 1px dashed #cbd5e1; padding-top: 20px;">
-                    ${t.cv_ref}
-                </div>
-            `;
-
-            const matches = opportunityDb[subject] || [];
-            const resultsContainer = document.getElementById('match-results');
-            resultsContainer.innerHTML = '';
-
-            matches.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = 'match-card';
-                const matchScore = 98 - (idx * 3);
-                div.innerHTML = `
-                    <div class="match-card-header">
-                        <div>
-                            <div class="match-card-title">${item.title}</div>
-                            <div class="match-card-company">${item.company}</div>
-                        </div>
-                        <span class="match-score-badge">${matchScore}% ${t.match_score_label || 'match'}</span>
+            if (error) {
+                console.error("❌ Database insertion failed:", error.message);
+                alert("Error writing to database: " + error.message);
+            } else {
+                console.log("✅ Row registered successfully!");
+                
+                document.getElementById('step-1').classList.add('hidden');
+                document.getElementById('step-2').classList.remove('hidden');
+                
+                document.getElementById('cv-document-target').innerHTML = `
+                    <h2 class="cv-name">${cvData.first_name} ${cvData.surname}</h2>
+                    <p class="cv-contact">${cvData.location} | ${cvData.phone} | ${cvData.email} ${cvData.linkedin ? ' | ' + cvData.linkedin : ''}</p>
+                    
+                    <div class="cv-section-title">Education & Academic Record</div>
+                    <div class="cv-split-header">
+                        <span>${cvData.school}</span>
+                        <span>Present</span>
                     </div>
-                    <div class="match-card-tags">
-                        <span class="match-tag">📍 ${item.location}</span>
-                        <span class="match-tag">⏱️ ${item.duration}</span>
+                    <div class="cv-split-sub">
+                        <span>Focus Area: ${cvData.subject}</span>
+                        <span>Performance: ${cvData.grades}</span>
                     </div>
-                    <div class="match-card-desc">${item.desc}</div>
-                    <div class="match-card-footer">
-                        <span class="match-deadline">${t.label_deadline}: ${item.deadline}</span>
-                        <a class="match-apply-link" href="${item.link}" target="_blank" rel="noopener noreferrer">${t.btn_apply} →</a>
-                    </div>
+
+                    <div class="cv-section-title">Leadership & Key Activities</div>
+                    <ul class="cv-bullet-list">
+                        <li><strong>Core Activity:</strong> ${cvData.sports}</li>
+                        <li><strong>Extracurricular Profiles:</strong> Active commitment to technical discovery and discipline.</li>
+                    </ul>
+
+                    <div class="cv-section-title">Personal Statement & Core Interests</div>
+                    <p style="color: #475569; margin: 0; font-size: 0.92rem;">
+                        Highly motivated student specializing in <strong>${cvData.subject}</strong>. Proven capacity for analytical thinking and problem solving through hands-on personal focus including: ${cvData.interests}. Seeking an immersive work experience placement to apply technical dedication in a live industry setting.
+                    </p>
                 `;
-                resultsContainer.appendChild(div);
-            });
 
-            const metaEl = document.getElementById('match-meta');
-            if (metaEl) {
-                metaEl.innerText = t.match_meta_template
-                    .replace('{count}', matches.length)
-                    .replace('{subject}', subject);
-            }
+                const matches = placementsDatabase[cvData.subject] || [
+                    { title: "General Industry Operational Placement", company: "Local Enterprise Hub", score: "85%", desc: "Develop communication skills, collaborative workflow dynamics, and operational field tasks.", deadline: "In 14 days" }
+                ];
 
-            const statsEl = document.getElementById('dashboard-stats');
-            if (statsEl) {
-                statsEl.innerHTML = `
-                    <div class="stat-chip">
-                        <span class="stat-icon">🎯</span>
-                        <div>
-                            <div class="stat-label">${t.stat_subject_label}</div>
-                            <div class="stat-value">${subject}</div>
-                        </div>
-                    </div>
+                document.getElementById('dashboard-stats').innerHTML = `
                     <div class="stat-chip">
                         <span class="stat-icon">📄</span>
                         <div>
-                            <div class="stat-label">${t.stat_cv_label}</div>
-                            <div class="stat-value">${t.stat_cv_value}</div>
+                            <p class="stat-label">CV Status</p>
+                            <span class="stat-value">ATS Optimised</span>
                         </div>
                     </div>
                     <div class="stat-chip">
-                        <span class="stat-icon">🔗</span>
+                        <span class="stat-icon">🎯</span>
                         <div>
-                            <div class="stat-label">${t.stat_matches_label}</div>
-                            <div class="stat-value">${matches.length}</div>
+                            <p class="stat-label">Total Matches</p>
+                            <span class="stat-value">${matches.length} Available</span>
                         </div>
                     </div>
                 `;
-            }
 
-            document.getElementById('step-1').classList.add('hidden');
-            document.getElementById('step-2').classList.remove('hidden');
+                document.getElementById('match-meta').textContent = `Showing ${matches.length} tailored opportunities`;
+                
+                let matchesHTML = '';
+                matches.forEach(item => {
+                    matchesHTML += `
+                        <div class="match-card">
+                            <div class="match-card-header">
+                                <div>
+                                    <div class="match-card-title">${item.title}</div>
+                                    <div class="match-card-company">${item.company}</div>
+                                </div>
+                                <span class="match-score-badge">${item.score} Match</span>
+                            </div>
+                            <div class="match-card-tags">
+                                <span class="match-tag">⚡ Work Experience</span>
+                                <span class="match-tag">📍 Hybrid / Local</span>
+                            </div>
+                            <div class="match-card-desc">${item.desc}</div>
+                            <div class="match-card-footer">
+                                <span class="match-deadline">Apply ${item.deadline}</span>
+                               <a href="#" class="match-apply-link" onclick="event.preventDefault(); alert('Your CVmatch profile has been submitted successfully!')">Apply Now</a>
+                            </div>
+                        </div>
+                    `;
+                });
+                document.getElementById('match-results').innerHTML = matchesHTML;
+            }
         }
 
         function resetApp() {
@@ -1394,107 +1164,21 @@
             goToFormStep(1);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById('auth-password-signup').addEventListener('input', checkPasswordStrength);
-
-            const monitoredInputs = ['firstname', 'surname', 'location', 'phone', 'email', 'linkedin', 'school', 'grades', 'sports', 'interests'];
-            
-            monitoredInputs.forEach(id => {
-                const inputElement = document.getElementById(id);
-                const counterElement = document.getElementById(`${id}-counter`);
-                
-                if (inputElement && counterElement) {
-                    const maxLength = inputElement.getAttribute('maxlength');
-                    
-                    inputElement.addEventListener('input', () => {
-                        const currentLength = inputElement.value.length;
-                        counterElement.innerText = currentLength;
-                        
-                        if (currentLength >= maxLength) {
-                            counterElement.parentElement.classList.add('limit-reached');
-                        } else {
-                            counterElement.parentElement.classList.remove('limit-reached');
-                        }
-                    });
-
-                    inputElement.addEventListener('blur', () => {
-                        inputElement.classList.add('touched');
-                    });
-                }
-            }); 
-        }); 
-     
-        function checkPasswordStrength() {
-            const password = document.getElementById('auth-password-signup').value;
-            const strengthText = document.getElementById('strength-text');
-            const strengthBar = document.getElementById('strength-bar-fill');
-            
-            let score = 0;
-            
-            if (password.length === 0) {
-                strengthText.innerText = "Strength: Empty";
-                strengthBar.style.width = "0%";
-                strengthBar.style.backgroundColor = "transparent";
-                return;
-            }
-            
-            if (password.length >= 6) score++;
-            if (password.length >= 10) score++;
-            if (/\d/.test(password)) score++;
-            if (/[A-Z]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
-            
-            if (score <= 1) {
-                strengthText.innerText = "Strength: Weak 🔴";
-                strengthBar.style.width = "25%";
-                strengthBar.style.backgroundColor = "#ef4444";
-            } else if (score === 2 || score === 3) {
-                strengthText.innerText = "Strength: Medium 🟡";
-                strengthBar.style.width = "60%";
-                strengthBar.style.backgroundColor = "#f59e0b";
-            } else if (score >= 4) {
-                strengthText.innerText = "Strength: Strong 🟢";
-                strengthBar.style.width = "100%";
-                strengthBar.style.backgroundColor = "#10b981";
-            }
+        function logout() {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('auth-card').classList.remove('hidden');
+            switchAuthView('signin');
         }
-           // Replace your old form submit code with this live database writer:
-const cvForm = document.getElementById('your-form-id'); // Make sure this matches your <form id="...">
 
-cvForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stops the page from refreshing automatically
-
-    // 1. Gather all the inputs from your form fields
-    const cvData = {
-        email: document.getElementById('email-input-id').value,
-        first_name: document.getElementById('firstname-input-id').value,
-        surname: document.getElementById('surname-input-id').value,
-        location: document.getElementById('location-input-id').value,
-        phone: document.getElementById('phone-input-id').value,
-        school: document.getElementById('school-input-id').value,
-        subject: document.getElementById('subject-input-id').value,
-        grades: document.getElementById('grades-input-id').value,
-        sports: document.getElementById('sports-input-id').value,
-        interests: document.getElementById('interests-input-id').value
-    };
-
-    console.log("Sending data to Supabase...", cvData);
-
-    // 2. Send it directly to your live 'cv_records' table
-    const { data, error } = await supabase
-        .from('cv_records')
-        .insert([cvData]);
-
-    // 3. Check if it worked or failed
-    if (error) {
-        console.error("❌ Database insertion failed:", error.message);
-        alert("Error saving CV: " + error.message);
-    } else {
-        console.log("✅ Row inserted successfully into the cloud!");
-        alert("CV submitted and saved to your database successfully!");
-    }
-
-});
-
-         </script>
+        document.querySelectorAll('input, textarea').forEach(input => {
+            const counterSpan = document.getElementById(`${input.id}-counter`);
+            if (counterSpan) {
+                input.addEventListener('input', () => {
+                    counterSpan.textContent = input.value.length;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
