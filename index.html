@@ -1457,8 +1457,44 @@
                 strengthBar.style.backgroundColor = "#10b981";
             }
         }
+           // Replace your old form submit code with this live database writer:
+const cvForm = document.getElementById('your-form-id'); // Make sure this matches your <form id="...">
 
-        
-    </script>
+cvForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Stops the page from refreshing automatically
+
+    // 1. Gather all the inputs from your form fields
+    const cvData = {
+        email: document.getElementById('email-input-id').value,
+        first_name: document.getElementById('firstname-input-id').value,
+        surname: document.getElementById('surname-input-id').value,
+        location: document.getElementById('location-input-id').value,
+        phone: document.getElementById('phone-input-id').value,
+        school: document.getElementById('school-input-id').value,
+        subject: document.getElementById('subject-input-id').value,
+        grades: document.getElementById('grades-input-id').value,
+        sports: document.getElementById('sports-input-id').value,
+        interests: document.getElementById('interests-input-id').value
+    };
+
+    console.log("Sending data to Supabase...", cvData);
+
+    // 2. Send it directly to your live 'cv_records' table
+    const { data, error } = await supabase
+        .from('cv_records')
+        .insert([cvData]);
+
+    // 3. Check if it worked or failed
+    if (error) {
+        console.error("❌ Database insertion failed:", error.message);
+        alert("Error saving CV: " + error.message);
+    } else {
+        console.log("✅ Row inserted successfully into the cloud!");
+        alert("CV submitted and saved to your database successfully!");
+    }
+
+});
+
+         </script>
 </body>
 </html>
