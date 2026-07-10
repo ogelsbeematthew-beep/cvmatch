@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVmatch - Connect Talent to Opportunity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     const supabaseUrl = 'https://oxxoiyezsnjpmrvfxwep.supabase.co';
@@ -382,7 +385,9 @@
             .dashboard-header { flex-direction: column; }
             .dashboard-footer { flex-direction: column; align-items: stretch; }
             .dashboard-stats { flex-direction: column; }
-            .cv-document { padding: 30px 25px !important; }
+            .cv-document { grid-template-columns: 1fr !important; }
+            .cv-sidebar { padding: 28px 24px !important; }
+            .cv-main { padding: 30px 24px 28px 24px !important; }
         }
 
         .dashboard-stats {
@@ -536,87 +541,179 @@
             font-weight: 600;
         }
 
-        /* CV DOCUMENT STYLES */
+        /* CV DOCUMENT STYLES — two-column dossier layout */
         .cv-document {
-            background: #fafafa !important;
-            border: 2px dashed #94a3b8 !important;
-            padding: 50px 55px;
-            border-radius: 12px;
-            color: #334155;
+            --cv-ink: #14181f;
+            --cv-sidebar: #14181f;
+            --cv-sidebar-text: #e8e6e1;
+            --cv-sidebar-muted: #9a9b9e;
+            --cv-paper: #ffffff;
+            --cv-accent: #a8641f;
+            --cv-body: #40454e;
+            --cv-hairline: #e4e1da;
+            background: var(--cv-paper) !important;
+            border: 1px solid var(--cv-hairline) !important;
+            border-radius: 4px;
+            color: var(--cv-body);
             line-height: 1.6;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             font-size: 0.92rem;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.06), 0 10px 30px -5px rgba(0, 0, 0, 0.08) !important;
-            letter-spacing: -0.01em;
+            box-shadow: 0 20px 45px -15px rgba(20, 24, 31, 0.25);
+            display: grid;
+            grid-template-columns: 216px 1fr;
+            overflow: hidden;
+        }
+        .cv-sidebar {
+            background: var(--cv-sidebar);
+            color: var(--cv-sidebar-text);
+            padding: 40px 26px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        @media print {
+            .cv-document { box-shadow: none !important; }
+            .cv-sidebar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        .cv-main {
+            padding: 44px 46px 40px 46px;
         }
         .cv-name {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #0f172a;
-            text-align: center;
-            margin: 0;
-            letter-spacing: -0.04em;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--cv-sidebar-text);
+            margin: 0 0 2px 0;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        .cv-role-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--cv-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 28px;
+        }
+        .cv-sidebar-block {
+            margin-bottom: 26px;
+        }
+        .cv-sidebar-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--cv-sidebar-muted);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(232, 230, 225, 0.15);
+        }
+        .cv-sidebar-line {
+            font-size: 0.78rem;
+            color: var(--cv-sidebar-text);
+            margin-bottom: 7px;
+            word-break: break-word;
+            line-height: 1.5;
+        }
+        .cv-pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .cv-pill {
+            display: inline-block;
+            background: rgba(232, 230, 225, 0.1);
+            border: 1px solid rgba(232, 230, 225, 0.18);
+            color: var(--cv-sidebar-text);
+            padding: 4px 9px;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 0.72rem;
         }
         .cv-contact {
-            font-size: 0.8rem;
-            color: #64748b;
-            text-align: center;
-            margin: 8px 0 32px 0;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
+            display: none;
         }
         .cv-section-title {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-top: 32px;
-            margin-bottom: 14px;
-            padding-left: 12px;
-            border-left: 3px solid #0f172a;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--cv-ink);
+            margin-top: 30px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 16px;
+        }
+        .cv-section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 3px;
+            background: var(--cv-accent);
+        }
+        .cv-main > .cv-section-title:first-child {
+            margin-top: 0;
         }
         .cv-split-header {
             display: flex;
             justify-content: space-between;
+            align-items: baseline;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--cv-ink);
             margin-top: 14px;
             font-size: 0.98rem;
         }
         .cv-split-sub {
             display: flex;
             justify-content: space-between;
-            color: #64748b;
-            font-style: normal;
-            font-size: 0.86rem;
+            color: #7a7f88;
+            font-style: italic;
+            font-size: 0.85rem;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .cv-bullet-list {
-            margin: 8px 0 16px 0;
-            padding-left: 16px;
+            margin: 8px 0 4px 0;
+            padding-left: 0;
+            list-style: none;
         }
         .cv-bullet-list li {
-            margin-bottom: 6px;
-            color: #475569;
-            list-style-type: square;
+            margin-bottom: 8px;
+            color: var(--cv-body);
+            padding-left: 15px;
+            position: relative;
+        }
+        .cv-bullet-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--cv-accent);
+            font-weight: 700;
         }
         .cv-bullet-list li strong {
-            color: #0f172a;
+            color: var(--cv-ink);
             font-weight: 600;
         }
         .cv-skills-grid {
-            margin-top: 10px;
-            font-size: 0.92rem;
-            color: #475569;
-            line-height: 1.6;
-            background: #f1f5f9;
-            padding: 14px 16px;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
+            margin-top: 4px;
+        }
+        .tag-suggestion {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            background-color: var(--light-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+            user-select: none;
+        }
+        .tag-suggestion:hover {
+            background-color: var(--primary-blue);
+            color: #fff;
+            border-color: var(--primary-blue);
         }
         
         .password-strength-row {
@@ -837,6 +934,13 @@
                             <option value="Air Traffic Control & Logistics">Air Traffic Control & Logistics</option>
                             <option value="Digital Forensics & Cyber Investigation">Digital Forensics & Cyber Investigation</option>
                             <option value="Aerospace & Aircraft Maintenance">Aerospace & Aircraft Maintenance</option>
+                            <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                            <option value="Business & Finance">Business & Finance</option>
+                            <option value="Creative Media & Design">Creative Media & Design</option>
+                            <option value="Engineering & Manufacturing">Engineering & Manufacturing</option>
+                            <option value="Law & Public Services">Law & Public Services</option>
+                            <option value="Marketing & Communications">Marketing & Communications</option>
+                            <option value="Environmental & Sustainability">Environmental & Sustainability</option>
                             <option value="General Studies">General Studies & Alternative Streams</option>
                         </select>
                     </div>
@@ -876,6 +980,18 @@
                         <label for="interests">Interests & Volunteering</label>
                         <textarea id="interests" placeholder="e.g., Aviation safety protocols, cyber threat maps, dynamic font engineering architectures" maxlength="200" rows="2" required></textarea>
                         <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
+                        <div class="cv-pill-row" id="interest-suggestions" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px;">
+                            <span class="tag-suggestion" onclick="addInterest('Volunteering at local charities')">Volunteering at local charities</span>
+                            <span class="tag-suggestion" onclick="addInterest('Coding side-projects')">Coding side-projects</span>
+                            <span class="tag-suggestion" onclick="addInterest('Reading & creative writing')">Reading & creative writing</span>
+                            <span class="tag-suggestion" onclick="addInterest('Team sports')">Team sports</span>
+                            <span class="tag-suggestion" onclick="addInterest('Music & performance')">Music & performance</span>
+                            <span class="tag-suggestion" onclick="addInterest('Environmental campaigning')">Environmental campaigning</span>
+                            <span class="tag-suggestion" onclick="addInterest('Mentoring younger students')">Mentoring younger students</span>
+                            <span class="tag-suggestion" onclick="addInterest('Gaming & game design')">Gaming & game design</span>
+                            <span class="tag-suggestion" onclick="addInterest('Photography')">Photography</span>
+                            <span class="tag-suggestion" onclick="addInterest('Debating & public speaking')">Debating & public speaking</span>
+                        </div>
                     </div>
                 </div>
                 <div class="full-width input-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 20px;">
@@ -1070,6 +1186,55 @@
                 { title: "Avionics Technical Assistant", company: "Flight Systems Solutions", score: "96%", desc: "Support the integration and testing of cockpit electronic systems.", deadline: "In 4 days" },
                 { title: "Composite Materials Technician Shadow", company: "Aerospace Manufacturing Facility", score: "93%", desc: "Observe composite material repair techniques and bonding processes.", deadline: "In 11 days" }
             ],
+            "Healthcare & Life Sciences": [
+                { title: "Clinical Support Assistant Shadow", company: "Riverside Community Hospital", score: "94%", desc: "Observe patient care routines and support ward administration tasks.", deadline: "In 7 days" },
+                { title: "Biomedical Laboratory Intern", company: "Helix Diagnostics Lab", score: "91%", desc: "Assist with sample processing and basic lab equipment calibration.", deadline: "In 10 days" },
+                { title: "Pharmacy Technician Trainee", company: "WellCare Pharmacy Group", score: "89%", desc: "Support prescription handling and stock management under supervision.", deadline: "In 6 days" },
+                { title: "Public Health Research Assistant", company: "Community Health Initiative", score: "88%", desc: "Help gather and organize local health outcome data for reporting.", deadline: "In 13 days" },
+                { title: "Mental Health Support Shadow", company: "Bright Path Wellbeing Services", score: "90%", desc: "Observe counselling sessions and support group session logistics.", deadline: "In 9 days" }
+            ],
+            "Business & Finance": [
+                { title: "Junior Financial Analyst Shadow", company: "Meridian Capital Partners", score: "93%", desc: "Assist with spreadsheet modelling and quarterly reporting summaries.", deadline: "In 8 days" },
+                { title: "Business Operations Intern", company: "Harborview Consulting", score: "90%", desc: "Support process improvement projects and internal reporting.", deadline: "In 12 days" },
+                { title: "Accounts & Bookkeeping Trainee", company: "Clearline Accountancy", score: "87%", desc: "Learn ledger reconciliation and basic invoicing procedures.", deadline: "In 5 days" },
+                { title: "Retail Banking Junior Assistant", company: "Northgate Community Bank", score: "86%", desc: "Support customer service operations and account administration.", deadline: "In 14 days" },
+                { title: "Entrepreneurship & Startups Shadow", company: "Foundry Venture Studio", score: "92%", desc: "Observe early-stage product planning and investor pitch prep.", deadline: "In 4 days" }
+            ],
+            "Creative Media & Design": [
+                { title: "Junior Graphic Design Intern", company: "Pixel & Ink Studio", score: "95%", desc: "Support brand asset creation and social media visual content.", deadline: "In 6 days" },
+                { title: "Video Production Assistant", company: "Reel Motion Media", score: "91%", desc: "Assist with filming, editing, and basic post-production workflows.", deadline: "In 9 days" },
+                { title: "UX/UI Design Shadow", company: "Studio Northline", score: "93%", desc: "Observe wireframing sessions and usability testing processes.", deadline: "In 11 days" },
+                { title: "Photography Studio Junior", company: "Lumen Creative House", score: "88%", desc: "Support shoot setup, lighting, and basic image retouching.", deadline: "In 7 days" },
+                { title: "Animation & Motion Graphics Trainee", company: "Framewerk Animation Co.", score: "90%", desc: "Assist with storyboard development and short animation sequences.", deadline: "In 13 days" }
+            ],
+            "Engineering & Manufacturing": [
+                { title: "Mechanical Engineering Shadow", company: "Ironbridge Manufacturing", score: "95%", desc: "Observe CAD design workflows and prototype testing procedures.", deadline: "In 8 days" },
+                { title: "Production Line Technician Trainee", company: "Forgeline Industrial Group", score: "89%", desc: "Support assembly line quality checks and process documentation.", deadline: "In 5 days" },
+                { title: "Electrical Systems Assistant", company: "Voltix Engineering Solutions", score: "92%", desc: "Assist with circuit testing and basic electrical maintenance tasks.", deadline: "In 10 days" },
+                { title: "Robotics & Automation Shadow", company: "AxioTech Robotics", score: "96%", desc: "Observe automated system calibration and sensor integration work.", deadline: "In 4 days" },
+                { title: "Materials Testing Junior", company: "Precision Alloys Lab", score: "87%", desc: "Support tensile and stress testing on manufacturing samples.", deadline: "In 12 days" }
+            ],
+            "Law & Public Services": [
+                { title: "Legal Clerk Shadow", company: "Ashford & Wells Solicitors", score: "92%", desc: "Observe case file preparation and client intake procedures.", deadline: "In 9 days" },
+                { title: "Community Services Support Intern", company: "Local Council Services", score: "87%", desc: "Assist with case coordination for local resident support programmes.", deadline: "In 14 days" },
+                { title: "Paralegal Research Assistant", company: "Hartley Legal Partners", score: "90%", desc: "Support legal research and drafting of preliminary case notes.", deadline: "In 6 days" },
+                { title: "Emergency Services Operations Shadow", company: "Regional Emergency Response Unit", score: "94%", desc: "Observe dispatch coordination and incident response planning.", deadline: "In 5 days" },
+                { title: "Policy Research Trainee", company: "Civic Policy Institute", score: "88%", desc: "Assist with data gathering for local policy impact reports.", deadline: "In 11 days" }
+            ],
+            "Marketing & Communications": [
+                { title: "Digital Marketing Intern", company: "Brightwave Marketing Agency", score: "93%", desc: "Support campaign scheduling, analytics tracking, and content drafts.", deadline: "In 7 days" },
+                { title: "Social Media Coordinator Shadow", company: "PulsePoint Media Group", score: "91%", desc: "Assist with content calendars and community engagement monitoring.", deadline: "In 6 days" },
+                { title: "PR & Communications Assistant", company: "Clearvoice Communications", score: "89%", desc: "Support press release drafting and media contact coordination.", deadline: "In 10 days" },
+                { title: "Market Research Junior Analyst", company: "Insight Metrics Group", score: "90%", desc: "Help compile survey data and competitor analysis summaries.", deadline: "In 13 days" },
+                { title: "Brand Strategy Shadow", company: "Northfield Brand Studio", score: "92%", desc: "Observe brand positioning workshops and creative brief development.", deadline: "In 5 days" }
+            ],
+            "Environmental & Sustainability": [
+                { title: "Environmental Field Assistant", company: "Greenline Conservation Trust", score: "91%", desc: "Support habitat surveys and environmental data collection.", deadline: "In 8 days" },
+                { title: "Sustainability Analyst Shadow", company: "EcoMetrics Consulting", score: "89%", desc: "Assist with carbon footprint reporting and sustainability audits.", deadline: "In 12 days" },
+                { title: "Renewable Energy Technician Trainee", company: "Solaris Grid Solutions", score: "94%", desc: "Observe solar and wind installation maintenance procedures.", deadline: "In 6 days" },
+                { title: "Waste & Recycling Operations Junior", company: "CircularWorks Recycling Co.", score: "86%", desc: "Support sorting facility operations and process improvement logs.", deadline: "In 14 days" },
+                { title: "Environmental Policy Research Assistant", company: "Coastal Environmental Alliance", score: "88%", desc: "Help gather data for local environmental impact assessments.", deadline: "In 9 days" }
+            ],
             "General Studies": [
                 { title: "General Industry Operational Placement", company: "Local Enterprise Hub", score: "85%", desc: "Develop professional communication and operational field skills.", deadline: "In 14 days" },
                 { title: "Business Administration Intern", company: "Prime Office Solutions", score: "88%", desc: "Assist with corporate projects and stakeholder management tasks.", deadline: "In 11 days" },
@@ -1139,58 +1304,81 @@
             document.getElementById('step-2').classList.remove('hidden');
 
             // Render CV
-            const profileText = `Highly motivated and disciplined student specializing in ${cvData.subject}. Demonstrated analytical capability through consistent academic achievement (${cvData.grades}). Passionate about developing technical proficiency and problem-solving skills. Seeking an immersive work experience placement to apply theoretical knowledge and contribute to real-world projects.`;
+            const topTechSkill = cvData.tech_skills.split(',').map(s => s.trim()).filter(Boolean)[0];
+            const topGeneralSkill = cvData.general_skills.split(',').map(s => s.trim()).filter(Boolean)[0];
+            const topInterest = cvData.interests.split(',').map(s => s.trim()).filter(Boolean)[0];
+
+            const profileText = `Highly motivated and disciplined ${cvData.course_type || 'student'} specializing in ${cvData.subject}, currently studying at ${cvData.school}${cvData.location ? ` in ${cvData.location}` : ''}. Demonstrated analytical capability through consistent academic achievement (${cvData.grades})${topTechSkill ? `, backed by hands-on technical experience in ${topTechSkill}` : ''}. ${topGeneralSkill ? `Recognised for strong ${topGeneralSkill.toLowerCase()}, complemented by a practical, detail-oriented approach to problem-solving. ` : ''}Outside of academics, actively engaged in ${cvData.sports.toLowerCase()}${topInterest ? ` and ${topInterest.toLowerCase()}` : ''}, reflecting a well-rounded commitment to both personal growth and community involvement. Seeking an immersive work experience placement to apply theoretical knowledge in a real-world setting, build professional skills, and make a genuine contribution to the host organisation's day-to-day work.`;
 
             document.getElementById('cv-document-target').innerHTML = `
-                <h2 class="cv-name">${cvData.first_name} ${cvData.surname}</h2>
-                <p class="cv-contact">
-                    ${cvData.location} | ${cvData.phone} | ${cvData.email}
-                    ${cvData.driving_license !== 'No' ? ' | ' + cvData.driving_license : ''}
-                    ${cvData.linkedin ? ' | ' + cvData.linkedin : ''}
-                </p>
-                
-                <div class="cv-section-title">Personal Profile</div>
-                <p style="color: #475569; margin: 0 0 20px 0; font-size: 0.95rem; line-height: 1.6;">
-                    ${profileText}
-                </p>
+                <aside class="cv-sidebar">
+                    <h2 class="cv-name">${cvData.first_name}<br>${cvData.surname}</h2>
+                    <div class="cv-role-tag">${cvData.subject || 'Candidate'}</div>
 
-                <div class="cv-section-title">Education</div>
-                <div class="cv-split-header">
-                    <span>${cvData.school}</span>
-                    <span>Current</span>
-                </div>
-                <div class="cv-split-sub">
-                    <span>${cvData.course_type} - ${cvData.subject}</span>
-                    <span>${cvData.grades}</span>
-                </div>
+                    <div class="cv-sidebar-block">
+                        <div class="cv-sidebar-label">Contact</div>
+                        ${cvData.location ? `<div class="cv-sidebar-line">${cvData.location}</div>` : ''}
+                        ${cvData.phone ? `<div class="cv-sidebar-line">${cvData.phone}</div>` : ''}
+                        ${cvData.email ? `<div class="cv-sidebar-line">${cvData.email}</div>` : ''}
+                        ${cvData.linkedin ? `<div class="cv-sidebar-line">${cvData.linkedin}</div>` : ''}
+                        ${cvData.github ? `<div class="cv-sidebar-line">${cvData.github}</div>` : ''}
+                        ${cvData.driving_license && cvData.driving_license !== 'No' ? `<div class="cv-sidebar-line">${cvData.driving_license}</div>` : ''}
+                    </div>
 
-                <div class="cv-section-title">Technical Skills</div>
-                <div class="cv-skills-grid">
-                    ${cvData.tech_skills.split(',').map(skill => `<span style="display:inline-block; background:#e2e8f0; color:#0f172a; padding:3px 8px; margin:4px; border-radius:4px; font-weight:600; font-size:0.85rem;">${skill.trim()}</span>`).join('')}
-                </div>
+                    <div class="cv-sidebar-block">
+                        <div class="cv-sidebar-label">Technical Skills</div>
+                        <div class="cv-pill-row">
+                            ${cvData.tech_skills.split(',').filter(s => s.trim()).map(skill => `<span class="cv-pill">${skill.trim()}</span>`).join('')}
+                        </div>
+                    </div>
 
-                <div class="cv-section-title">General Skills</div>
-                <div class="cv-skills-grid">
-                    ${cvData.general_skills.split(',').map(skill => `<span style="display:inline-block; background:#cbd5e1; color:#0f172a; padding:3px 8px; margin:4px; border-radius:4px; font-weight:600; font-size:0.85rem;">${skill.trim()}</span>`).join('')}
-                </div>
+                    <div class="cv-sidebar-block">
+                        <div class="cv-sidebar-label">General Skills</div>
+                        <div class="cv-pill-row">
+                            ${cvData.general_skills.split(',').filter(s => s.trim()).map(skill => `<span class="cv-pill">${skill.trim()}</span>`).join('')}
+                        </div>
+                    </div>
 
-                <div class="cv-section-title">Employment & Experience</div>
-                <p style="color: #475569; margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.6;">
-                    ${cvData.emp_history}
-                </p>
+                    <div class="cv-sidebar-block" style="margin-bottom: 0;">
+                        <div class="cv-sidebar-label">Interests</div>
+                        <div class="cv-sidebar-line">${cvData.interests}</div>
+                    </div>
+                </aside>
 
-                <div class="cv-section-title">Projects</div>
-                <p style="color: #475569; margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.6;">
-                    ${cvData.personal_projects}
-                </p>
+                <div class="cv-main">
+                    <div class="cv-section-title">Personal Profile</div>
+                    <p style="color: var(--cv-body); margin: 0 0 4px 0; font-size: 0.95rem; line-height: 1.6;">
+                        ${profileText}
+                    </p>
 
-                <ul class="cv-bullet-list">
-                    <li><strong>Leadership:</strong> ${cvData.sports}</li>
-                    <li><strong>Interests:</strong> ${cvData.interests}</li>
-                </ul>
+                    <div class="cv-section-title">Education</div>
+                    <div class="cv-split-header">
+                        <span>${cvData.school}</span>
+                        <span>Current</span>
+                    </div>
+                    <div class="cv-split-sub">
+                        <span>${cvData.course_type} — ${cvData.subject}</span>
+                        <span>${cvData.grades}</span>
+                    </div>
 
-                <div style="text-align: center; margin-top: 35px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-weight: 700; color: #0f172a; font-size: 0.9rem;">
-                    References available upon request
+                    <div class="cv-section-title">Employment &amp; Experience</div>
+                    <p style="color: var(--cv-body); margin: 0 0 4px 0; font-size: 0.95rem; line-height: 1.6;">
+                        ${cvData.emp_history}
+                    </p>
+
+                    <div class="cv-section-title">Projects</div>
+                    <p style="color: var(--cv-body); margin: 0 0 4px 0; font-size: 0.95rem; line-height: 1.6;">
+                        ${cvData.personal_projects}
+                    </p>
+
+                    <div class="cv-section-title">Leadership &amp; Activities</div>
+                    <ul class="cv-bullet-list">
+                        <li>${cvData.sports}</li>
+                    </ul>
+
+                    <div style="margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--cv-hairline); font-weight: 600; color: var(--cv-sidebar-muted); font-size: 0.78rem; letter-spacing: 0.03em;">
+                        References available upon request
+                    </div>
                 </div>
             `;
 
@@ -1295,6 +1483,14 @@
                 progressText.textContent = "Step 3 of 3: Experience & Projects";
                 progressPercent.textContent = "100%";
             }
+        }
+
+        function addInterest(text) {
+            const field = document.getElementById('interests');
+            const existing = field.value.trim();
+            const combined = existing ? `${existing}, ${text}` : text;
+            field.value = combined.slice(0, 200);
+            field.dispatchEvent(new Event('input'));
         }
 
         function clearCurrentStep() {
