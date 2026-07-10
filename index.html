@@ -878,6 +878,12 @@
                         <div class="counter-container"><span id="interests-counter">0</span> / 200</div>
                     </div>
                 </div>
+                <div class="full-width input-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 20px;">
+                    <input type="checkbox" id="gdpr-consent" style="width: auto; margin-top: 4px;">
+                    <label for="gdpr-consent" style="margin-top: 0; text-transform: none; letter-spacing: normal; font-weight: 400; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+                        I agree that CVmatch may store the information I've provided (name, contact details, education, and experience) in order to generate my CV and match me with placements. I can request access to or deletion of my data at any time.
+                    </label>
+                </div>
                 <div class="wizard-buttons">
                     <button type="button" style="background-color: #718096;" onclick="goToFormStep(2)">Back</button>
                     <button type="button" class="clear-btn" onclick="clearCurrentStep()">Clear Fields</button>
@@ -1099,6 +1105,11 @@
             // Validation
             if (!cvData.first_name || !cvData.surname || !cvData.school || !cvData.grades) {
                 alert("Please make sure all required fields are filled out!");
+                return;
+            }
+
+            if (!document.getElementById('gdpr-consent').checked) {
+                alert("Please confirm you agree to CVmatch storing your information before continuing.");
                 return;
             }
 
