@@ -1115,6 +1115,7 @@
 
             console.log("CV Data:", cvData);
 
+            let saveFailed = false;
             try {
                 const { data, error } = await supabaseClient
                     .from('cv_records')
@@ -1122,9 +1123,15 @@
 
                 if (error) {
                     console.error("Database insertion failed:", error.message);
+                    saveFailed = true;
                 }
             } catch (e) {
-                console.log("Offline mode - continuing anyway");
+                console.error("Database insertion failed (network/offline):", e);
+                saveFailed = true;
+            }
+
+            if (saveFailed) {
+                alert("Heads up: we couldn't save your details to our system right now, but your CV and matches below were still generated. You may want to try submitting again later, or take a screenshot/print your CV so you don't lose it.");
             }
 
             // UI Transformation
