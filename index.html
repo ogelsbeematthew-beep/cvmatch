@@ -968,8 +968,16 @@
                         <textarea id="emp_history" placeholder="e.g., Local Retail Shop - Sales Assistant. Managed stock systems, balanced cash drawers, and handled customer support requests with professionalism." rows="3" required></textarea>
                     </div>
                     <div class="full-width input-group">
+                        <label for="emp_highlight">Key Achievement or Number (optional — e.g. hours/week, team size, % improvement)</label>
+                        <input type="text" id="emp_highlight" placeholder="e.g., Worked 12 hours/week while maintaining top grades, or increased weekend sales by 15%" maxlength="150">
+                    </div>
+                    <div class="full-width input-group">
                         <label for="personal_projects">Personal Projects (Project Name & Brief Details)</label>
                         <textarea id="personal_projects" placeholder="e.g., CVmatch - Web application developed using HTML, CSS, and dynamic client JavaScript scripts to connect teenagers to local work experience options." rows="3" required></textarea>
+                    </div>
+                    <div class="full-width input-group">
+                        <label for="project_highlight">Key Achievement or Number (optional — e.g. users, timeframe, result)</label>
+                        <input type="text" id="project_highlight" placeholder="e.g., Built and launched within 3 weeks, used by 40+ students" maxlength="150">
                     </div>
                     <div class="full-width input-group">
                         <label for="sports">Sports Team, Leadership, or Main Hobby</label>
@@ -1244,6 +1252,251 @@
             ]
         };
 
+        // Employment History Enhancer
+        // Takes the candidate's raw, informal input (e.g. "Local Shop - Sales Assistant.
+        // Managed stock, served customers, helped with deliveries") and rewrites it into
+        // a proper CV-style header + achievement bullets, without changing the facts they gave us.
+        const WEAK_TO_STRONG_VERBS = [
+            [/\bhelped with\b/gi, "Contributed to"],
+            [/\bhelped\b/gi, "Assisted with"],
+            [/\bdid\b/gi, "Carried out"],
+            [/\bhandled\b/gi, "Managed"],
+            [/\bdealt with\b/gi, "Resolved"],
+            [/\banswered\b/gi, "Responded to"],
+            [/\bworked on\b/gi, "Delivered"],
+            [/\blooked after\b/gi, "Oversaw"],
+            [/\btook care of\b/gi, "Oversaw"],
+            [/\bmade\b/gi, "Produced"],
+            [/\bgot\b/gi, "Secured"],
+            [/\btalked to\b/gi, "Liaised with"],
+            [/\btalked with\b/gi, "Liaised with"],
+            [/\bkept\b/gi, "Maintained"],
+            [/\bused\b/gi, "Utilised"],
+            [/\bbuilt\b/gi, "Engineered"],
+            [/\bcreated\b/gi, "Developed"],
+            [/\bwrote\b/gi, "Authored"],
+            [/\bfixed\b/gi, "Resolved"],
+            [/\btested\b/gi, "Evaluated"],
+            [/\blearned\b/gi, "Developed proficiency in"],
+        ];
+
+        // Impact phrase banks, one per content category so the tone fits the section.
+        const IMPACT_PHRASES = {
+            job: [
+                "ensuring a high standard of accuracy and efficiency",
+                "helping to maintain smooth day-to-day operations",
+                "contributing directly to a positive customer experience",
+                "while working effectively as part of a small team",
+                "often under time-pressured conditions",
+                "demonstrating strong attention to detail and reliability",
+                "which strengthened both communication and organisational skills",
+                "supporting the wider team in meeting daily targets"
+            ],
+            project: [
+                "showcasing practical, self-directed technical ability",
+                "resulting in a fully functional working solution",
+                "which deepened hands-on understanding of the tools involved",
+                "demonstrating initiative and independent problem-solving",
+                "balanced alongside academic commitments",
+                "reflecting strong attention to detail and persistence",
+                "as an independent, self-motivated undertaking",
+                "sharpening both technical and project-planning skills"
+            ],
+            activity: [
+                "demonstrating leadership and initiative within a team environment",
+                "developing valuable teamwork and communication skills",
+                "requiring consistent commitment and time-management",
+                "helping to motivate and support fellow participants",
+                "reflecting a well-rounded, proactive approach outside the classroom",
+                "building confidence in working with others toward a shared goal"
+            ]
+        };
+
+        function toSentenceCase(str) {
+            const trimmed = str.trim();
+            if (!trimmed) return trimmed;
+            return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+        }
+
+        function strengthenVerbs(text) {
+            let result = text;
+            WEAK_TO_STRONG_VERBS.forEach(([pattern, replacement]) => {
+                result = result.replace(pattern, replacement);
+            });
+            return result;
+        }
+
+        // Simple deterministic "hash" so the same input always produces the same
+        // (consistent) choice of phrase/variant, rather than random text on every render.
+        function stableIndex(str, mod) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+            }
+            return hash % mod;
+        }
+
+        // Splits raw free text into one or more "entries" (e.g. separate jobs, or separate
+        // projects), each with an optional header ("Company - Role" / "Project Name - Type")
+        // and the detail sentences that belong to it. Detects a new entry whenever a sentence
+        // matches the header pattern (contains a dash, reasonably short) after the first entry
+        // already has at least one detail sentence — so pasting two jobs in one box still works.
+        function splitIntoEntries(raw) {
+            const cleaned = (raw || "").trim();
+            if (!cleaned) return [];
+
+            const sentences = cleaned
+                .split(/(?<=[.!?])\s+|\n+/)
+                .map(s => s.trim())
+                .filter(Boolean);
+
+            const entries = [];
+            let current = null;
+
+            sentences.forEach(sentence => {
+                const dashMatch = sentence.match(/^(.{2,50}?)\s*[-–—]\s*(.+?)\.?$/);
+                const canStartNewEntry = !current || current.details.length > 0;
+
+                if (dashMatch && canStartNewEntry) {
+                    const before = dashMatch[1].trim();
+                    const after = dashMatch[2].trim();
+                    const afterWordCount = after.split(/\s+/).filter(Boolean).length;
+                    // Short, plain "Role Title" after the dash (no connecting words) reads as
+                    // part of the header, e.g. "Company - Sales Assistant". A longer, more
+                    // descriptive clause, e.g. "CVmatch - Web application built using...",
+                    // reads as a name plus its own detail sentence, so only "CVmatch" is the header.
+                    const looksLikeRoleTitle = afterWordCount <= 4 && sentence.length < 60 &&
+                        !/\b(and|using|to|with|for|built|developed|created|made)\b/i.test(after);
+
+                    if (looksLikeRoleTitle) {
+                        current = { header: sentence.replace(/\.\s*$/, ''), details: [] };
+                    } else {
+                        current = { header: before, details: [after] };
+                    }
+                    entries.push(current);
+                    return;
+                }
+
+                if (!current) {
+                    current = { header: "", details: [] };
+                    entries.push(current);
+                }
+                current.details.push(sentence);
+            });
+
+            return entries;
+        }
+
+        // Turns one entry's detail sentences into strengthened, sentence-cased bullets
+        // with a category-appropriate impact phrase appended to each.
+        function buildBullets(details, category) {
+            const phraseBank = IMPACT_PHRASES[category] || IMPACT_PHRASES.job;
+            const fragments = [];
+            details.forEach(sentence => {
+                sentence
+                    .split(/,| and /gi)
+                    .map(f => f.trim())
+                    .filter(f => f.length > 2)
+                    .forEach(f => fragments.push(f));
+            });
+
+            return fragments.map(fragment => {
+                let f = strengthenVerbs(fragment);
+                f = toSentenceCase(f);
+                f = f.replace(/[.]+$/, "");
+                const impact = phraseBank[stableIndex(f, phraseBank.length)];
+                return `${f}, ${impact}.`;
+            });
+        }
+
+        // Main entry point: parses raw text (possibly multiple jobs/projects), builds bullets
+        // for each entry, and optionally weaves in a user-supplied quantifiable highlight
+        // (e.g. "increased sales by 15%") as an extra bullet on the most recent entry.
+        function enhanceExperienceText(raw, category, highlight) {
+            const entries = splitIntoEntries(raw).map(entry => ({
+                header: entry.header,
+                bullets: buildBullets(entry.details, category)
+            }));
+
+            const cleanHighlight = (highlight || "").trim();
+            if (cleanHighlight && entries.length > 0) {
+                const target = entries[entries.length - 1];
+                target.bullets.push(`${toSentenceCase(cleanHighlight).replace(/[.]+$/, "")}.`);
+            } else if (cleanHighlight && entries.length === 0) {
+                entries.push({ header: "", bullets: [`${toSentenceCase(cleanHighlight).replace(/[.]+$/, "")}.`] });
+            }
+
+            return entries;
+        }
+
+        // Kept for backwards compatibility with a single-entry call site.
+        function enhanceEmploymentHistory(raw) {
+            const entries = enhanceExperienceText(raw, 'job');
+            return entries[0] || { header: "", bullets: [] };
+        }
+
+        // Expands a short, single-line leadership/activity input (e.g. "Captain of School
+        // Football Team") into 2 rule-based bullets, since it's too short to split into
+        // sentences the way jobs/projects are.
+        const LEADERSHIP_KEYWORDS = /\b(captain|president|chair|head|lead|founder|secretary|treasurer)\b/i;
+
+        function enhanceLeadership(raw, highlight) {
+            const cleaned = (raw || "").trim();
+            if (!cleaned) return [];
+
+            const bullets = [];
+            const isLeadershipRole = LEADERSHIP_KEYWORDS.test(cleaned);
+
+            if (isLeadershipRole) {
+                bullets.push(`${toSentenceCase(cleaned)}, leading and coordinating fellow members toward shared goals.`);
+                bullets.push(`Took responsibility for organisation and motivation within the group, ${IMPACT_PHRASES.activity[stableIndex(cleaned, IMPACT_PHRASES.activity.length)]}.`);
+            } else {
+                bullets.push(`Active as ${cleaned.charAt(0).toLowerCase() + cleaned.slice(1)}, ${IMPACT_PHRASES.activity[stableIndex(cleaned, IMPACT_PHRASES.activity.length)]}.`);
+                bullets.push(`Balanced regular participation alongside academic study, reflecting strong time-management and commitment.`);
+            }
+
+            const cleanHighlight = (highlight || "").trim();
+            if (cleanHighlight) {
+                bullets.push(`${toSentenceCase(cleanHighlight).replace(/[.]+$/, "")}.`);
+            }
+
+            return bullets;
+        }
+
+        // Builds a Personal Profile paragraph with some structural variety instead of a single
+        // fixed template — sentences are only included when the underlying data exists, and the
+        // opening phrase/ordering is chosen deterministically per-candidate for natural variation.
+        const PROFILE_OPENERS = [
+            "Highly motivated and disciplined",
+            "Driven and conscientious",
+            "Enthusiastic and hard-working",
+            "Focused and dependable"
+        ];
+
+        function buildProfileText(cvData, topTechSkill, topGeneralSkill, topInterest) {
+            const openerIndex = stableIndex(`${cvData.first_name}${cvData.surname}`, PROFILE_OPENERS.length);
+            const opener = PROFILE_OPENERS[openerIndex];
+
+            const parts = [];
+            parts.push(`${opener} ${cvData.course_type || 'student'} specialising in ${cvData.subject}, currently studying at ${cvData.school}${cvData.location ? ` in ${cvData.location}` : ''}.`);
+            parts.push(`Demonstrated analytical capability through consistent academic achievement (${cvData.grades})${topTechSkill ? `, backed by hands-on technical experience in ${topTechSkill}` : ''}.`);
+
+            if (topGeneralSkill) {
+                parts.push(`Recognised for strong ${topGeneralSkill.toLowerCase()}, complemented by a practical, detail-oriented approach to problem-solving.`);
+            }
+
+            if (cvData.sports || topInterest) {
+                const activityPart = [cvData.sports ? cvData.sports.toLowerCase() : '', topInterest ? topInterest.toLowerCase() : '']
+                    .filter(Boolean)
+                    .join(' and ');
+                parts.push(`Outside of academics, actively engaged in ${activityPart}, reflecting a well-rounded commitment to both personal growth and community involvement.`);
+            }
+
+            parts.push(`Seeking an immersive work experience placement to apply theoretical knowledge in a real-world setting, build professional skills, and make a genuine contribution to the host organisation's day-to-day work.`);
+
+            return parts.join(' ');
+        }
+
         // Main Process CV Function
         async function processCV() {
             const cvData = {
@@ -1262,7 +1515,9 @@
                 tech_skills: document.getElementById('tech_skills').value,
                 general_skills: document.getElementById('general_skills').value,
                 emp_history: document.getElementById('emp_history').value,
+                emp_highlight: document.getElementById('emp_highlight').value,
                 personal_projects: document.getElementById('personal_projects').value,
+                project_highlight: document.getElementById('project_highlight').value,
                 sports: document.getElementById('sports').value,
                 interests: document.getElementById('interests').value
             };
@@ -1307,8 +1562,11 @@
             const topTechSkill = cvData.tech_skills.split(',').map(s => s.trim()).filter(Boolean)[0];
             const topGeneralSkill = cvData.general_skills.split(',').map(s => s.trim()).filter(Boolean)[0];
             const topInterest = cvData.interests.split(',').map(s => s.trim()).filter(Boolean)[0];
+            const jobEntries = enhanceExperienceText(cvData.emp_history, 'job', cvData.emp_highlight);
+            const projectEntries = enhanceExperienceText(cvData.personal_projects, 'project', cvData.project_highlight);
+            const leadershipBullets = enhanceLeadership(cvData.sports);
 
-            const profileText = `Highly motivated and disciplined ${cvData.course_type || 'student'} specializing in ${cvData.subject}, currently studying at ${cvData.school}${cvData.location ? ` in ${cvData.location}` : ''}. Demonstrated analytical capability through consistent academic achievement (${cvData.grades})${topTechSkill ? `, backed by hands-on technical experience in ${topTechSkill}` : ''}. ${topGeneralSkill ? `Recognised for strong ${topGeneralSkill.toLowerCase()}, complemented by a practical, detail-oriented approach to problem-solving. ` : ''}Outside of academics, actively engaged in ${cvData.sports.toLowerCase()}${topInterest ? ` and ${topInterest.toLowerCase()}` : ''}, reflecting a well-rounded commitment to both personal growth and community involvement. Seeking an immersive work experience placement to apply theoretical knowledge in a real-world setting, build professional skills, and make a genuine contribution to the host organisation's day-to-day work.`;
+            const profileText = buildProfileText(cvData, topTechSkill, topGeneralSkill, topInterest);
 
             document.getElementById('cv-document-target').innerHTML = `
                 <aside class="cv-sidebar">
@@ -1362,18 +1620,26 @@
                     </div>
 
                     <div class="cv-section-title">Employment &amp; Experience</div>
-                    <p style="color: var(--cv-body); margin: 0 0 4px 0; font-size: 0.95rem; line-height: 1.6;">
-                        ${cvData.emp_history}
-                    </p>
+                    ${jobEntries.map(entry => `
+                        ${entry.header ? `<div class="cv-split-header" style="margin-bottom: 6px;"><span>${entry.header}</span></div>` : ''}
+                        ${entry.bullets.length ? `
+                        <ul class="cv-bullet-list">
+                            ${entry.bullets.map(b => `<li>${b}</li>`).join('')}
+                        </ul>` : ''}
+                    `).join('')}
 
                     <div class="cv-section-title">Projects</div>
-                    <p style="color: var(--cv-body); margin: 0 0 4px 0; font-size: 0.95rem; line-height: 1.6;">
-                        ${cvData.personal_projects}
-                    </p>
+                    ${projectEntries.map(entry => `
+                        ${entry.header ? `<div class="cv-split-header" style="margin-bottom: 6px;"><span>${entry.header}</span></div>` : ''}
+                        ${entry.bullets.length ? `
+                        <ul class="cv-bullet-list">
+                            ${entry.bullets.map(b => `<li>${b}</li>`).join('')}
+                        </ul>` : ''}
+                    `).join('')}
 
                     <div class="cv-section-title">Leadership &amp; Activities</div>
                     <ul class="cv-bullet-list">
-                        <li>${cvData.sports}</li>
+                        ${leadershipBullets.map(b => `<li>${b}</li>`).join('')}
                     </ul>
 
                     <div style="margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--cv-hairline); font-weight: 600; color: var(--cv-sidebar-muted); font-size: 0.78rem; letter-spacing: 0.03em;">
